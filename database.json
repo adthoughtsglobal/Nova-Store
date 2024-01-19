@@ -4,6 +4,7 @@
     {"Tic Tac Toe":[
       {"src":"/Nova-Store/TicTacToe.html"},
       {"by":"G-Progress"},
+      {"desc":"The game Of TicTacToe."},
       {"cat":"game"}
     ]}
   ]
