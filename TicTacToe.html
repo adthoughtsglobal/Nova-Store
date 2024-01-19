@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Tic Tac Toe</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <div id="menu">
+    <h1 id="name">Tic Tac Toe</h1>
+    <div id="size1">
+      <label id="sizetext">Size:</label>
+      <input id="in" type="number" value="3" min="3" max="10">
+      <p id=sizeindicator>3x3</p>
+    </div>
+    <div id="size2">
+      <label id="sizetext2">Win range:</label>
+      <input id="in2" type="number" value="5" min="3" max="10">
+      <p id=sizeindicator2>3x3</p>
+    </div>
+    <div id="playmod">
+      <label id="playmodtext">Play Now:</label>
+      <button id="start" onclick="Started()">Offline</button>
+      <button id="online">Online</button>
+    </div>
+    <div id="as1">
+      <label id="l1">Time:</label>
+      <input id="in3x" type="number" value="30" min="3" max="60">
+      <input id="in3o" type="number" value="" min="3" max="60">
+    </div>
+    <div id="as2">
+      <label id="l2">Draw Point:</label>
+      <input id="in4x" type="number" value="0.5" min="0.01" max="1000">
+      <input id="in4o" type="number" value="" min="0.01" max="1000">
+    </div>
+    <div id="as3">
+      <label id="l3">Point For Wins</label>
+      <input id="in5x" type="number" value="3" min="1" max="1000">
+      <input id="in5o" type="number" value="" min="1" max="1000">
+    </div>
+    <div id="as4">
+      <label id="l4">Player Count</label>
+      <input id="in6" disabled value="X,O (coming soon)">
+    </div>
+    <button id="replay">Load Replay Recording</button>
+  </div>
+  <div id=ingame>
+    <button id="restart" onclick="restart()">Restart</button>
+    <canvas id="can"></canvas>
+    <div id=ingamefooter>
+      <p id=turn>Turn:<br>X</p>
+      <p id=wins>Points:<br>O: 0, X: 0</p>
+      <p id=time>Time:<br>0000</p>
+    </div>
+  </div>
+  <div id=gameover>
+    <h1 id="gameovertext">Game Over</h1>
+    <p id="detailwin">Winner: X<br>Points: O: 0, X: 0</p>
+    <button id="replaysave" onclick="save()">Save Replay</button>
+    <button id="backhome" onclick="overtoback()">Back To Home</button>
+  </div>
+  <script src="script.js"></script>
+</body>
+
+</html>
