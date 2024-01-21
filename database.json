@@ -6,6 +6,12 @@
       {"by":"G-Progress"},
       {"desc":"The game Of TicTacToe."},
       {"cat":"game"}
+    ]},
+    {"JS definer":[
+      {"src":"/Nova-Store/jsdef.html"},
+      {"by":"adthoughtsglobal"},
+      {"desc":"Paste any JS code to identify what is happening under the hood in a more simpler language."},
+      {"cat":"tools"}
     ]}
   ]
 }
