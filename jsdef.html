@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="https://glitch.com/favicon.ico" />
+
+    <title>Hello world!</title>
+    <style>
+    /* a minimalist set of CSS resets */
+
+/* default to border-box */
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+/* adjust typography defaults */
+body {
+  margin: 1rem;
+  font-family: sans-serif;
+  line-height: 1.5;
+  color: white;
+  background-color: #1f1f1f;
+}
+
+/* images and videos max out at full width */
+img,
+video {
+  height: auto;
+  max-width: 100%;
+}
+      
+      hr { 
+  border: 0; 
+  height: 1px; 
+  background-image:-webkit-linear-gradient(left, #f0f0f000, #8c8b8b, #f0f0f000);
+  background-image: -moz-linear-gradient(left, #f0f0f000, #8c8b8b, #f0f0f000);
+  background-image: -ms-linear-gradient(left, #f0f0f000, #8c8b8b, #f0f0f000);
+  background-image: -o-linear-gradient(left, #f0f0f000, #8c8b8b, #f0f0f000); 
+}
+      
+      button {
+        display: block;
+        width: 100%;
+        padding: 7px;
+        border-radius: 5px;
+        border: 1px solid grey;
+        background-color: #2f2f2f;
+        cursor: pointer;
+        color: white;
+      }
+      
+      span {
+        font-size: 13px;
+        font-family: monospace;
+        padding: 3px 7px;
+        background-color: #3f3f3f;
+        border-radius: 10px;
+      }
+
+textarea {
+  display: block;
+  width: 100%;
+  height: 40vh;
+  background-color: #2f2f2f;
+  color:white;
+}</style>
+  </head>
+  <body>
+    <!-- this is the start of content -->
+    <h1>
+      JS definer
+    </h1>
+    <p>
+      Paste any JS code to identify what is happening under the hood in a more simpler language.
+    </p>
+    <textarea placeholder="code" id="code">
+     console.log("Paste Your Code")
+    </textarea><br>
+      <button onclick="dowork()" >
+    procces
+    </button>
+    <p id="pp">
+      Hit procces to define code.
+    </p>
+    <script>
+    var paragraph = document.getElementById("pp");
+
+function updateParagraph() {
+  paragraph.innerHTML = result;
+}
+
+var code = document.getElementById("code")
+var result = ""
+updateParagraph();
+
+function dowork() {
+  result = "";
+  var x = code.value;
+  var lines = x.split('\n');
+  lines.forEach((line, index) => {
+  checkcode(line.trim(), index);
+});
+
+  updateParagraph();
+}
+
+var emptyLineRangeStart = null;
+
+function checkcode(x, i) {
+  if (x.trim() === "") {
+    if (emptyLineRangeStart === null) {
+      emptyLineRangeStart = i;
+    }
+  } else {
+    if (emptyLineRangeStart !== null) {
+      const emptyLineRangeEnd = i - 1;
+      result += "Lines " + emptyLineRangeStart + " to " + emptyLineRangeEnd + ": Empty lines.<hr>";
+      emptyLineRangeStart = null;
+    }
+
+    if (x.startsWith("result += \"Lines")) {
+      // Skip the empty lines message
+    } else {
+      result += "<span>Line " + i + ":</span> ";
+
+      if (x.startsWith("var")) {
+        let decname = x.match(/var (.*?)=/);
+        let extractedText = decname ? decname[1].trim() : "...";
+        let decvalue = x.match(/= (.*?)(;|$)/);
+        let extractedText2 = decvalue ? decvalue[1] : "...";
+        result += "declaring '" + extractedText + "' as " + extractedText2 + " globally.";
+      } else if (x.startsWith("if")) {
+        let condition = x.match(/\((.*?)\)/);
+        let extractedCondition = condition ? condition[1].trim() : "...";
+        result += "if " + extractedCondition + ", then:";
+      } else if (x.startsWith("else")) {
+        result += "else:";
+      } else if (x.startsWith("function")) {
+        let funcName = x.match(/function (.*?)\(/);
+        let extractedText = funcName ? funcName[1].trim() : "...";
+        result += "declaring function '" + extractedText + "'.";
+      } else if (x.includes("(") && x.includes(")")) {
+        let functionName = x.substring(0, x.indexOf('(')).trim();
+        let parameters = x.match(/\((.*?)\)/);
+        let parameterText = parameters ? parameters[1].trim() : "...";
+        result += "call function '" + functionName + "' with parameters: " + parameterText + ".";
+      } else if (x.startsWith("}") || x.startsWith("})")) {
+        result += "closing bracket.";
+      } else if (x.startsWith("//")) {
+        let commentText = x.substring(2).trim();
+        result += "comment: " + commentText;
+      } else if (x.split(' ')[2] == ('=')) {
+        let decname = x.match(/(.*?)=/);
+        let extractedText = decname ? decname[1].trim() : "...";
+        let decvalue = x.match(/= (.*?)(;|$)/);
+        let extractedText2 = decvalue ? decvalue[1] : "...";
+        result += "set '" + extractedText + "' variable as " + extractedText2 + ".";
+      } else {
+        result += "Code: " + x.trim();
+      }
+      result += "<hr>";
+    }
+  }
+}
+    </script>
+  </body>
+</html>
