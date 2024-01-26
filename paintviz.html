@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Paint</title>
+<style>
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5;
+}
+
+.controls {
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.color-controls, .brush-controls, .shape-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.color-palette {
+    display: flex;
+    gap: 15px;
+}
+
+canvas {
+    border: 2px solid #dddddd;
+    max-width: 100%;
+    touch-action: none;
+    border-radius: 12px;
+    background-color: #ffffff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+canvas:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.control-button {
+    padding: 12px 24px;
+    cursor: pointer;
+    background-color: #4caf50;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease-in-out;
+}
+
+.control-button:hover {
+    background-color: #45a049;
+}
+
+.color-palette button {
+    width: 24px;
+    height: 24px;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out, border-color 0.3s ease-in-out;
+}
+
+.color-palette button:hover {
+    transform: scale(1.2);
+    border-color: #4caf50;
+}
+
+.color-palette button:focus {
+    outline: 2px solid #4caf50;
+    outline-offset: 2px;
+}
+</style>
+</head>
+<body>
+    <div class="controls">
+        <div class="color-controls">
+            <label for="colorPicker">Color:</label>
+            <input type="color" id="colorPicker" value="#000000">
+            <div id="colorPalette" class="color-palette"></div>
+        </div>
+        <div class="brush-controls">
+            <label for="brushSize">Brush Size:</label>
+            <input type="range" id="brushSize" min="1" max="20" value="5">
+        </div>
+        <div class="shape-controls">
+            <label for="brushShape">Brush Shape:</label>
+            <select id="brushShape">
+                <option value="round">Round</option>
+                <option value="square">Square</option>
+            </select>
+        </div>
+        <button id="undoButton" class="control-button">Undo</button>
+        <button id="redoButton" class="control-button">Redo</button>
+        <button id="clearButton" class="control-button">Clear</button>
+        <button id="eraserButton" class="control-button">Eraser</button>
+        <button id="saveButton" class="control-button">Save</button>
+    </div>
+    <canvas id="paintCanvas"></canvas>
+    <script>
+document.addEventListener("DOMContentLoaded", () => {
+    const canvas = document.getElementById("paintCanvas");
+    const context = canvas.getContext("2d");
+    let painting = false;
+    let eraserMode = false;
+    let undoStack = [];
+    let redoStack = [];
+
+    // Predefined color palette
+    const colors = ["#000000", "#FF0000", "#00FF00", "#0000FF", "#FFFF00", "#FF00FF", "#00FFFF"];
+
+    // Populate color palette
+    const colorPalette = document.getElementById("colorPalette");
+    colors.forEach(color => {
+        const colorButton = document.createElement("button");
+        colorButton.style.backgroundColor = color;
+        colorButton.addEventListener("click", () => {
+            document.getElementById("colorPicker").value = color;
+        });
+        colorPalette.appendChild(colorButton);
+    });
+
+    function startPosition(e) {
+        painting = true;
+        draw(e);
+    }
+
+    function endPosition() {
+        painting = false;
+        context.beginPath();
+        saveState();
+    }
+
+    function draw(e) {
+        if (!painting) return;
+
+        const x = e.clientX || e.touches[0].clientX;
+        const y = e.clientY || e.touches[0].clientY;
+
+        context.lineWidth = document.getElementById("brushSize").value;
+
+        if (eraserMode) {
+            context.strokeStyle = "white"; // Use white for erasing
+        } else {
+            context.strokeStyle = document.getElementById("colorPicker").value;
+        }
+
+        const brushShape = document.getElementById("brushShape").value;
+
+        if (brushShape === "round") {
+            context.lineCap = "round";
+        } else if (brushShape === "square") {
+            context.lineCap = "square";
+        }
+
+        context.lineTo(x - canvas.offsetLeft, y - canvas.offsetTop);
+        context.stroke();
+        context.beginPath();
+        context.moveTo(x - canvas.offsetLeft, y - canvas.offsetTop);
+    }
+
+    function clearCanvas() {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        saveState();
+    }
+
+    function toggleEraser() {
+        eraserMode = !eraserMode;
+        const eraserButton = document.getElementById("eraserButton");
+        eraserButton.textContent = eraserMode ? "Paint" : "Eraser";
+    }
+
+    function saveCanvas() {
+        const image = canvas.toDataURL("image/png");
+        const link = document.createElement("a");
+        link.href = image;
+        link.download = "painting.png";
+        link.click();
+    }
+
+    function saveState() {
+        undoStack.push(context.getImageData(0, 0, canvas.width, canvas.height));
+        redoStack = []; // Clear redo stack
+    }
+
+    function undo() {
+        if (undoStack.length > 1) {
+            redoStack.push(undoStack.pop());
+            context.putImageData(undoStack[undoStack.length - 1], 0, 0);
+        }
+    }
+
+    function redo() {
+        if (redoStack.length > 0) {
+            undoStack.push(redoStack.pop());
+            context.putImageData(undoStack[undoStack.length - 1], 0, 0);
+        }
+    }
+
+    canvas.addEventListener("mousedown", startPosition);
+    canvas.addEventListener("mouseup", endPosition);
+    canvas.addEventListener("mousemove", draw);
+
+    canvas.addEventListener("touchstart", startPosition);
+    canvas.addEventListener("touchend", endPosition);
+    canvas.addEventListener("touchmove", draw);
+
+    document.getElementById("clearButton").addEventListener("click", clearCanvas);
+    document.getElementById("eraserButton").addEventListener("click", toggleEraser);
+    document.getElementById("saveButton").addEventListener("click", saveCanvas);
+    document.getElementById("undoButton").addEventListener("click", undo);
+    document.getElementById("redoButton").addEventListener("click", redo);
+
+    // Initial state save
+    saveState();
+});
+</script>
+</body>
+</html>
