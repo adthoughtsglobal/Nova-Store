@@ -362,6 +362,7 @@
     <button id="backhome" onclick="overtoback()">Back To Home</button>
   </div>
   <script>
+    function greenflag() {
     const canvas = document.getElementById("can");
 const ctx = canvas.getContext("2d");
 canvas.style.background = "#f0ed97";
@@ -1051,6 +1052,7 @@ function save() {
   };
   saveVariablesToFile(variablesToSave, 'replay.json');
 }
+    }
   </script>
 </body>
 
