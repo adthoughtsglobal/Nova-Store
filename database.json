@@ -12,6 +12,12 @@
       {"by":"adthoughtsglobal"},
       {"desc":"Paste any JS code to identify what is happening under the hood in a more simpler language."},
       {"cat":"tools"}
-    ]}
+    ]},
+    {"Paint":[
+      {"src":"/Nova-Store/paintviz.html"},
+      {"by":"Vizronix"},
+      {"desc":"A Simple Paint App with modern UI."},
+      {"cat":"tools"}
+    ]
   ]
 }
