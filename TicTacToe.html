@@ -361,24 +361,6 @@
     <button id="backhome" onclick="overtoback()">Back To Home</button>
   </div>
   <script>
-
-    const getSize = document.addEventListener("change", () => {
-  let parsedSize = parseInt(sizein.value, 10);
-  t = parseInt(getTime.value, 10);
-  timeX = t;
-  timeO = t;
-  drawpo = parseFloat(dp.value);
-  winra = parseInt(wr.value, 10);
-  drawpoint = drawpo;
-  winrange = winra;
-  console.log(drawpoint, winrange);
-  if (parsedSize > 2) {
-    Size = parsedSize;
-    Sizeindicate.innerHTML = `${Size}x${Size}`;
-  }
-  PointForWin()
-});
-    
     function greenflag() {
     const canvas = document.getElementById("can");
 const ctx = canvas.getContext("2d");
@@ -411,7 +393,22 @@ let time = false;
 let t = parseInt(getTime.value, 10);
 let timeX = t;
 let timeO = t;
-
+const getSize = document.addEventListener("change", () => {
+  let parsedSize = parseInt(sizein.value, 10);
+  t = parseInt(getTime.value, 10);
+  timeX = t;
+  timeO = t;
+  drawpo = parseFloat(dp.value);
+  winra = parseInt(wr.value, 10);
+  drawpoint = drawpo;
+  winrange = winra;
+  console.log(drawpoint, winrange);
+  if (parsedSize > 2) {
+    Size = parsedSize;
+    Sizeindicate.innerHTML = `${Size}x${Size}`;
+  }
+  PointForWin()
+});
 const restartButton = document.getElementById("restart");
 const Turn = document.getElementById("turn");
 let turnX = true;
@@ -430,9 +427,64 @@ function is4x3AspectRatio(num1, num2) {
   const aspectRatio = windowWidth / windowHeight;
   return Math.abs(aspectRatio - (num1 / num2)) < 1;
 }
+windowResize()
+    }
 
-windowResize();
+    
+    function PointForWin() {
+  if (parseInt(sizein2.value, 10) > Size) {
+    Size2 = Size;
+    Sizeindicate2.innerHTML = `${Size2}x${Size2}`;
+  } else {
+    Size2 = parseInt(sizein2.value, 10)
+    Sizeindicate2.innerHTML = `${Size2}x${Size2}`;
+  }
+}
+function windowResize() {
+  if (is4x3AspectRatio(625, 400)) {
+    winsize = window.innerHeight - 205
+    cenX = window.innerWidth / 2 - winsize / 2;
+    cenY = window.innerHeight / 2 - winsize / 2 - 15;
+    cenX2 = window.innerWidth / 2 + winsize / 2;
+    cenY2 = window.innerHeight / 2 + winsize / 2 - 15;
+  } else {
+    winsize = window.innerWidth - 20;
+    cenX = window.innerWidth / 2 - winsize / 2;
+    cenY = window.innerHeight / 2 - winsize / 2;
+    cenX2 = window.innerWidth / 2 + winsize / 2;
+    cenY2 = window.innerHeight / 2 + winsize / 2;
+  }
+  if(window.innerWidth < 700) {
+    Turn.innerHTML = `Turn:<br>${turnX ? 'X' : 'O'}`
+    Wins.innerHTML = `Points:<br>O: ${winO}, X: ${winX}`;
+    Time.innerHTML = "Time:<br>0000"
+  } else {
+    Turn.innerHTML = `Turn: ${turnX ? 'X' : 'O'}`
+    Wins.innerHTML = `Points: O: ${winO}, X: ${winX}`;
+    Time.innerHTML = "Time: 0000"
+  }
+  canvas.style.top = `${cenY}px`;
+  canvas.style.left = `${cenX}px`;
+  restartButton.style.width = `${winsize}px`;
+}
 
+function papernoice() {
+  const numParticles = 5000;
+  const minRadius = 1;
+  const maxRadius = 2;
+  function getRandomNumber(min, max) {
+    return min + Math.random() * (max - min);
+  }
+  for (let i = 0; i < numParticles; i++) {
+    const x = Math.random() * canvas.width;
+    const y = Math.random() * canvas.height;
+    const radius = minRadius + Math.random() * (maxRadius - minRadius);
+    ctx.beginPath();
+    ctx.arc(x, y, radius, 0, 2 * Math.PI);
+    ctx.fillStyle = `rgba(79, 47, 3, ${getRandomNumber(0.05, 0.2)})`;
+    ctx.fill();
+  }
+}
 window.addEventListener("resize", windowResize);
 let loseOpacity = 0;
 let con1 = document.getElementById("menu");
@@ -440,7 +492,41 @@ let con2 = document.getElementById("ingame");
 let con3 = document.getElementById("gameover");
 con3.remove();
 con2.remove();
-
+function Started() {
+  canvas.width = winsize;
+  canvas.height = winsize;
+  if (loseOpacity === 100) {
+    document.body.removeChild(con1);
+    document.body.appendChild(con2);
+    con2.style.opacity = 1;
+    GraphGen()
+    papernoice()
+    time = false;
+    timeX = t;
+    timeO = t;
+    winX = 0;
+    winO = 0;
+    if (winnerX === true) {
+      detail.innerHTML = `Winner: X<br>Points: X: ${winX}, O: ${winO}`;
+    } else {
+      detail.innerHTML = `Winner: O<br>Points: O: ${winO}, X: ${winX}`;
+    }
+    if(window.innerWidth < 700) {
+      Turn.innerHTML = `Turn:<br>${turnX ? 'X' : 'O'}`
+      Wins.innerHTML = `Points:<br>O: ${winO}, X: ${winX}`;
+      Time.innerHTML = "Time:<br>0000"
+    } else {
+      Turn.innerHTML = `Turn: ${turnX ? 'X' : 'O'}`
+      Wins.innerHTML = `Points: O: ${winO}, X: ${winX}`;
+      Time.innerHTML = "Time: 0000"
+    }
+    loseOpacity = 0;
+  } else {
+    loseOpacity ++;
+    con1.style.opacity = (100 - loseOpacity)/100;
+    setTimeout(Started, 5);
+  }
+}
 let Graph = [];
 function restart() {
   if (loseOpacity === 100) {
@@ -458,7 +544,24 @@ function restart() {
   GraphX = [];
   GraphO = [];
 }
-
+let winnerX;
+function over() {
+  if (winnerX === true) {
+    detail.innerHTML = `Winner: X<br>Points: X: ${winX}, O: ${winO}`;
+  } else {
+    detail.innerHTML = `Winner: O<br>Points: O: ${winO}, X: ${winX}`;
+  }
+  if (loseOpacity === 100) {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    con2.remove();
+    document.body.appendChild(con3);
+    con3.style.opacity = 1;
+    loseOpacity = 0;
+  } else {
+    loseOpacity ++;
+    con2.style.opacity = (100 - loseOpacity)/100;
+    setTimeout(over, 5);
+  }
 }
 function overtoback() {
   if (loseOpacity === 100) {
@@ -631,7 +734,132 @@ function timeon() {
     }
   }
 }
-
+function Xwin() {
+  let aa = 1;
+  let bb = 1;
+  let aLeft = 1;
+  for (let io = 0; io < aLeft; io++) {
+    let x = GraphX[GraphX.length - 1][0];
+    let g = [x - aLeft, Ypoint];
+    if (GraphX.some(point => point[0] === g[0] && point[1] === g[1])) {
+      aa++;
+      aLeft++;
+    } else {
+      break;
+    }
+  }
+  let aRight = 1;
+  for (let ii = 0; ii < aRight; ii++) {
+    let x = GraphX[GraphX.length - 1][0];
+    let g = [x + aRight, Ypoint];
+    if (GraphX.some(point => point[0] === g[0] && point[1] === g[1])) {
+      aa++;
+      aRight++;
+    } else {
+      break;
+    }
+  }
+  let b = 1;
+  for (let j = 0; j < b; j++) {
+    let x = GraphX[GraphX.length - 1][1];
+    let g = [Xpoint, x - b];
+    if (GraphX.some(point => point[0] === g[0] && point[1] === g[1])) {
+      bb++;
+      b++;
+    } else {
+      break;
+    }
+  }
+  let b2 = 1;
+  for (let jj = 0; jj < b2; jj++) {
+    let x = GraphX[GraphX.length - 1][1];
+    let g = [Xpoint, x + b2];
+    if (GraphX.some(point => point[0] === g[0] && point[1] === g[1])) {
+      bb++;
+      b2++;
+    } else {
+      break;
+    }
+  }
+  let aab = 1;
+  let ab = 1;
+  for (let oo = 0; oo < aab; oo++) {
+    if (ab < GraphX.length) {
+      let x = GraphX[GraphX.length - 1][0];
+      let y = GraphX[GraphX.length - 1][1];
+      let g = [x - aab, y - aab];
+      if (GraphX.some(point => point[0] === g[0] && point[1] === g[1])) {
+        ab++;
+        aab++;
+      } else {
+        break;
+      }
+    }
+  }
+  let abb = 1;
+  for (let iio = 0; iio < abb; iio++) {
+    let x = GraphX[GraphX.length - 1][0];
+    let y = GraphX[GraphX.length - 1][1];
+    let g = [x + abb, y + abb];
+    if (GraphX.some(point => point[0] === g[0] && point[1] === g[1])) {
+      ab++;
+      abb++;
+    } else {
+      break;
+    }
+  }
+  let ba = 1;
+  let bba = 1;
+  for (let jo = 0; jo < ba; jo++) {
+    let x = GraphX[GraphX.length - 1][0];
+    let y = GraphX[GraphX.length - 1][1];
+    let g = [x + bba, y - bba];
+    if (GraphX.some(point => point[0] === g[0] && point[1] === g[1])) {
+      bba++;
+      ba++;
+    } else {
+      break;
+    }
+  }
+  let baa = 1;
+  for (let joo = 0; joo < baa; joo++) {
+    let x = GraphX[GraphX.length - 1][0];
+    let y = GraphX[GraphX.length - 1][1];
+    let g = [x - baa, y + baa];
+    if (GraphX.some(point => point[0] === g[0] && point[1] === g[1])) {
+      baa++;
+      ba++;
+    } else {
+      break;
+    }
+  }
+  if (aa >= Size2 || bb >= Size2 || ab >= Size2 || ba >= Size2) {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    GraphGen();
+    papernoice();
+    time = false;
+    timeX = t;
+    timeO = t;
+    turningO = false;
+    turningX = false;
+    sg1 = GraphX;
+    sg2 = GraphO;
+    GraphX = [];
+    Graph = [];
+    GraphO = [];
+    turnX = false;
+    turnXstart = false;
+    Xpoint = 0;
+    Ypoint = 0;
+    g = [];
+    winX++;
+    if (window.innerWidth < 700) {
+      Wins.innerHTML = `Points:<br>O: ${winO}, X: ${winX}`;
+    } else {
+      Wins.innerHTML = `Points: O: ${winO}, X: ${winX}`;
+    }
+  }
+}
 function Owin() {
   let aa = 1;
   let bb = 1;
@@ -827,249 +1055,7 @@ function save() {
     d: sg2
   };
   saveVariablesToFile(variablesToSave, 'replay.json');
-}
-
-      
-    }
-
-    
-    function windowResize() {
-  if (is4x3AspectRatio(625, 400)) {
-    winsize = window.innerHeight - 205
-    cenX = window.innerWidth / 2 - winsize / 2;
-    cenY = window.innerHeight / 2 - winsize / 2 - 15;
-    cenX2 = window.innerWidth / 2 + winsize / 2;
-    cenY2 = window.innerHeight / 2 + winsize / 2 - 15;
-  } else {
-    winsize = window.innerWidth - 20;
-    cenX = window.innerWidth / 2 - winsize / 2;
-    cenY = window.innerHeight / 2 - winsize / 2;
-    cenX2 = window.innerWidth / 2 + winsize / 2;
-    cenY2 = window.innerHeight / 2 + winsize / 2;
-  }
-  if(window.innerWidth < 700) {
-    Turn.innerHTML = `Turn:<br>${turnX ? 'X' : 'O'}`
-    Wins.innerHTML = `Points:<br>O: ${winO}, X: ${winX}`;
-    Time.innerHTML = "Time:<br>0000"
-  } else {
-    Turn.innerHTML = `Turn: ${turnX ? 'X' : 'O'}`
-    Wins.innerHTML = `Points: O: ${winO}, X: ${winX}`;
-    Time.innerHTML = "Time: 0000"
-  }
-  canvas.style.top = `${cenY}px`;
-  canvas.style.left = `${cenX}px`;
-  restartButton.style.width = `${winsize}px`;
-}
-
-    function papernoice() {
-  const numParticles = 5000;
-  const minRadius = 1;
-  const maxRadius = 2;
-  function getRandomNumber(min, max) {
-    return min + Math.random() * (max - min);
-  }
-  for (let i = 0; i < numParticles; i++) {
-    const x = Math.random() * canvas.width;
-    const y = Math.random() * canvas.height;
-    const radius = minRadius + Math.random() * (maxRadius - minRadius);
-    ctx.beginPath();
-    ctx.arc(x, y, radius, 0, 2 * Math.PI);
-    ctx.fillStyle = `rgba(79, 47, 3, ${getRandomNumber(0.05, 0.2)})`;
-    ctx.fill();
-  }
-}
-
-    function Xwin() {
-  let aa = 1;
-  let bb = 1;
-  let aLeft = 1;
-  for (let io = 0; io < aLeft; io++) {
-    let x = GraphX[GraphX.length - 1][0];
-    let g = [x - aLeft, Ypoint];
-    if (GraphX.some(point => point[0] === g[0] && point[1] === g[1])) {
-      aa++;
-      aLeft++;
-    } else {
-      break;
-    }
-  }
-  let aRight = 1;
-  for (let ii = 0; ii < aRight; ii++) {
-    let x = GraphX[GraphX.length - 1][0];
-    let g = [x + aRight, Ypoint];
-    if (GraphX.some(point => point[0] === g[0] && point[1] === g[1])) {
-      aa++;
-      aRight++;
-    } else {
-      break;
-    }
-  }
-  let b = 1;
-  for (let j = 0; j < b; j++) {
-    let x = GraphX[GraphX.length - 1][1];
-    let g = [Xpoint, x - b];
-    if (GraphX.some(point => point[0] === g[0] && point[1] === g[1])) {
-      bb++;
-      b++;
-    } else {
-      break;
-    }
-  }
-  let b2 = 1;
-  for (let jj = 0; jj < b2; jj++) {
-    let x = GraphX[GraphX.length - 1][1];
-    let g = [Xpoint, x + b2];
-    if (GraphX.some(point => point[0] === g[0] && point[1] === g[1])) {
-      bb++;
-      b2++;
-    } else {
-      break;
-    }
-  }
-  let aab = 1;
-  let ab = 1;
-  for (let oo = 0; oo < aab; oo++) {
-    if (ab < GraphX.length) {
-      let x = GraphX[GraphX.length - 1][0];
-      let y = GraphX[GraphX.length - 1][1];
-      let g = [x - aab, y - aab];
-      if (GraphX.some(point => point[0] === g[0] && point[1] === g[1])) {
-        ab++;
-        aab++;
-      } else {
-        break;
-      }
-    }
-  }
-  let abb = 1;
-  for (let iio = 0; iio < abb; iio++) {
-    let x = GraphX[GraphX.length - 1][0];
-    let y = GraphX[GraphX.length - 1][1];
-    let g = [x + abb, y + abb];
-    if (GraphX.some(point => point[0] === g[0] && point[1] === g[1])) {
-      ab++;
-      abb++;
-    } else {
-      break;
-    }
-  }
-  let ba = 1;
-  let bba = 1;
-  for (let jo = 0; jo < ba; jo++) {
-    let x = GraphX[GraphX.length - 1][0];
-    let y = GraphX[GraphX.length - 1][1];
-    let g = [x + bba, y - bba];
-    if (GraphX.some(point => point[0] === g[0] && point[1] === g[1])) {
-      bba++;
-      ba++;
-    } else {
-      break;
-    }
-  }
-  let baa = 1;
-  for (let joo = 0; joo < baa; joo++) {
-    let x = GraphX[GraphX.length - 1][0];
-    let y = GraphX[GraphX.length - 1][1];
-    let g = [x - baa, y + baa];
-    if (GraphX.some(point => point[0] === g[0] && point[1] === g[1])) {
-      baa++;
-      ba++;
-    } else {
-      break;
-    }
-  }
-  if (aa >= Size2 || bb >= Size2 || ab >= Size2 || ba >= Size2) {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    GraphGen();
-    papernoice();
-    time = false;
-    timeX = t;
-    timeO = t;
-    turningO = false;
-    turningX = false;
-    sg1 = GraphX;
-    sg2 = GraphO;
-    GraphX = [];
-    Graph = [];
-    GraphO = [];
-    turnX = false;
-    turnXstart = false;
-    Xpoint = 0;
-    Ypoint = 0;
-    g = [];
-    winX++;
-    if (window.innerWidth < 700) {
-      Wins.innerHTML = `Points:<br>O: ${winO}, X: ${winX}`;
-    } else {
-      Wins.innerHTML = `Points: O: ${winO}, X: ${winX}`;
-    }
-  }
-}
-
-    function PointForWin() {
-  if (parseInt(sizein2.value, 10) > Size) {
-    Size2 = Size;
-    Sizeindicate2.innerHTML = `${Size2}x${Size2}`;
-  } else {
-    Size2 = parseInt(sizein2.value, 10)
-    Sizeindicate2.innerHTML = `${Size2}x${Size2}`;
-  }
-}
-    let winnerX;
-function over() {
-  if (winnerX === true) {
-    detail.innerHTML = `Winner: X<br>Points: X: ${winX}, O: ${winO}`;
-  } else {
-    detail.innerHTML = `Winner: O<br>Points: O: ${winO}, X: ${winX}`;
-  }
-  if (loseOpacity === 100) {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    con2.remove();
-    document.body.appendChild(con3);
-    con3.style.opacity = 1;
-    loseOpacity = 0;
-  } else {
-    loseOpacity ++;
-    con2.style.opacity = (100 - loseOpacity)/100;
-    setTimeout(over, 5);
-  }
-
-  function Started() {
-  canvas.width = winsize;
-  canvas.height = winsize;
-  if (loseOpacity === 100) {
-    document.body.removeChild(con1);
-    document.body.appendChild(con2);
-    con2.style.opacity = 1;
-    GraphGen()
-    papernoice()
-    time = false;
-    timeX = t;
-    timeO = t;
-    winX = 0;
-    winO = 0;
-    if (winnerX === true) {
-      detail.innerHTML = `Winner: X<br>Points: X: ${winX}, O: ${winO}`;
-    } else {
-      detail.innerHTML = `Winner: O<br>Points: O: ${winO}, X: ${winX}`;
-    }
-    if(window.innerWidth < 700) {
-      Turn.innerHTML = `Turn:<br>${turnX ? 'X' : 'O'}`
-      Wins.innerHTML = `Points:<br>O: ${winO}, X: ${winX}`;
-      Time.innerHTML = "Time:<br>0000"
-    } else {
-      Turn.innerHTML = `Turn: ${turnX ? 'X' : 'O'}`
-      Wins.innerHTML = `Points: O: ${winO}, X: ${winX}`;
-      Time.innerHTML = "Time: 0000"
-    }
-    loseOpacity = 0;
-  } else {
-    loseOpacity ++;
-    con1.style.opacity = (100 - loseOpacity)/100;
-    setTimeout(Started, 5);
-  }
-}
-  </script>
+}</script>
 </body>
 
 </html>
