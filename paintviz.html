@@ -114,9 +114,7 @@ canvas:hover {
         <button id="saveButton" class="control-button">Save</button>
     </div>
     <canvas id="paintCanvas"></canvas>
-    <script>
-function greenflag() {
-    const canvas = document.getElementById("paintCanvas");
+    <script>const canvas = document.getElementById("paintCanvas");
     const context = canvas.getContext("2d");
     let painting = false;
     let eraserMode = false;
@@ -230,7 +228,7 @@ function greenflag() {
 
     // Initial state save
     saveState();
-});
+}
 </script>
 </body>
 </html>
