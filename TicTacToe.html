@@ -361,7 +361,6 @@
     <button id="backhome" onclick="overtoback()">Back To Home</button>
   </div>
   <script>
-    function greenflag() {
     const canvas = document.getElementById("can");
 const ctx = canvas.getContext("2d");
 canvas.style.background = "#f0ed97";
@@ -379,7 +378,15 @@ let Size = 3;
 let Size2 = 5;
 let sizein = document.getElementById("in");
 let sizein2 = document.getElementById("in2");
-
+function PointForWin() {
+  if (parseInt(sizein2.value, 10) > Size) {
+    Size2 = Size;
+    Sizeindicate2.innerHTML = `${Size2}x${Size2}`;
+  } else {
+    Size2 = parseInt(sizein2.value, 10)
+    Sizeindicate2.innerHTML = `${Size2}x${Size2}`;
+  }
+}
 PointForWin()
 let dp = document.getElementById("in4x");
 let wr = document.getElementById("in5x");
@@ -427,19 +434,6 @@ function is4x3AspectRatio(num1, num2) {
   const aspectRatio = windowWidth / windowHeight;
   return Math.abs(aspectRatio - (num1 / num2)) < 1;
 }
-windowResize()
-    }
-
-    
-    function PointForWin() {
-  if (parseInt(sizein2.value, 10) > Size) {
-    Size2 = Size;
-    Sizeindicate2.innerHTML = `${Size2}x${Size2}`;
-  } else {
-    Size2 = parseInt(sizein2.value, 10)
-    Sizeindicate2.innerHTML = `${Size2}x${Size2}`;
-  }
-}
 function windowResize() {
   if (is4x3AspectRatio(625, 400)) {
     winsize = window.innerHeight - 205
@@ -467,7 +461,7 @@ function windowResize() {
   canvas.style.left = `${cenX}px`;
   restartButton.style.width = `${winsize}px`;
 }
-
+windowResize();
 function papernoice() {
   const numParticles = 5000;
   const minRadius = 1;
@@ -1055,7 +1049,8 @@ function save() {
     d: sg2
   };
   saveVariablesToFile(variablesToSave, 'replay.json');
-}</script>
+}
+  </script>
 </body>
 
 </html>
