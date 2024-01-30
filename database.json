@@ -19,6 +19,13 @@
       {"desc":"A Simple Paint App with modern UI."},
       {"cat":"tools"}
     ]
+    },
+    {"Ducks Quack":[
+      {"src":"https://unexpected-flossy-club.glitch.me/"},
+      {"by":"adthoughtsglobal"},
+      {"desc":"Pictures of ducks for all. To ensure global peace."},
+      {"cat":"game"}
+    ]
     }
   ]
 }
