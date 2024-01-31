@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Nova CLI</title>
+
+    <style>
+
+/* default to border-box */
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+/* adjust typography defaults */
+body {
+  margin: 1rem;
+  font-family: 'Space Mono', monospace;
+  line-height: 1.5;
+  background: #1e1e1e;
+}
+
+/* Scrollbar Track */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Scrollbar Thumb */
+::-webkit-scrollbar-thumb {
+  background: #333; /* Dark background color */
+  border-radius: 10px; /* Border radius for the thumb */
+}
+
+/* Scrollbar Track on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Dark hover color */
+}
+
+
+/* images and videos max out at full width */
+img,
+video {
+  height: auto;
+  max-width: 100%;
+}
+      
+      small {
+        opacity: 0.5;
+      }
+
+#thing {
+    background-color: #101010;
+    color: white;
+    border-radius: 10px 10px 0 0;
+    padding: 10px;
+    height: calc(100vh - 80px);
+  overflow-y: scroll;
+  
+}
+
+#thin {
+  background-color: #0c0c0c;
+    color: white;
+    width: 100%;
+    font-family: 'Space Mono', monospace;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 0 0 10px 10px;
+}
+
+input {
+  outline: none;
+}
+
+.nic {
+  animation: bloo;
+    animation-duration: .2s;
+}
+
+@keyframes bloo {
+  0% {transform: translateY(10px); opacity: 0;}
+  100% {transform: translateY(0px); opacity: 1;}
+}    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="thing">
+      Nova CLI v1
+      <br><small>Powered By <b>Thing CLI</b> from adthoughtsglobal</small>
+    </div>
+    <input id="thin" autocomplete="off" placeholder=">>>">
+    <script>
+    var thin;
+  var thing;
+      greenflag()
+
+function greenflag() {
+
+   thing = document.getElementById("thing");
+    thin = document.getElementById("thin");
+
+  thin.focus()
+  
+
+  thin.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      proc();
+    }
+  });
+}
+                          
+function disp(txt) {
+  // Create a new div element with the class "nic" and your text
+  var newDiv = document.createElement("div");
+  newDiv.className = "nic";
+  newDiv.innerHTML = txt;
+
+  // Insert the new div element after the last child of the 'thing' element
+  var lastChild = thing.lastElementChild;
+  if (lastChild) {
+    thing.insertBefore(newDiv, lastChild.nextSibling);
+  } else {
+    // If there's no last child, simply append the new div
+    thing.appendChild(newDiv);
+  }
+
+  // Add a line break if necessary
+  var lineBreak = document.createElement("br");
+  thing.insertBefore(lineBreak, newDiv);
+
+  // Add an ellipsis
+  var ellipsis = document.createElement("span");
+  ellipsis.innerText = "...";
+  thing.insertBefore(ellipsis, newDiv);
+
+  thing.scrollTop = thing.scrollHeight;
+}
+
+function proc() {
+  let x = thin.value.toLowerCase();
+  thin.value = "";
+
+  if (x === "help") {
+    disp(`Available Commands:<br>
+- date: Get the current date.<br>
+- time: Get the current time.<br>
+- battery: Get battery info.<br>
+- dad: Nova Console<br>
+- device: Get device Info.
+`);
+  } else if (x === "date") {
+    const currentDate = new Date();
+    disp(`Current date is: ${currentDate.toDateString()}`);
+  } else if (x === "time") {
+    const currentTime = new Date();
+    disp(`Current time is: ${currentTime.toLocaleTimeString()}`);
+  } else if (x === "battery") {
+    navigator
+      .getBattery()
+      .then(function (battery) {
+        const level = (battery.level * 100).toFixed(2); // Convert to percentage with two decimal places
+        const charging = battery.charging ? "Charging" : "Not Charging";
+
+        const status = `Battery Status: ${level}% (${charging})`;
+
+        disp(status);
+      })
+      .catch(function (error) {
+        disp(
+          "An error occurred while fetching battery status information: " +
+            error.message
+        );
+      });
+  } else if (x === "device") {
+    // Check if the necessary properties are available
+    if ("deviceMemory" in navigator && "hardwareConcurrency" in navigator) {
+      const platform = navigator.platform;
+      const userAgent = navigator.userAgent;
+      const deviceMemory = navigator.deviceMemory;
+      const hardwareConcurrency = navigator.hardwareConcurrency;
+
+      var deviceInfo = `
+      Platform: ${platform}<br>
+      User Agent: ${userAgent}<br>
+      Device Memory: ${deviceMemory} GB<br>
+      Hardware Concurrency: ${hardwareConcurrency}<br>
+    `;
+
+      // Check if the performance API is available for FPS information
+      if ("performance" in window && "now" in performance) {
+        const frameTiming = performance.now();
+        const fps = (100000 / frameTiming).toFixed(2); // Calculate FPS
+        // Retrieve display information
+        const screen = window.screen;
+        const screenWidth = screen.width;
+        const screenHeight = screen.height;
+        const screenResolution = `${screenWidth}x${screenHeight}`;
+        const colorDepth = screen.colorDepth;
+
+        deviceInfo += `
+      Screen Resolution: ${screenResolution}<br>
+      Color Depth: ${colorDepth} bits
+    `;
+
+        deviceInfo += `\nFrames Per Second (FPS): ${fps}`;
+      }
+
+      disp(deviceInfo);
+    } else {
+      disp("Device information is not fully available on this device.");
+    }
+  } else if (x === "memory") {
+    const totalMemory = (
+      performance.memory.totalJSHeapSize /
+      1024 /
+      1024
+    ).toFixed(2);
+    const usedMemory = (
+      performance.memory.usedJSHeapSize /
+      1024 /
+      1024
+    ).toFixed(2);
+    const memoryUsagePercentage = ((usedMemory / totalMemory) * 100).toFixed(2);
+
+    disp(
+      `Memory Usage: ${memoryUsagePercentage}% (${usedMemory}MB / ${totalMemory}MB)`
+    );
+  } else if (x == "flash on") {
+    toggleFlashlight("on");
+  } else if (x == "flash off") {
+    toggleFlashlight("off");
+  } else if (x == "vibrate 500") {
+    navigator.vibrate(500);
+  } else if (x == "vibrate 100") {
+    navigator.vibrate(100);
+  } else if (x == "dad") {
+    let xx = prompt(">>>")
+    eval(`window.parent.` + xx + `()`)
+  } else {
+    disp("Error: unknown command");
+  }
+}
+
+function ask(smth) {
+  let x = prompt(smth);
+  if (x === "") {
+    return ask(smth);
+  } else {
+    return smth;
+  }
+}
+
+function calculateEquation(equation) {
+  try {
+    const result = eval(equation);
+    return result;
+  } catch (error) {
+    return "Error: Invalid equation";
+  }
+}
+
+function toggleFlashlight(status) {
+  if ("torch" in navigator) {
+    // Check if the torch API is supported
+
+    if (status === "on") {
+      // Turn on the flashlight
+      navigator.torch
+        .turnOn()
+        .then(() => {
+          console.log("Flashlight is turned on.");
+        })
+        .catch((error) => {
+          console.error("Error turning on flashlight: ", error);
+        });
+    } else if (status === "off") {
+      // Turn off the flashlight
+      navigator.torch
+        .turnOff()
+        .then(() => {
+          console.log("Flashlight is turned off.");
+        })
+        .catch((error) => {
+          console.error("Error turning off flashlight: ", error);
+        });
+    } else {
+      console.error('Invalid status. Please use "on" or "off".');
+    }
+  } else {
+    console.error("Torch API is not supported in this browser.");
+  }
+}
+</script>
+  </body>
+</html>
