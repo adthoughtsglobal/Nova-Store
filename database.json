@@ -1,6 +1,12 @@
 {
   "config":1,
   "data":[
+    {"Nova CLI":[
+      {"src":"/Nova-Store/cli.html"},
+      {"by":"adthoughtsglobal"},
+      {"desc":"System CLI for Nova OS"},
+      {"cat":"tools"}
+    ]},
     {"Tic Tac Toe":[
       {"src":"/Nova-Store/TicTacToe.html"},
       {"by":"G-Progress"},
