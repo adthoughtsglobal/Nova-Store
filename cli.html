@@ -3,10 +3,12 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="https://glitch.com/favicon.ico" />
 
     <title>Nova CLI</title>
 
     <style>
+/* a minimalist set of CSS resets */
 
 /* default to border-box */
 html {
@@ -25,6 +27,7 @@ body {
   margin: 1rem;
   font-family: 'Space Mono', monospace;
   line-height: 1.5;
+  letter-spacing: 0.7px;
   background: #1e1e1e;
 }
 
@@ -96,14 +99,15 @@ input {
   </head>
   <body>
     <div id="thing">
-      Nova CLI v1
+      Nova CLI v2
       <br><small>Powered By <b>Thing CLI</b> from adthoughtsglobal</small>
     </div>
     <input id="thin" autocomplete="off" placeholder=">>>">
     <script>
     var thin;
-  var thing;
-      greenflag()
+    var thing;
+      var curdir = "/", clay;
+    greenflag()
 
 function greenflag() {
 
@@ -111,6 +115,7 @@ function greenflag() {
     thin = document.getElementById("thin");
 
   thin.focus()
+   curdir = "/";
   
 
   thin.addEventListener("keydown", (event) => {
@@ -141,7 +146,7 @@ function disp(txt) {
 
   // Add an ellipsis
   var ellipsis = document.createElement("span");
-  ellipsis.innerText = "...";
+  ellipsis.innerText = curdir+" > "+clay;
   thing.insertBefore(ellipsis, newDiv);
 
   thing.scrollTop = thing.scrollHeight;
@@ -149,7 +154,8 @@ function disp(txt) {
 
 function proc() {
   let x = thin.value.toLowerCase();
-  thin.value = "";
+   clay = thin.value;
+thin.value = "";
 
   if (x === "help") {
     disp(`Available Commands:<br>
@@ -157,7 +163,9 @@ function proc() {
 - time: Get the current time.<br>
 - battery: Get battery info.<br>
 - dad: Nova Console<br>
-- device: Get device Info.
+- device: Get device Info.<br>
+- cd [folder]: changes current folder to [folder].<br>
+- ls: list files from current folder.<br>
 `);
   } else if (x === "date") {
     const currentDate = new Date();
@@ -244,11 +252,18 @@ function proc() {
     navigator.vibrate(500);
   } else if (x == "vibrate 100") {
     navigator.vibrate(100);
-  } else if (x == "dad") {
-    let xx = prompt(">>>")
-    eval(`window.parent.` + xx + `()`)
+  } else if (x.startsWith("dad")) {
+    let xx = clay.split(" ")[1];
+    disp("asked dad to run: " + clay);
+    eval(`window.parent.` + xx + ``)
+    
+  } else if (x.startsWith("cd")) {
+    curdir = clay.split(" ")[1];
+    disp("Changed to: device://" + curdir);
+  } else if (x == "pwd") {
+    disp("Current: device://" + curdir);
   } else {
-    disp("Error: unknown command");
+    disp("Unable to find '" + x + "' in the system.");
   }
 }
 
