@@ -30,13 +30,20 @@
       {"src":"/Nova-Store/ducksquack.html"},
       {"by":"adthoughtsglobal"},
       {"desc":"Pictures of ducks for all. To ensure global peace."},
-      {"cat":"game"}
+      {"cat":"tools"}
     ]
     },
     {"Stable Diffusion":[
       {"src":"/Nova-Store/texttoimage.html"},
       {"by":"Felix543"},
       {"desc":"Text to Image Generator based on Stable Diffusion."},
+      {"cat":"tools"}
+    ]
+    },
+    {"Sce.io":[
+      {"src":"/Nova-Store/scegame.html"},
+      {"by":"Felix9390"},
+      {"desc":"Sce.io is a Scenexe-based game, but you go on a single-player journy on killing shapes and becoming giant!"},
       {"cat":"game"}
     ]
     }
