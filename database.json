@@ -32,6 +32,13 @@
       {"desc":"Pictures of ducks for all. To ensure global peace."},
       {"cat":"game"}
     ]
+    },
+    {"Stable Diffusion":[
+      {"src":"/Nova-Store/texttoimage.html"},
+      {"by":"Felix543"},
+      {"desc":"Text to Image Generator based on Stable Diffusion."},
+      {"cat":"game"}
+    ]
     }
   ]
 }
