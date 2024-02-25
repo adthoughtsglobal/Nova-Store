@@ -7,6 +7,12 @@
       {"desc":"System CLI for Nova OS"},
       {"cat":"tools"}
     ]},
+    {"Wikipedia Search":[
+      {"src":"/Nova-Store/wikisearch.html"},
+      {"by":"Felix543"},
+      {"desc":"Search the wikipedia."},
+      {"cat":"tools"}
+    ]},
     {"Tic Tac Toe":[
       {"src":"/Nova-Store/TicTacToe.html"},
       {"by":"G-Progress"},
