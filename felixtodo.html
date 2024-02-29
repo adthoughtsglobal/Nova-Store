@@ -192,7 +192,7 @@
   }
 
   function loadTasks() {
-    var transaction = db.transaction(["tasks"], "readonly");
+    var transaction = window.parent.db.transaction(["tasks"], "readonly");
     var objectStore = transaction.objectStore("tasks");
     var request = objectStore.openCursor();
 
