@@ -7,10 +7,10 @@
       {"desc":"System CLI for Nova OS"},
       {"cat":"tools"}
     ]},
-    {"Wikipedia Search":[
-      {"src":"/Nova-Store/wikisearch.html"},
+    {"To Do App":[
+      {"src":"/Nova-Store/felixtodo.html"},
       {"by":"Felix543"},
-      {"desc":"Search the wikipedia."},
+      {"desc":"A standard To Do list which remembers your tasks!"},
       {"cat":"tools"}
     ]},
     {"Tic Tac Toe":[
