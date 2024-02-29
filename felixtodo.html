@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>To-Do List App</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+
+  .container {
+    background-color: #f9f9f9;
+    border-radius: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 400px;
+    max-width: 90%;
+    position: relative;
+  }
+
+  h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+
+  .add-task {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .task-input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-right: 10px;
+    background-color: #f9f9f9;
+  }
+
+  .add-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .add-button:hover {
+    background-color: #0056b3;
+  }
+
+  .task-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .task-item {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .task-item-text {
+    flex: 1;
+    color: #333;
+  }
+
+  .delete-button {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .delete-button:hover {
+    background-color: #c82333;
+  }
+
+  .save-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .save-button:hover {
+    background-color: #218838;
+  }
+
+  /* Dialog Box */
+  .dialog-box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    display: none;
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+    color: #888;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>To-Do List</h1>
+  <button onclick="saveTasks()" class="save-button">Save</button>
+  <div class="add-task">
+    <input type="text" id="taskInput" class="task-input" placeholder="Add a new task...">
+    <button onclick="addTask()" class="add-button">Add</button>
+  </div>
+  <ul id="taskList" class="task-list"></ul>
+</div>
+
+<!-- Dialog Box -->
+<div id="dialogBox" class="dialog-box">
+  <span onclick="closeDialog()" class="close-btn">&times;</span>
+  <p>Tasks saved successfully!</p>
+</div>
+
+<script>
+  function greenflag() {
+  // Open or create IndexedDB database
+  var request = indexedDB.open("todo_db", 1);
+  var db;
+
+  request.onerror = function(event) {
+    console.log("IndexedDB error:", event.target.errorCode);
+  };
+
+  request.onsuccess = function(event) {
+    db = event.target.result;
+    loadTasks();
+  };
+
+  request.onupgradeneeded = function(event) {
+    var db = event.target.result;
+    var objectStore = db.createObjectStore("tasks", { keyPath: "id", autoIncrement:true });
+    objectStore.createIndex("taskText", "taskText", { unique: false });
+  };
+  }
+  function addTaskToDB(taskText) {
+    var transaction = db.transaction(["tasks"], "readwrite");
+    var objectStore = transaction.objectStore("tasks");
+    var request = objectStore.add({ taskText: taskText });
+
+    request.onsuccess = function(event) {
+      console.log("Task added to IndexedDB.");
+    };
+
+    request.onerror = function(event) {
+      console.log("Error adding task to IndexedDB:", event.target.error);
+    };
+  }
+
+  function loadTasks() {
+    var transaction = db.transaction(["tasks"], "readonly");
+    var objectStore = transaction.objectStore("tasks");
+    var request = objectStore.openCursor();
+
+    request.onsuccess = function(event) {
+      var cursor = event.target.result;
+      if (cursor) {
+        addTaskToList(cursor.value.taskText, cursor.key);
+        cursor.continue();
+      }
+    };
+
+    request.onerror = function(event) {
+      console.log("Error loading tasks from IndexedDB:", event.target.error);
+    };
+  }
+
+  function addTaskToList(taskText, taskId) {
+    var taskList = document.getElementById("taskList");
+    var listItem = document.createElement("li");
+    listItem.className = "task-item";
+    listItem.innerHTML = `
+      <span class="task-item-text">${taskText}</span>
+      <button onclick="deleteTask(this, ${taskId})" class="delete-button">Delete</button>
+    `;
+    taskList.appendChild(listItem);
+  }
+
+  function addTask() {
+    var taskInput = document.getElementById("taskInput");
+    var taskText = taskInput.value.trim();
+    if (taskText === "") return;
+
+    addTaskToList(taskText);
+    addTaskToDB(taskText);
+
+    taskInput.value = "";
+  }
+
+  function deleteTask(button, taskId) {
+    var listItem = button.parentElement;
+    var taskText = listItem.querySelector(".task-item-text").textContent;
+
+    var transaction = db.transaction(["tasks"], "readwrite");
+    var objectStore = transaction.objectStore("tasks");
+    var request = objectStore.delete(taskId);
+
+    request.onsuccess = function(event) {
+      listItem.remove();
+      console.log("Task deleted from IndexedDB.");
+    };
+
+    request.onerror = function(event) {
+      console.log("Error deleting task from IndexedDB:", event.target.error);
+    };
+  }
+
+  function saveTasks() {
+    var dialogBox = document.getElementById("dialogBox");
+    dialogBox.style.display = "block";
+    setTimeout(function() {
+      dialogBox.style.display = "none";
+    }, 2000); // Hide after 2 seconds
+  }
+
+  function closeDialog() {
+    var dialogBox = document.getElementById("dialogBox");
+    dialogBox.style.display = "none";
+  }
+</script>
+
+</body>
+</html>
