@@ -43,7 +43,9 @@
       {"src":"/Nova-Store/texttoimage.html"},
       {"by":"Felix543"},
       {"desc":"Text to Image Generator based on Stable Diffusion."},
-      {"cat":"tools"}
+      {"cat":"tools"},
+      {"ldesc":"
+"'Stable Diffusion' is an innovative Text to Image Generator application that utilizes advanced stable diffusion techniques to seamlessly translate textual descriptions into visually compelling images."}
     ]
     },
     {"Sce.io":[
