@@ -5,38 +5,44 @@
       {"src":"/Nova-Store/cli.html"},
       {"by":"adthoughtsglobal"},
       {"desc":"System CLI for Nova OS"},
-      {"cat":"tools"}
+      {"cat":"tools"},
+      {"ldesc":"Access Nova System directly with Nova CLI, read and write files, execute functions and return data."}
     ]},
     {"To Do App":[
       {"src":"/Nova-Store/felixtodo.html"},
       {"by":"Felix543"},
       {"desc":"A standard To Do list which remembers your tasks!"},
-      {"cat":"tools"}
+      {"cat":"tools"},
+      {"ldesc":"Create a To Do list of stuff you need to do - so that you won't forget."}
     ]},
     {"Tic Tac Toe":[
       {"src":"/Nova-Store/TicTacToe.html"},
       {"by":"G-Progress"},
       {"desc":"The game Of TicTacToe."},
-      {"cat":"game"}
+      {"cat":"game"},
+      {"ldesc":"[broken] Play the game of Tic Tac Toe with your friends with same screen multiplayer!"}
     ]},
     {"JS definer":[
       {"src":"/Nova-Store/jsdef.html"},
       {"by":"adthoughtsglobal"},
       {"desc":"Paste any JS code to identify what is happening under the hood in a more simpler language."},
-      {"cat":"tools"}
+      {"cat":"tools"},
+      {"ldesc":"Define any JS code in a more simpler language."}
     ]},
     {"Paint":[
       {"src":"/Nova-Store/paintviz.html"},
       {"by":"Vizronix"},
       {"desc":"A Simple Paint App with modern UI."},
-      {"cat":"tools"}
+      {"cat":"tools"},
+      {"ldesc":"Create your artwork and download them with a click of a button!"}
     ]
     },
     {"Ducks Quack":[
       {"src":"/Nova-Store/ducksquack.html"},
       {"by":"adthoughtsglobal"},
       {"desc":"Pictures of ducks for all. To ensure global peace."},
-      {"cat":"tools"}
+      {"cat":"tools"},
+      {"ldesc":"An app that shows pictures of ducks with a panning animation."}
     ]
     },
     {"Stable Diffusion":[
@@ -50,8 +56,9 @@
     {"Sce.io":[
       {"src":"/Nova-Store/scegame.html"},
       {"by":"trickyarrasgames3337"},
-      {"desc":"Sce.io is a Scenexe-based game, but you go on a single-player journy on killing shapes and becoming giant!"},
-      {"cat":"game"}
+      {"desc":"A Scenexe based single player io game."},
+      {"cat":"game"},
+      {"ldesc":"Sce.io is a Scenexe-based game, but you go on a single-player journey on killing shapes and becoming giant!"}
     ]
     }
   ]
