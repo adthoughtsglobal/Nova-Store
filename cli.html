@@ -2,7 +2,6 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="nova-icon" content="<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='57.77601' height='57.77601' viewBox='0,0,57.77601,57.77601'><defs><linearGradient x1='222.85988' y1='198.21389' x2='257.14012' y2='198.21389' gradientUnits='userSpaceOnUse' id='color-1'><stop offset='0' stop-color='#1a1a1a'/><stop offset='1' stop-color='#ffffff'/></linearGradient><linearGradient x1='222.92297' y1='175.84269' x2='241.98568' y2='175.84269' gradientUnits='userSpaceOnUse' id='color-2'><stop offset='0' stop-color='#1a1a1a'/><stop offset='1' stop-color='#ffffff'/></linearGradient></defs><g transform='translate(-211.11199,-151.11199)'><g data-paper-data='{&quot;isPaintingLayer&quot;:true}' fill-rule='nonzero' stroke-linejoin='miter' stroke-miterlimit='10' stroke-dasharray='' stroke-dashoffset='0' style='mix-blend-mode: normal'><path d='M211.112,208.88801v-57.77601h57.77601v57.77601z' fill='#1b1b1b' stroke='none' stroke-width='0' stroke-linecap='butt'/><path d='M222.85988,198.21389h34.28024' fill='none' stroke='url(#color-1)' stroke-width='5' stroke-linecap='round'/><path d='M222.92297,163.81364l19.06271,12.02905l-19.06271,12.02905z' fill='none' stroke='url(#color-2)' stroke-width='5' stroke-linecap='butt'/></g></g></svg>">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="https://glitch.com/favicon.ico" />
 
@@ -153,7 +152,7 @@ function disp(txt) {
   thing.scrollTop = thing.scrollHeight;
 }
 
-function proc() {
+async function proc() {
   let x = thin.value.toLowerCase();
    clay = thin.value;
 thin.value = "";
@@ -263,9 +262,20 @@ thin.value = "";
     disp("Changed to: device://" + curdir);
   } else if (x == "pwd") {
     disp("Current: device://" + curdir);
-  } else {
-    disp("Unable to find '" + x + "' in the system.");
-  }
+  } else if (x == "ls") {
+    try {
+        let files = await window.parent.getFileNamesByFolder(curdir);
+
+      let i = ""
+        files.forEach(item => {
+            i += `Name: '${item.name}' File ID: '${item.id}'<br>`
+        });
+      disp(i)
+    } catch (error) {
+        disp("Error fetching data:", error);
+    }
+
+      }
 }
 
 function ask(smth) {
