@@ -4,6 +4,7 @@
     {"Nova CLI":[
       {"src":"/Nova-Store/cli.html"},
       {"by":"adthoughtsglobal"},
+      {"qt":"Explore more inside"},
       {"desc":"System CLI for Nova OS"},
       {"cat":"tools"},
       {"ldesc":"Access Nova System directly with Nova CLI, read and write files, execute functions and return data."}
@@ -11,6 +12,7 @@
     {"To Do App":[
       {"src":"/Nova-Store/felixtodo.html"},
       {"by":"Felix543"},
+      {"qt":"List your tasks"},
       {"desc":"A standard To Do list which remembers your tasks!"},
       {"cat":"tools"},
       {"ldesc":"Create a To Do list of stuff you need to do - so that you won't forget."}
@@ -18,12 +20,14 @@
     {"Tic Tac Toe":[
       {"src":"/Nova-Store/TicTacToe.html"},
       {"by":"G-Progress"},
+      {"qt":"Play offline"},
       {"desc":"The game Of TicTacToe."},
       {"cat":"game"},
       {"ldesc":"[broken] Play the game of Tic Tac Toe with your friends with same screen multiplayer!"}
     ]},
     {"JS definer":[
       {"src":"/Nova-Store/jsdef.html"},
+      {"qt":"what that code does"},
       {"by":"adthoughtsglobal"},
       {"desc":"Paste any JS code to identify what is happening under the hood in a more simpler language."},
       {"cat":"tools"},
@@ -32,6 +36,7 @@
     {"Paint":[
       {"src":"/Nova-Store/paintviz.html"},
       {"by":"Vizronix"},
+      {"qt":"Get creative"},
       {"desc":"A Simple Paint App with modern UI."},
       {"cat":"tools"},
       {"ldesc":"Create your artwork and download them with a click of a button!"}
@@ -40,6 +45,7 @@
     {"Ducks Quack":[
       {"src":"/Nova-Store/ducksquack.html"},
       {"by":"adthoughtsglobal"},
+      {"qt":"Ensure Ducks Quack"},
       {"desc":"Pictures of ducks for all. To ensure global peace."},
       {"cat":"tools"},
       {"ldesc":"An app that shows pictures of ducks with a panning animation."}
@@ -48,6 +54,7 @@
     {"Stable Diffusion":[
       {"src":"/Nova-Store/texttoimage.html"},
       {"by":"Felix543"},
+      {"qt":"Generate Art"},
       {"desc":"Text to Image Generator based on Stable Diffusion."},
       {"cat":"tools"},
       {"ldesc":"'Stable Diffusion' is an innovative Text to Image Generator application that utilizes advanced stable diffusion techniques to seamlessly translate textual descriptions into visually compelling images."}
@@ -56,6 +63,7 @@
     {"Sce.io":[
       {"src":"/Nova-Store/scegame.html"},
       {"by":"trickyarrasgames3337"},
+      {"qt":"Become a giant"},
       {"desc":"A Scenexe based single player io game."},
       {"cat":"game"},
       {"ldesc":"Sce.io is a Scenexe-based game, but you go on a single-player journey on killing shapes and becoming giant!"}
