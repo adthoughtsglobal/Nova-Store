@@ -68,6 +68,15 @@
       {"cat":"game"},
       {"ldesc":"Sce.io is a Scenexe-based game, but you go on a single-player journey on killing shapes and becoming giant!"}
     ]
+    },
+    {"WCanvas":[
+      {"src":"/Nova-Store/wcanvas.html"},
+      {"by":"adthoughtsglobal"},
+      {"qt":"Code like a pro"},
+      {"desc":"An HTML code editor. [v1.2]"},
+      {"cat":"tools"},
+      {"ldesc":"An HTML code editor with hotkeys, syntax highlighting, same screen previews, help and much more!"}
+    ]
     }
   ]
 }
