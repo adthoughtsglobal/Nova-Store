@@ -1,0 +1,2402 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="https://glitch.com/favicon.ico" />
+
+    <title>Hello world!</title>
+
+    <style>
+		/* Style the scrollbar track */
+		::-webkit-scrollbar {
+		  width: 5px; /* Width of the scrollbar */
+		}
+
+		::-webkit-scrollbar-track {
+		  background: #333333; /* Background color of the track */
+		}
+
+		/* Style the scrollbar thumb */
+		::-webkit-scrollbar-thumb {
+		  background: #666666; /* Background color of the thumb */
+		  border-radius: 6px; /* Rounded corners for the thumb */
+		}
+
+		::-moz-selection {
+		  /* Code for Firefox */
+		  color: #dedede;
+		  background: #5c68a3;
+		}
+
+		::selection {
+		  color: #dedede;
+		  background: #5c68a3;
+		}
+
+		/* Change scrollbar styles for Firefox */
+		* {
+		  scrollbar-width: thin;
+		  scrollbar-color: #666666 #333333;
+		}
+
+		:root {
+		  --dist: 82px;
+		}
+
+		input,
+		textarea {
+		  outline: none;
+		  user-select: text;
+		}
+
+		dialog,
+		button {
+		  outline: none;
+		  user-select: none;
+		}
+
+		dialog {
+		  animation: dip 0.2s;
+		}
+
+		/* a minimalist set of CSS resets */
+
+		/* default to border-box */
+		html {
+		  box-sizing: border-box;
+		  font-size: 16px;
+		  scroll-behavior: smooth;
+		}
+
+		*,
+		*:before,
+		*:after {
+		  box-sizing: inherit;
+		}
+
+		/* adjust typography defaults */
+		body {
+		  margin: 0;
+		  font-family: sans-serif;
+		  line-height: 1.5;
+		  background-color: #1f1f1f;
+		  user-select: none;
+		  transition: .5s;
+		  color: white;
+		}
+
+		/* images and videos max out at full width */
+		img,
+		video {
+		  height: auto;
+		  max-width: 100%;
+		}
+
+		/* Remove default textarea styles */
+		textarea {
+			border: none;
+			overflow: auto;
+			outline: none;
+			-webkit-box-shadow: none;
+			-moz-box-shadow: none;
+			box-shadow: none;
+			resize: none;
+			display: block;
+			width: 100%;
+			box-sizing: border-box;
+			line-height: 1.6;
+		}
+
+
+		#mainstuff {
+		  background-color: #161616;
+		  height: calc(100vh - 58px);
+		  display: flex;
+		  padding: 5px;
+		  width: calc(100% - 43px);
+		  float: right;
+		  border-radius: 8px;
+		}
+
+		codside {
+		  flex-grow: 1;
+		  width: 0vw;
+		  padding: 0;
+		  margin: 0;
+		}
+
+		#code {
+		  height: calc(100vh - var(--dist) - 52px);
+		  background-color: #181b1e;
+		  -webkit-rtl-ordering: visual;
+		  margin: 5px;
+		  word-wrap: break-word;
+		  color: white;
+		  resize: none;
+		  font-size: 13px;
+		  border-radius: 5px;
+		  min-width: 0;
+		  padding: 5px;
+		  width: calc(100% - 13px);
+		  font-family: monospace;
+		  margin-bottom: 10px;
+		}
+
+		.atcs {
+		  border-radius: 5px;
+		  background-color: #1e1e1e;
+		  padding: 3px 7px;
+		  transform: translate(4px, -8px);
+		  width: calc(100% - 10px);
+		  overflow-x: scroll;
+		  height: 45px;
+		  white-space: nowrap;
+		}
+
+		.output {
+		  color: black;
+		  border-radius: 5px;
+		  flex-grow: 8;
+		}
+
+		#output {
+		  width: 100%;
+		  height: calc(100% - 42px);
+		  background-color: white;
+		  border: none;
+		  border-radius: 2px 2px 5px 5px;
+		  transition: 0.2s;
+		}
+
+		.nav {
+		  padding: 10px;
+		  padding-bottom: 0px;
+		}
+
+		#ounav {
+		  white-space: nowrap;
+		  overflow: hidden;
+		  display: flex;
+		  margin-bottom: 2px;
+		  padding: 0 0px;
+		}
+
+		#rnbtn {
+		  background-color: #0b2d0b;
+		  color: #57db6f;
+		  border-radius: 7px;
+		  padding: 5px 10px;
+		  border: 2px solid #1b671b;
+		  float: right;
+		  margin-right: calc(50vw - 32px);
+		  transition: 0.2s;
+		  display: inline-block;
+		}
+
+		#rnbtn:active {
+		  background: linear-gradient(145deg, #00730e, #008910);
+		  box-shadow: 20px 20px 60px #006d0d, -20px -20px 60px #009311;
+		  transform: scale(1.07);
+		}
+
+		#code:focus {
+		  outline: none;
+		  border: 1px solid darkgrey;
+		}
+
+		.checkbox-wrapper-35 .switch {
+		  display: none;
+		}
+
+		.checkbox-wrapper-35 .switch + label {
+		  -webkit-box-align: center;
+		  -webkit-align-items: center;
+		  -ms-flex-align: center;
+		  align-items: center;
+		  color: #78768d;
+		  cursor: pointer;
+		  display: -webkit-box;
+		  display: -webkit-flex;
+		  display: -ms-flexbox;
+		  display: flex;
+		  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+		  font-size: 12px;
+		  line-height: 15px;
+		  position: relative;
+		  -webkit-user-select: none;
+		  -moz-user-select: none;
+		  -ms-user-select: none;
+		  user-select: none;
+		}
+
+		.checkbox-wrapper-35 .switch + label::before,
+		.checkbox-wrapper-35 .switch + label::after {
+		  content: "";
+		  display: block;
+		}
+
+		.checkbox-wrapper-35 .switch + label::before {
+		  background-color: #05012c;
+		  border-radius: 500px;
+		  height: 15px;
+		  margin-right: 8px;
+		  -webkit-transition: background-color 0.125s ease-out;
+		  transition: background-color 0.125s ease-out;
+		  width: 25px;
+		}
+
+		.checkbox-wrapper-35 .switch + label::after {
+		  background-color: #fff;
+		  border-radius: 13px;
+		  box-shadow: 0 3px 1px 0 rgba(37, 34, 71, 0.05),
+			0 2px 2px 0 rgba(37, 34, 71, 0.1), 0 3px 3px 0 rgba(37, 34, 71, 0.05);
+		  height: 13px;
+		  left: 1px;
+		  position: absolute;
+		  top: 1px;
+		  -webkit-transition: -webkit-transform 0.125s ease-out;
+		  transition: -webkit-transform 0.125s ease-out;
+		  transition: transform 0.125s ease-out;
+		  transition: transform 0.125s ease-out, -webkit-transform 0.125s ease-out;
+		  width: 13px;
+		}
+
+		.checkbox-wrapper-35 .switch + label .switch-x-text {
+		  display: block;
+		  margin-right: 0.3em;
+		}
+
+		.checkbox-wrapper-35 .switch + label .switch-x-toggletext {
+		  display: block;
+		  font-weight: bold;
+		  height: 15px;
+		  overflow: hidden;
+		  position: relative;
+		  width: 25px;
+		}
+
+		.checkbox-wrapper-35 .switch + label .switch-x-unchecked,
+		.checkbox-wrapper-35 .switch + label .switch-x-checked {
+		  left: 0;
+		  position: absolute;
+		  top: 0;
+		  -webkit-transition: opacity 0.125s ease-out, -webkit-transform 0.125s ease-out;
+		  transition: opacity 0.125s ease-out, -webkit-transform 0.125s ease-out;
+		  transition: transform 0.125s ease-out, opacity 0.125s ease-out;
+		  transition: transform 0.125s ease-out, opacity 0.125s ease-out,
+			-webkit-transform 0.125s ease-out;
+		}
+
+		.checkbox-wrapper-35 .switch + label .switch-x-unchecked {
+		  opacity: 1;
+		  -webkit-transform: none;
+		  transform: none;
+		}
+
+		.checkbox-wrapper-35 .switch + label .switch-x-checked {
+		  opacity: 0;
+		  -webkit-transform: translate3d(0, 100%, 0);
+		  transform: translate3d(0, 100%, 0);
+		}
+
+		.checkbox-wrapper-35 .switch + label .switch-x-hiddenlabel {
+		  position: absolute;
+		  visibility: hidden;
+		}
+
+		.checkbox-wrapper-35 .switch:checked + label::before {
+		  background-color: #ffb500;
+		}
+
+		.checkbox-wrapper-35 .switch:checked + label::after {
+		  -webkit-transform: translate3d(10px, 0, 0);
+		  transform: translate3d(10px, 0, 0);
+		}
+
+		.checkbox-wrapper-35 .switch:checked + label .switch-x-unchecked {
+		  opacity: 0;
+		  -webkit-transform: translate3d(0, -100%, 0);
+		  transform: translate3d(0, -100%, 0);
+		}
+
+		.checkbox-wrapper-35 .switch:checked + label .switch-x-checked {
+		  opacity: 1;
+		  -webkit-transform: none;
+		  transform: none;
+		}
+
+		[jj] {
+		  background-color: #434343;
+		  color: white;
+		  border-radius: 3px;
+		  border: 1px solid #272727;
+		  margin-right: 1px;
+		  border-radius: 5px;
+		  flex-grow: 1;
+		  cursor: pointer;
+		}
+
+		[jj]:hover {
+		  background-color: #444444;
+		}
+
+		[jj] span {
+		  font-size: 14px;
+		  transition: 0.5s;
+		  transition-timing-function: cubic-bezier(0, -0.63, 0.07, 1.46);
+		}
+
+		[jj]:hover span {
+		  transform: scale(1.2) rotate(352deg);
+		}
+
+		#rhs {
+		  display: inline-block;
+		  height: calc(100vh - var(--dist));
+		  background-color: #1f1f1f;
+		  flex-grow: 1;
+		  margin: 5px;
+		  width: 0;
+		}
+
+		#sh {
+		  border: 1px solid grey;
+		  border-radius: 10px;
+		  background-color: #151b1e;
+		  color: white;
+		  padding-bottom: 27px;
+		}
+
+		#sh input {
+		  width: 100%;
+		  padding: 5px 7px;
+		  white-space: nowrap;
+		  overflow: hidden;
+		  text-align: left;
+		  text-overflow: ellipsis;
+		  background-color: #121518;
+		  border: 1px solid grey;
+		  border-radius: 5px;
+		  color: #ababab;
+		}
+
+		#sh::backdrop {
+		  filter: blur(5px);
+		}
+
+		cls {
+		  float: right;
+		  cursor: pointer;
+		}
+
+		kbd {
+		  padding: 1px 6px;
+		  background-color: #5d461d;
+		  border-radius: 3px;
+		  color: white;
+		}
+
+		#sidenav {
+		  display: inline-block;
+		  padding: 4px;
+		  transform: translateX(5px) translateY(25vh);
+		}
+
+		#sidenav span {
+		  color: lightgrey;
+		  border-radius: 5px;
+		  cursor: pointer;
+		  transition: 0.2s;
+		  margin-bottom: 3px;
+		  display: block;
+		  padding: 2px;
+		}
+
+		#sidenav span:hover {
+		  background-color: #3f3f3f;
+		}
+
+		#fupmd {
+		  border: 1px solid grey;
+		  border-radius: 10px;
+		  background-color: #151b1e;
+		  color: white;
+		  padding-bottom: 27px;
+		}
+
+		.file-upload-container {
+		  border: 2px dashed #888888;
+		  padding: 20px;
+		  text-align: center;
+		  border-radius: 10px;
+		  cursor: pointer;
+		}
+		.file-upload-container:hover {
+		  border-color: #4caf50;
+		}
+		.file-upload-input {
+		  display: none;
+		}
+		.file-upload-label {
+		  font-size: 18px;
+		  font-weight: bold;
+		}
+
+		.imbek {
+		  background-color: #4f4f4f;
+		  border-radius: 10px;
+		  padding: 7px;
+		  vertical-align: text-top;
+		  height: 44px;
+		}
+
+		.imbek img {
+		  border-radius: 7px;
+		  width: 30px;
+		  margin: 0;
+		  aspect-ratio: 1/1;
+		  object-fit: cover;
+		  float: left;
+		  background-color: #ffffff;
+		  background-image: linear-gradient(
+			  45deg,
+			  #efefef 25%,
+			  rgba(239, 239, 239, 0) 25%,
+			  rgba(239, 239, 239, 0) 75%,
+			  #efefef 75%,
+			  #efefef
+			),
+			linear-gradient(
+			  45deg,
+			  #efefef 25%,
+			  rgba(239, 239, 239, 0) 25%,
+			  rgba(239, 239, 239, 0) 75%,
+			  #efefef 75%,
+			  #efefef
+			);
+		  background-position: 0 0, 10px 10px;
+		  background-size: 21px 21px;
+		}
+
+		.imbek input {
+		  width: calc(100% - 61px);
+		  padding: 7px 9px;
+		  border-radius: 5px;
+		  border: 1px solid grey;
+		  background: #181818;
+		  color: white;
+		  margin-left: 5px;
+		  float: left;
+		}
+
+		.imbek span {
+		  font-size: 13px;
+		  font-size: 20px;
+		  transform: translate(4px, 3px);
+		  background-color: transparent;
+		  border-radius: 30px;
+		  padding: 2px;
+		  color: #ff4f76;
+		  cursor: pointer;
+		  transition: 0.2s;
+		}
+
+		.imbek span:hover {
+		  background-color: #757575;
+		  color: white;
+		}
+
+		#scs {
+		  border: 1px solid grey;
+		  border-radius: 10px;
+		  background-color: #151b1e;
+		  color: white;
+		  padding-bottom: 27px;
+		}
+
+		.snippet {
+		  border-radius: 5px;
+		  background-color: #2f2f2f;
+		  padding: 1px 19px;
+		  padding-bottom: 17px;
+		  margin-top: 16px;
+		}
+
+		.snipout {
+		  background-color: #1e1e1e;
+		  padding: 3px 10px;
+		  border-radius: 10px;
+		}
+
+		.codt {
+		  margin-top: 10px;
+		  padding: 10px 10px;
+		  border-radius: 10px;
+		  background-color: #1f1f1f;
+		  color: white;
+		  height: 100px;
+		  font-size: 14px;
+		  width: 100%;
+		}
+
+		#autocomplete-list {
+		  position: absolute;
+		  max-height: 150px;
+		  overflow-y: auto;
+		  display: none;
+		  list-style: none;
+		  transform: translate(-8px, -32px);
+		  padding: 0;
+		}
+
+		#autocomplete-list li {
+		  padding: 2px 7px;
+		  color: white;
+		  cursor: pointer;
+		  display: inline-block;
+		  font-size: 13px;
+		  border-radius: 30px;
+		  background-color: #393939;
+		  margin-right: -4px;
+		  transform: scale(0.8);
+		}
+
+		#autocomplete-list li:hover {
+		  background-color: #5d5d5d;
+		}
+
+		.dialog {
+		  background-color: #333;
+		  color: #fff;
+		  padding: 20px;
+		  border-radius: 10px;
+		  border: 0;
+		  position: absolute;
+		  width: 80vw;
+		  animation: dip 0.2s;
+		}
+
+		.close-button {
+		  color: #fff;
+		  float: right;
+		  font-size: 24px;
+		  font-weight: bold;
+		  cursor: pointer;
+		}
+
+		.close-button:hover {
+		  color: red;
+		}
+
+		@media only screen and (max-width: 500px) {
+		  height: calc(54vh - var(--dist));
+		}
+
+		#errmd {
+		  color: white;
+		  padding: 5px;
+		  overflow-y: scroll;
+		  flex-grow: 1;
+		  width: 100%;
+		  overflow-x: hidden;
+		  font-size: 12px;
+		}
+
+		#thselmd {
+		  border: 1px solid grey;
+		  border-radius: 10px;
+		  background-color: #151b1e;
+		  color: white;
+		  padding-bottom: 27px;
+		  width: 80vw;
+		}
+
+		.atheme {
+		  flex-grow: 1;
+		  height: 100px;
+		  width: 100px;
+		  display: inline-table;
+		  overflow: hidden;
+		  text-wrap: break-word;
+		  background-color: #1f1f1f;
+		  color: white;
+		  margin: 10px;
+		  margin-right: -3px;
+		  border-radius: 10px;
+		  padding: 10px;
+		  transition: 0.2s;
+		  cursor: pointer;
+		}
+
+		.atheme:active {
+		  transform: scale(1.02);
+		}
+
+		.atheme p {
+		  border-radius: 10px;
+		  height: 8px;
+		  background-color: rgb(118 118 118 / 50%);
+		  width: 80%;
+		}
+		.atheme:hover {
+		  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px,
+			rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px,
+			rgba(0, 0, 0, 0.07) 0px 16px 16px;
+		  animation: pop 0.3s linear 1;
+		  transform: scale(1.02);
+		}
+
+		@keyframes pop {
+		  50% {
+			transform: scale(1.03);
+		  }
+		}
+
+		themes {
+		  display: block;
+		  border-radius: 14px;
+		  background-color: #282f32;
+		  white-space: nowrap;
+		  padding-right: 13px;
+		  overflow-x: scroll;
+		}
+
+		.nomnes {
+		  display: flex;
+		  flex-direction: column;
+		  height: calc(100% - 25px);
+		}
+
+		.rhsmnav {
+		  display: flex;
+		}
+
+		.rhsmnav button {
+		  font-size: 10px;
+		  margin: 2px 1px;
+		  padding: 5px;
+		  border-radius: 4px;
+		  border: none;
+		  background-color: #353539;
+		  color: #9ca7b6;
+		  flex-grow: 1;
+		}
+
+		.rhsmnav button:hover {
+		  background-color: #48484b;
+		}
+
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6,
+		h7 {
+		  font-weight: normal;
+		}
+
+		#settings {
+		  height: 100%;
+		  width: 100%;
+		  border: 0;
+		  outline: 0;
+		  border-radius: 5px;
+		  backdrop-filter: blur(15px);
+		  background-color: #1c2329eb;
+		  color: white;
+		  border: 1px solid #494949;
+		}
+
+		#keybn {
+		  height: 100%;
+		  width: 100%;
+		  border: 0;
+		  outline: 0;
+		  border-radius: 5px;
+		  backdrop-filter: blur(15px);
+		  background-color: #1c2329eb;
+		  color: white;
+		  border: 1px solid #494949;
+		}
+
+		#keybn iframe{
+		  width: 100%;
+		  height: 60vh;
+		  border: none;
+		}
+
+		dialog::backdrop {
+		  background-color: #1b1b1bb3;
+		  backdrop-filter: blur(4px);
+		}
+
+		@keyframes dip {
+		  0% {
+			transform: scale(0.9);
+			opacity: 0;
+		  }
+		  100% {/* Style the scrollbar track */
+			  ::-webkit-scrollbar {
+				width: 5px; /* Width of the scrollbar */
+			  }
+
+			  ::-webkit-scrollbar-track {
+				background: #333333; /* Background color of the track */
+			  }
+
+			  /* Style the scrollbar thumb */
+			  ::-webkit-scrollbar-thumb {
+				background: #666666; /* Background color of the thumb */
+				border-radius: 6px; /* Rounded corners for the thumb */
+			  }
+
+			  ::-moz-selection {
+				/* Code for Firefox */
+				color: #dedede;
+				background: #5c68a3;
+			  }
+
+			  ::selection {
+				color: #dedede;
+				background: #5c68a3;
+			  }
+
+			  /* Change scrollbar styles for Firefox */
+			  * {
+				scrollbar-width: thin;
+				scrollbar-color: #666666 #333333;
+			  }
+
+			  :root {
+				--dist: 82px;
+			  }
+
+			  input,
+			  textarea {
+				outline: none;
+				user-select: text;
+			  }
+
+			  dialog,
+			  button {
+				outline: none;
+				user-select: none;
+			  }
+
+			  dialog {
+				animation: dip 0.2s;
+			  }
+
+			  /* a minimalist set of CSS resets */
+
+			  /* default to border-box */
+			  html {
+				box-sizing: border-box;
+				font-size: 16px;
+				scroll-behavior: smooth;
+			  }
+
+			  *,
+			  *:before,
+			  *:after {
+				box-sizing: inherit;
+			  }
+
+			  /* adjust typography defaults */
+			  body {
+				margin: 0;
+				font-family: sans-serif;
+				line-height: 1.5;
+				background-color: #1f1f1f;
+				user-select: none;
+				transition: .5s;
+				color: white;
+			  }
+
+			  /* images and videos max out at full width */
+			  img,
+			  video {
+				height: auto;
+				max-width: 100%;
+			  }
+
+			  /* Remove default textarea styles */
+			  textarea {
+				  border: none;
+				  overflow: auto;
+				  outline: none;
+				  -webkit-box-shadow: none;
+				  -moz-box-shadow: none;
+				  box-shadow: none;
+				  resize: none;
+				  display: block;
+				  width: 100%;
+				  box-sizing: border-box;
+				  line-height: 1.6;
+			  }
+
+
+			  #mainstuff {
+				background-color: #161616;
+				height: calc(100vh - 58px);
+				display: flex;
+				padding: 5px;
+				width: calc(100% - 43px);
+				float: right;
+				border-radius: 8px;
+			  }
+
+			  codside {
+				flex-grow: 1;
+				width: 0vw;
+				padding: 0;
+				margin: 0;
+			  }
+
+			  #code {
+				height: calc(100vh - var(--dist) - 52px);
+				background-color: #181b1e;
+				-webkit-rtl-ordering: visual;
+				margin: 5px;
+				word-wrap: break-word;
+				color: white;
+				resize: none;
+				font-size: 13px;
+				border-radius: 5px;
+				min-width: 0;
+				padding: 5px;
+				width: calc(100% - 13px);
+				font-family: monospace;
+				margin-bottom: 10px;
+			  }
+
+			  .atcs {
+				border-radius: 5px;
+				background-color: #1e1e1e;
+				padding: 3px 7px;
+				transform: translate(4px, -8px);
+				width: calc(100% - 10px);
+				overflow-x: scroll;
+				height: 45px;
+				white-space: nowrap;
+			  }
+
+			  .output {
+				color: black;
+				border-radius: 5px;
+				flex-grow: 8;
+			  }
+
+			  #output {
+				width: 100%;
+				height: calc(100% - 42px);
+				background-color: white;
+				border: none;
+				border-radius: 2px 2px 5px 5px;
+				transition: 0.2s;
+			  }
+
+			  .nav {
+				padding: 10px;
+				padding-bottom: 0px;
+			  }
+
+			  #ounav {
+				white-space: nowrap;
+				overflow: hidden;
+				display: flex;
+				margin-bottom: 2px;
+				padding: 0 0px;
+			  }
+
+			  #rnbtn {
+				background-color: #0b2d0b;
+				color: #57db6f;
+				border-radius: 7px;
+				padding: 5px 10px;
+				border: 2px solid #1b671b;
+				float: right;
+				margin-right: calc(50vw - 32px);
+				transition: 0.2s;
+				display: inline-block;
+			  }
+
+			  #rnbtn:active {
+				background: linear-gradient(145deg, #00730e, #008910);
+				box-shadow: 20px 20px 60px #006d0d, -20px -20px 60px #009311;
+				transform: scale(1.07);
+			  }
+
+			  #code:focus {
+				outline: none;
+				border: 1px solid darkgrey;
+			  }
+
+			  .checkbox-wrapper-35 .switch {
+				display: none;
+			  }
+
+			  .checkbox-wrapper-35 .switch + label {
+				-webkit-box-align: center;
+				-webkit-align-items: center;
+				-ms-flex-align: center;
+				align-items: center;
+				color: #78768d;
+				cursor: pointer;
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: -ms-flexbox;
+				display: flex;
+				font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+				font-size: 12px;
+				line-height: 15px;
+				position: relative;
+				-webkit-user-select: none;
+				-moz-user-select: none;
+				-ms-user-select: none;
+				user-select: none;
+			  }
+
+			  .checkbox-wrapper-35 .switch + label::before,
+			  .checkbox-wrapper-35 .switch + label::after {
+				content: "";
+				display: block;
+			  }
+
+			  .checkbox-wrapper-35 .switch + label::before {
+				background-color: #05012c;
+				border-radius: 500px;
+				height: 15px;
+				margin-right: 8px;
+				-webkit-transition: background-color 0.125s ease-out;
+				transition: background-color 0.125s ease-out;
+				width: 25px;
+			  }
+
+			  .checkbox-wrapper-35 .switch + label::after {
+				background-color: #fff;
+				border-radius: 13px;
+				box-shadow: 0 3px 1px 0 rgba(37, 34, 71, 0.05),
+				  0 2px 2px 0 rgba(37, 34, 71, 0.1), 0 3px 3px 0 rgba(37, 34, 71, 0.05);
+				height: 13px;
+				left: 1px;
+				position: absolute;
+				top: 1px;
+				-webkit-transition: -webkit-transform 0.125s ease-out;
+				transition: -webkit-transform 0.125s ease-out;
+				transition: transform 0.125s ease-out;
+				transition: transform 0.125s ease-out, -webkit-transform 0.125s ease-out;
+				width: 13px;
+			  }
+
+			  .checkbox-wrapper-35 .switch + label .switch-x-text {
+				display: block;
+				margin-right: 0.3em;
+			  }
+
+			  .checkbox-wrapper-35 .switch + label .switch-x-toggletext {
+				display: block;
+				font-weight: bold;
+				height: 15px;
+				overflow: hidden;
+				position: relative;
+				width: 25px;
+			  }
+
+			  .checkbox-wrapper-35 .switch + label .switch-x-unchecked,
+			  .checkbox-wrapper-35 .switch + label .switch-x-checked {
+				left: 0;
+				position: absolute;
+				top: 0;
+				-webkit-transition: opacity 0.125s ease-out, -webkit-transform 0.125s ease-out;
+				transition: opacity 0.125s ease-out, -webkit-transform 0.125s ease-out;
+				transition: transform 0.125s ease-out, opacity 0.125s ease-out;
+				transition: transform 0.125s ease-out, opacity 0.125s ease-out,
+				  -webkit-transform 0.125s ease-out;
+			  }
+
+			  .checkbox-wrapper-35 .switch + label .switch-x-unchecked {
+				opacity: 1;
+				-webkit-transform: none;
+				transform: none;
+			  }
+
+			  .checkbox-wrapper-35 .switch + label .switch-x-checked {
+				opacity: 0;
+				-webkit-transform: translate3d(0, 100%, 0);
+				transform: translate3d(0, 100%, 0);
+			  }
+
+			  .checkbox-wrapper-35 .switch + label .switch-x-hiddenlabel {
+				position: absolute;
+				visibility: hidden;
+			  }
+
+			  .checkbox-wrapper-35 .switch:checked + label::before {
+				background-color: #ffb500;
+			  }
+
+			  .checkbox-wrapper-35 .switch:checked + label::after {
+				-webkit-transform: translate3d(10px, 0, 0);
+				transform: translate3d(10px, 0, 0);
+			  }
+
+			  .checkbox-wrapper-35 .switch:checked + label .switch-x-unchecked {
+				opacity: 0;
+				-webkit-transform: translate3d(0, -100%, 0);
+				transform: translate3d(0, -100%, 0);
+			  }
+
+			  .checkbox-wrapper-35 .switch:checked + label .switch-x-checked {
+				opacity: 1;
+				-webkit-transform: none;
+				transform: none;
+			  }
+
+			  [jj] {
+				background-color: #434343;
+				color: white;
+				border-radius: 3px;
+				border: 1px solid #272727;
+				margin-right: 1px;
+				border-radius: 5px;
+				flex-grow: 1;
+				cursor: pointer;
+			  }
+
+			  [jj]:hover {
+				background-color: #444444;
+			  }
+
+			  [jj] span {
+				font-size: 14px;
+				transition: 0.5s;
+				transition-timing-function: cubic-bezier(0, -0.63, 0.07, 1.46);
+			  }
+
+			  [jj]:hover span {
+				transform: scale(1.2) rotate(352deg);
+			  }
+
+			  #rhs {
+				display: inline-block;
+				height: calc(100vh - var(--dist));
+				background-color: #1f1f1f;
+				flex-grow: 1;
+				margin: 5px;
+				width: 0;
+			  }
+
+			  #sh {
+				border: 1px solid grey;
+				border-radius: 10px;
+				background-color: #151b1e;
+				color: white;
+				padding-bottom: 27px;
+			  }
+
+			  #sh input {
+				width: 100%;
+				padding: 5px 7px;
+				white-space: nowrap;
+				overflow: hidden;
+				text-align: left;
+				text-overflow: ellipsis;
+				background-color: #121518;
+				border: 1px solid grey;
+				border-radius: 5px;
+				color: #ababab;
+			  }
+
+			  #sh::backdrop {
+				filter: blur(5px);
+			  }
+
+			  cls {
+				float: right;
+				cursor: pointer;
+			  }
+
+			  kbd {
+				padding: 1px 6px;
+				background-color: #5d461d;
+				border-radius: 3px;
+				color: white;
+			  }
+
+			  #sidenav {
+				display: inline-block;
+				padding: 4px;
+				transform: translateX(5px) translateY(25vh);
+			  }
+
+			  #sidenav span {
+				color: lightgrey;
+				border-radius: 5px;
+				cursor: pointer;
+				transition: 0.2s;
+				margin-bottom: 3px;
+				display: block;
+				padding: 2px;
+			  }
+
+			  #sidenav span:hover {
+				background-color: #3f3f3f;
+			  }
+
+			  #fupmd {
+				border: 1px solid grey;
+				border-radius: 10px;
+				background-color: #151b1e;
+				color: white;
+				padding-bottom: 27px;
+			  }
+
+			  .file-upload-container {
+				border: 2px dashed #888888;
+				padding: 20px;
+				text-align: center;
+				border-radius: 10px;
+				cursor: pointer;
+			  }
+			  .file-upload-container:hover {
+				border-color: #4caf50;
+			  }
+			  .file-upload-input {
+				display: none;
+			  }
+			  .file-upload-label {
+				font-size: 18px;
+				font-weight: bold;
+			  }
+
+			  .imbek {
+				background-color: #4f4f4f;
+				border-radius: 10px;
+				padding: 7px;
+				vertical-align: text-top;
+				height: 44px;
+			  }
+
+			  .imbek img {
+				border-radius: 7px;
+				width: 30px;
+				margin: 0;
+				aspect-ratio: 1/1;
+				object-fit: cover;
+				float: left;
+				background-color: #ffffff;
+				background-image: linear-gradient(
+					45deg,
+					#efefef 25%,
+					rgba(239, 239, 239, 0) 25%,
+					rgba(239, 239, 239, 0) 75%,
+					#efefef 75%,
+					#efefef
+				  ),
+				  linear-gradient(
+					45deg,
+					#efefef 25%,
+					rgba(239, 239, 239, 0) 25%,
+					rgba(239, 239, 239, 0) 75%,
+					#efefef 75%,
+					#efefef
+				  );
+				background-position: 0 0, 10px 10px;
+				background-size: 21px 21px;
+			  }
+
+			  .imbek input {
+				width: calc(100% - 61px);
+				padding: 7px 9px;
+				border-radius: 5px;
+				border: 1px solid grey;
+				background: #181818;
+				color: white;
+				margin-left: 5px;
+				float: left;
+			  }
+
+			  .imbek span {
+				font-size: 13px;
+				font-size: 20px;
+				transform: translate(4px, 3px);
+				background-color: transparent;
+				border-radius: 30px;
+				padding: 2px;
+				color: #ff4f76;
+				cursor: pointer;
+				transition: 0.2s;
+			  }
+
+			  .imbek span:hover {
+				background-color: #757575;
+				color: white;
+			  }
+
+			  #scs {
+				border: 1px solid grey;
+				border-radius: 10px;
+				background-color: #151b1e;
+				color: white;
+				padding-bottom: 27px;
+			  }
+
+			  .snippet {
+				border-radius: 5px;
+				background-color: #2f2f2f;
+				padding: 1px 19px;
+				padding-bottom: 17px;
+				margin-top: 16px;
+			  }
+
+			  .snipout {
+				background-color: #1e1e1e;
+				padding: 3px 10px;
+				border-radius: 10px;
+			  }
+
+			  .codt {
+				margin-top: 10px;
+				padding: 10px 10px;
+				border-radius: 10px;
+				background-color: #1f1f1f;
+				color: white;
+				height: 100px;
+				font-size: 14px;
+				width: 100%;
+			  }
+
+			  #autocomplete-list {
+				position: absolute;
+				max-height: 150px;
+				overflow-y: auto;
+				display: none;
+				list-style: none;
+				transform: translate(-8px, -32px);
+				padding: 0;
+			  }
+
+			  #autocomplete-list li {
+				padding: 2px 7px;
+				color: white;
+				cursor: pointer;
+				display: inline-block;
+				font-size: 13px;
+				border-radius: 30px;
+				background-color: #393939;
+				margin-right: -4px;
+				transform: scale(0.8);
+			  }
+
+			  #autocomplete-list li:hover {
+				background-color: #5d5d5d;
+			  }
+
+			  .dialog {
+				background-color: #333;
+				color: #fff;
+				padding: 20px;
+				border-radius: 10px;
+				border: 0;
+				position: absolute;
+				width: 80vw;
+				animation: dip 0.2s;
+			  }
+
+			  .close-button {
+				color: #fff;
+				float: right;
+				font-size: 24px;
+				font-weight: bold;
+				cursor: pointer;
+			  }
+
+			  .close-button:hover {
+				color: red;
+			  }
+
+			  @media only screen and (max-width: 500px) {
+				height: calc(54vh - var(--dist));
+			  }
+
+			  #errmd {
+				color: white;
+				padding: 5px;
+				overflow-y: scroll;
+				flex-grow: 1;
+				width: 100%;
+				overflow-x: hidden;
+				font-size: 12px;
+			  }
+
+			  #thselmd {
+				border: 1px solid grey;
+				border-radius: 10px;
+				background-color: #151b1e;
+				color: white;
+				padding-bottom: 27px;
+				width: 80vw;
+			  }
+
+			  .atheme {
+				flex-grow: 1;
+				height: 100px;
+				width: 100px;
+				display: inline-table;
+				overflow: hidden;
+				text-wrap: break-word;
+				background-color: #1f1f1f;
+				color: white;
+				margin: 10px;
+				margin-right: -3px;
+				border-radius: 10px;
+				padding: 10px;
+				transition: 0.2s;
+				cursor: pointer;
+			  }
+
+			  .atheme:active {
+				transform: scale(1.02);
+			  }
+
+			  .atheme p {
+				border-radius: 10px;
+				height: 8px;
+				background-color: rgb(118 118 118 / 50%);
+				width: 80%;
+			  }
+			  .atheme:hover {
+				box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px,
+				  rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px,
+				  rgba(0, 0, 0, 0.07) 0px 16px 16px;
+				animation: pop 0.3s linear 1;
+				transform: scale(1.02);
+			  }
+
+			  @keyframes pop {
+				50% {
+				  transform: scale(1.03);
+				}
+			  }
+
+			  themes {
+				display: block;
+				border-radius: 14px;
+				background-color: #282f32;
+				white-space: nowrap;
+				padding-right: 13px;
+				overflow-x: scroll;
+			  }
+
+			  .nomnes {
+				display: flex;
+				flex-direction: column;
+				height: calc(100% - 25px);
+			  }
+
+			  .rhsmnav {
+				display: flex;
+			  }
+
+			  .rhsmnav button {
+				font-size: 10px;
+				margin: 2px 1px;
+				padding: 5px;
+				border-radius: 4px;
+				border: none;
+				background-color: #353539;
+				color: #9ca7b6;
+				flex-grow: 1;
+			  }
+
+			  .rhsmnav button:hover {
+				background-color: #48484b;
+			  }
+
+			  h1,
+			  h2,
+			  h3,
+			  h4,
+			  h5,
+			  h6,
+			  h7 {
+				font-weight: normal;
+			  }
+
+			  #settings {
+				height: 100%;
+				width: 100%;
+				border: 0;
+				outline: 0;
+				border-radius: 5px;
+				backdrop-filter: blur(15px);
+				background-color: #1c2329eb;
+				color: white;
+				border: 1px solid #494949;
+			  }
+
+			  #keybn {
+				height: 100%;
+				width: 100%;
+				border: 0;
+				outline: 0;
+				border-radius: 5px;
+				backdrop-filter: blur(15px);
+				background-color: #1c2329eb;
+				color: white;
+				border: 1px solid #494949;
+			  }
+
+			  #keybn iframe{
+				width: 100%;
+				height: 60vh;
+				border: none;
+			  }
+
+			  dialog::backdrop {
+				background-color: #1b1b1bb3;
+				backdrop-filter: blur(4px);
+			  }
+
+			  @keyframes dip {
+				0% {
+				  transform: scale(0.9);
+				  opacity: 0;
+				}
+				100% {
+				  transform: scale(1);
+				  opacity: 1;
+				}
+			  }
+
+			  @keyframes undip {
+				0% {
+				  transform: scale(1);
+				  opacity: 1;
+				}
+				100% {
+				  transform: scale(0.9);
+				  opacity: 0;
+				}
+			  }
+
+			transform: scale(1);
+			opacity: 1;
+		  }
+		}
+
+		@keyframes undip {
+		  0% {
+			transform: scale(1);
+			opacity: 1;
+		  }
+		  100% {
+			transform: scale(0.9);
+			opacity: 0;
+		  }
+		}
+
+	</style>
+
+    <!-- import the webpage's javascript file -->
+    <script defer>
+		var sanitizedHTML;
+
+		editor.setValue("");
+
+		var thlist = {
+		  'dark':["#1f1f1f", '#fff', 'monokai'],
+		  'terminal':["black", "lightgreen"],
+		  'bright':["whitesmoke", "grey"],
+		  'tered':['black', 'red']
+		}
+
+		function gid(e) {
+		  return document.getElementById(e);
+		}
+
+		var nowdoc = gid("edtit")
+
+		getdb("gg", "code").then((value) => {
+		  if (value && value != "") {
+			editor.setValue(value);
+		  } else {
+			editor.setValue("<h1>HTML is Love!</h1>");
+		  }
+		});
+
+		run();
+
+		// Get references to the textarea, iframe, and the button
+		var codeTextarea = document.getElementById("code");
+		var outputIframe = document.getElementById("output");
+
+		// Add an event listener to the button to update the iframe's content
+		function run() {
+		  setdb("gg", "code", editor.getValue());
+		  // Define the elements to save
+		  const elementsToSave = [
+			{ id: "code", key: "code" },
+			{ id: "uploadedImage", key: "uploadedImage" },
+		  ];
+		  // Get the HTML content from the textarea
+		  const codeContent = replaceCodesWithImageUrls(editor.getValue());
+		  var outputIframe = document.getElementById("output");
+
+		  // Set the HTML content of the iframe
+		  outputIframe.contentDocument.open();
+		  outputIframe.contentDocument.write(codeContent);
+		  outputIframe.contentDocument.close();
+		}
+
+		function autorun() {
+		  setdb("gg", "code", editor.getValue());
+		  if (gid("switch").checked) {
+			gid("rnbtn").click();
+		  }
+		}
+
+		function oint() {
+		  run();
+		  const htmlContent = replaceCodesWithImageUrls(editor.getValue());
+
+		  // Open a new window
+		  const newWindow = window.open("", "_blank", "width=600, height=400");
+
+		  // Write the HTML content to the new window
+		  newWindow.document.write(htmlContent);
+
+		  // Make sure to close the document for proper rendering
+		  newWindow.document.close();
+		}
+
+		function shareCodeContent() {
+		  const codeElement = document.getElementById("code");
+		  const codeValue = codeElement.value;
+		  if (codeElement.value.includes("FILE[")) {
+			alert("Sorry, you cannot share a canvas with an offline image.");
+		 return;
+		  }
+
+		  // Encode the code with base64
+		  const encodedCode = btoa(codeValue);
+
+		  // Get the current URL
+		  const currentURL = window.location.href;
+
+		  // Create a link with the encoded code as a parameter
+		  const link = `${currentURL}?ec=${encodedCode}`;
+
+		  gid("tsci").value = link;
+
+		  gid("sh").showModal();
+		}
+
+		// Function to get URL parameter by name
+		function getParameterByName(name, url) {
+		  if (!url) url = window.location.href;
+		  name = name.replace(/[\[\]]/g, "\\$&");
+		  const regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)");
+		  const results = regex.exec(url);
+		  if (!results) return null;
+		  if (!results[2]) return "";
+		  return decodeURIComponent(results[2].replace(/\+/g, " "));
+		}
+
+		// Check if 'ec' parameter exists in the URL
+		const ecParam = getParameterByName("ec");
+
+		if (ecParam !== null) {
+
+		  // Decode the 'ec' parameter value with base64 and set it as the new content of the 'code' element
+		  editor.getValue() = atob(ecParam);
+		  alert("Be Careful while running unknown code. DO NOT Run any code that is given by strangers here.")
+		}
+
+		function downloadCodeAsHTML() {
+		  if (confirm("Are you sure to download this code as .html file?")) {
+			// Get the content of the element with the ID 'code'
+			var codeContent = editor.getValue();
+
+			// Add the comment to the content
+			codeContent += "<!--made with Blank Canvas-->";
+
+			// Create a Blob with the HTML content
+			var blob = new Blob([codeContent], { type: "text/html" });
+
+			// Create an <a> element for downloading
+			var a = document.createElement("a");
+			a.download = "blankcanvas.html";
+
+			// Create a URL for the Blob
+			a.href = URL.createObjectURL(blob);
+
+			// Click the link to trigger the download
+			a.click();
+		  }
+		}
+		const fileUpload = document.getElementById("file-input");
+		const uploadedImage = document.getElementById("uploaded-image");
+		const imageObjects = {}; // Object to store image data
+
+		fileUpload.addEventListener("change", function () {
+		  if (
+			uploadedImage.innerHTML ==
+			`<center style="opacity:.5; font-weight: normal;">No assets uploaded yet.</center>`
+		  ) {
+			uploadedImage.innerHTML = "";
+		  }
+		  const file = fileUpload.files[0];
+		  const randomCode = generateRandomCode();
+
+		  if (file) {
+			const reader = new FileReader();
+
+			reader.onload = function (e) {
+			  const imageId = "img-" + randomCode; // Create a unique ID for the image element
+
+			  // Create the HTML representation and add it to the uploadedImage div
+			  const imageHTML = `<div class="imbek" id="${imageId}">
+						<img src="${e.target.result}">
+						<input placeholder="code" value="${randomCode}" readonly>
+						<span class="material-symbols-rounded">delete</span>
+					</div>`;
+			  uploadedImage.innerHTML += imageHTML;
+
+			  // Store image data in the imageObjects object
+			  imageObjects[randomCode] = {
+				imageId: imageId,
+				imageData: e.target.result,
+			  };
+			  // Define the elements to save
+			  const elementsToSave = [
+				{ id: "code", key: "code" },
+				{ id: "uploadedImage", key: "uploadedImage" },
+			  ];
+
+			  // Scroll to the newly added element
+			  gid("fupmd").scrollTo(0, gid("fupmd").scrollTop + 200);
+			};
+
+			reader.readAsDataURL(file);
+		  }
+		});
+
+		// Function to access image data by code
+		function getImageDataByCode(code) {
+		  if (imageObjects[code]) {
+			return imageObjects[code].imageData;
+		  }
+		  return null; // Code not found
+		}
+
+		const generateRandomCode = () => {
+		  const min = 100000; // Minimum 6-digit number
+		  const max = 999999; // Maximum 6-digit number
+		  const x = Math.floor(Math.random() * (max - min + 1)) + min;
+		  return "FILE[" + x + "]";
+		};
+
+		function replaceCodesWithImageUrls(htmlString) {
+		  const codeRegex = /FILE\[(\d{6})\]/g;
+		  let replacedString = htmlString;
+
+		  let match;
+		  while ((match = codeRegex.exec(htmlString)) !== null) {
+			const code = "FILE[" + match[1] + "]"; // Extract the code from the match
+			const imageData = imageObjects[code];
+
+			if (imageData && imageData.imageData) {
+			  // Replace the entire "FILE[...]" with imageData.imageData
+			  replacedString = replacedString.replace(match[0], imageData.imageData);
+			}
+		  }
+
+		  return replacedString;
+		}
+
+		// Function to open or create an IndexedDB database
+		function openDB(databaseName, version) {
+		  return new Promise((resolve, reject) => {
+			const request = indexedDB.open(databaseName, version);
+
+			request.onupgradeneeded = (event) => {
+			  const db = event.target.result;
+			  db.createObjectStore("store", { keyPath: "key" });
+			};
+
+			request.onsuccess = () => {
+			  resolve(request.result);
+			};
+
+			request.onerror = () => {
+			  reject(request.error);
+			};
+		  });
+		}
+
+		// Function to set a key-value pair in the database
+		function setdb(databaseName, key, value) {
+		  return openDB(databaseName, 1).then((db) => {
+			return new Promise((resolve, reject) => {
+			  const transaction = db.transaction(["store"], "readwrite");
+			  const store = transaction.objectStore("store");
+			  const request = store.put({ key, value });
+
+			  request.onsuccess = () => {
+				resolve();
+			  };
+
+			  request.onerror = () => {
+				reject(request.error);
+			  };
+			});
+		  });
+		}
+
+		// Function to get a value by key from the database
+		function getdb(databaseName, key) {
+		  return openDB(databaseName, 1).then((db) => {
+			return new Promise((resolve, reject) => {
+			  const transaction = db.transaction(["store"], "readonly");
+			  const store = transaction.objectStore("store");
+			  const request = store.get(key);
+
+			  request.onsuccess = () => {
+				const result = request.result;
+				if (result) {
+				  resolve(result.value);
+				} else {
+				  resolve(null); // Key not found
+				}
+			  };
+
+			  request.onerror = () => {
+				reject(request.error);
+			  };
+			});
+		  });
+		}
+
+		// Replace "oldText" with "newText" in all lines
+		function replaceTextInAllLines(editor, oldText, newText) {
+		  // Iterate through each line and replace the text
+		  for (let i = 0, lineCount = editor.session.getLength(); i < lineCount; i++) {
+			const lineText = editor.session.getLine(i);
+
+			// Check if the line contains the oldText
+			if (lineText.includes(oldText)) {
+			  const range = new ace.Range(i, 0, i, lineText.length);
+			  editor.session.replace(range, lineText.replace(new RegExp(oldText, 'g'), newText));
+			}
+		  }
+		}
+
+		function purifyHTML(htmlCode) {
+			const parser = new DOMParser();
+			const doc = parser.parseFromString(htmlCode, 'text/html');
+			const formattedHTML = new XMLSerializer().serializeToString(doc);
+
+			return formattedHTML;
+		}
+
+
+		function rycwtc() {
+			const ggddElement = document.getElementById('ggdd');
+			const codeTextarea = document.getElementById('code');
+
+			if (ggddElement && codeTextarea) {
+				replaceTextInAllLines(editor, editor.getValue(),ggddElement.value);
+			}
+		  closeDialog()
+		}
+
+		function checkHTMLCode() {
+			const htmlCode = editor.getValue();
+		function sanitizeHTML(htmlCode) {
+		  const parser = new DOMParser();
+		  const doc = parser.parseFromString(htmlCode, 'text/html');
+
+		  // Perform any necessary sanitization on the DOM here
+
+		  const sanitizedHTML = new XMLSerializer().serializeToString(doc);
+
+		  return sanitizedHTML;
+		}
+			// Use DOMPurify to sanitize the HTML
+		sanitizedHTML = purifyHTML(sanitizeHTML(htmlCode))
+
+
+			if (sanitizedHTML !== htmlCode) {
+				const dialog = document.getElementById('dialog');
+				const dialogMessage = document.getElementById('dialog-message');
+
+				// Set the message content
+				dialogMessage.innerHTML = `<h3>Check HTML Code</h3>Unclosed tags or other issues found in the HTML code.<br><br>Suggested Code: <br><textarea class="codt" id='ggdd'>` + sanitizedHTML + `</textarea><br><br><button onclick='rycwtc()' style=' border-radius: 10px; background-color: #1f1f1f; border: none; color: white; padding: 5px 10px; text-decoration: underline; text-decoration-color: lightgreen; '>Replace your code with this code</button>`;
+
+				// Display the dialog
+				dialog.showModal();
+			} else {
+				alert('Your HTML code is valid. \n\nGreat job.');
+			}
+		}
+
+
+
+		function closeDialog() {
+			gid('dialog').close()
+		}
+
+
+		function olf() {
+		  var input = document.createElement('input');
+		  input.type = 'file';
+
+		  input.addEventListener('change', function (e) {
+			var file = e.target.files[0];
+
+			if (file) {
+			  if (file.type === 'text/html' && file.size <= 20000) {
+				var reader = new FileReader();
+				reader.onload = function (event) {
+				  var replaceCode = confirm('Replace the current code with the selected file content?');
+				  if (replaceCode) {
+					var codeElement = document.getElementById('code');
+					if (codeElement) {
+					  codeElement.value = event.target.result;
+					} else {
+					  alert('Element with id "code" not found.');
+					}
+				  }
+				};
+				reader.readAsText(file);
+			  } else {
+				alert('Invalid file type (Your file may not be in HTML) or your file exceeds 20,000 character limit.');
+			  }
+			}
+		  });
+
+		  input.click();
+		}
+
+
+
+		function insertTag(tag) {
+			isAutocompleting = true;
+			const currentText = codeInput.value;
+			const cursorPosition = codeInput.selectionEnd;
+			const startOfWord = findStartOfWord(currentText, cursorPosition);
+			const beforeCursor = currentText.substring(0, startOfWord);
+			const afterCursor = currentText.substring(cursorPosition);
+			const tagText = tag + insertSlashAfterFirstLetter(tag);
+			codeInput.value = beforeCursor + tagText + afterCursor;
+
+			// Place the cursor inside the tag
+			codeInput.selectionStart = startOfWord + tagText.length;
+			codeInput.selectionEnd = startOfWord + tagText.length;
+
+			autocompleteList.style.display = "none";
+			isAutocompleting = false;
+		}
+
+		function insertSlashAfterFirstLetter(inputString) {
+			if (typeof inputString !== 'string' || inputString.length < 1) {
+				return "Invalid input";
+			}
+
+			let firstLetter = inputString[0];
+			let restOfString = inputString.slice(1);
+
+			return firstLetter + '/' + restOfString;
+		}
+
+		function getWordOnLeftSide(textarea) {
+			const cursorPosition = textarea.selectionStart;
+			const text = textarea.value.substring(0, cursorPosition);
+			const words = text.split(/\s+/);
+			return words.length > 0 ? words[words.length - 1].toLowerCase() : "";
+		}
+
+		function findStartOfWord(text, cursorPosition) {
+			let start = cursorPosition;
+			while (start > 0 && /\w/.test(text.charAt(start - 1))) {
+				start--;
+			}
+			return start;
+		}
+
+		function getCaretCoordinates(element, position) {
+			const rect = element.getBoundingClientRect();
+			const computedStyle = getComputedStyle(element);
+			const fontSize = parseInt(computedStyle.fontSize);
+			const lineHeight = parseInt(computedStyle.lineHeight);
+
+			const div = document.createElement("div");
+			div.style.position = "absolute";
+			div.style.height = `${lineHeight}px`;
+			div.style.width = "2px";
+			div.style.backgroundColor = "transparent";
+			document.body.appendChild(div);
+
+			const span = document.createElement("span");
+			span.textContent = element.value.substring(0, position);
+			div.appendChild(span);
+
+			const caret = document.createElement("span");
+			caret.textContent = "|";
+			div.appendChild(caret);
+
+			const coordinates = {
+				top: span.offsetTop + fontSize,
+				left: span.offsetLeft + caret.offsetLeft,
+			};
+
+			document.body.removeChild(div);
+
+			return coordinates;
+		}
+
+		function consh() {
+		  if (gid('errmd').style.display != "none") {
+			gid('errmd').style.display = "none";
+			gid('output').style.height = "";
+		  } else {
+			gid('errmd').style.display = "block";
+			gid('output').style.height = "calc(90vh - 163px)";
+		  }
+		}
+
+		const iframe = document.getElementById('output');
+		const errorDisplay = document.getElementById('errmd');
+
+		iframe.contentWindow.addEventListener('error', function (event) {
+			// Handle console errors
+			const errorMessage = `Error: ${event.error.message} at ${event.filename}:${event.lineno}:${event.colno}`;
+			appendToErrorDisplay(errorMessage);
+		});
+
+		iframe.contentWindow.addEventListener('message', function (event) {
+			if (event.data && event.data.type === 'log') {
+				// Handle console logs
+				const logMessage = event.data.message;
+				appendToErrorDisplay(logMessage);
+			}
+		});
+
+		function appendToErrorDisplay(message) {
+			// Append the message to the "errmd" element
+			const newLogEntry = document.createElement('div');
+			newLogEntry.textContent = message;
+			errorDisplay.appendChild(newLogEntry);
+		}
+
+		const elements = document.querySelectorAll('.atheme p');
+
+		elements.forEach((element, index) => {
+			if (index % 2 === 0) {
+				element.style.width = '70px';
+			} else {
+				element.style.width = '80px';
+			}
+		});
+
+		function appendtheme(e) {
+		  document.body.style.backgroundColor = thlist[e][0];
+		  document.body.style.color = thlist[e][1];
+		  codeTextarea.style.backgroundColor = thlist[e][0];
+		  codeTextarea.style.color = thlist[e][1];
+		  gid('thselmd').close();
+		}
+
+		async function showModalAndWaitForButtonClick() {
+		  // Get a reference to the modal element
+		  const modal = document.getElementById('yourModalID'); // Replace with your modal's actual ID
+
+		  // Show the modal
+		  modal.showModal();
+
+		  // Create a promise to wait for the button click
+		  const buttonClicked = new Promise((resolve, reject) => {
+			const clrpclbtn = document.getElementById('clrpclbtn'); // Replace with the actual button's ID
+			clrpclbtn.addEventListener('click', () => {
+			  resolve();
+			});
+		  });
+
+		  // Wait for the button to be clicked
+		  await buttonClicked;
+
+		  // Wait for the button to be clicked
+		  await buttonClicked;
+
+		  // Get the value of the element with id 'clrpikr'
+		  const clrpikrElement = document.getElementById('clrpikr'); // Replace with your element's actual ID
+		  const clrpikrValue = clrpikrElement.value;
+
+		  // Close the modal if needed
+		  modal.close();
+
+		  return clrpikrValue;
+		}
+
+		nowdoc.innerHTML = "canvas.html";
+
+	</script>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ace-builds@1.31.1/css/ace.min.css">
+  </head>
+  <body>
+    
+    <div class="nav">
+      <b id="edtit">WCanvas Pro</b>
+      <button id="rnbtn" onclick="run()">
+        <i class="material-icons"></i> Run</button
+      ><br />
+      <div class="checkbox-wrapper-35" style="display: inline-block">
+        <input
+          class="switch"
+          type="checkbox"
+          id="switch"
+          name="switch"
+          value="private"
+          style=""
+        />
+        <label for="switch">
+          <span class="switch-x-text">autorun is </span>
+          <span class="switch-x-toggletext">
+            <span class="switch-x-unchecked"
+              ><span class="switch-x-hiddenlabel">Unchecked: </span>Off</span
+            >
+            <span class="switch-x-checked"
+              ><span class="switch-x-hiddenlabel">Checked: </span>On</span
+            >
+          </span>
+        </label>
+      </div>
+    </div>
+    <div id="sidenav">
+      <span
+        style="color: #bf6f7d"
+        class="material-symbols-rounded"
+        title="Code Snippets"
+        onclick="gid('scs').showModal()"
+      >
+        text_snippet
+      </span>
+      <span
+        style="color: dodgerblue"
+        class="material-symbols-rounded"
+        title="Asset Uploads"
+        onclick="gid('fupmd').showModal()"
+      >
+        attach_file
+      </span>
+      <span
+        class="material-symbols-rounded"
+        style="color: lightgreen"
+        onclick="olf()"
+      >
+        folder_open
+      </span>
+      <span
+        class="material-symbols-rounded"
+        style="color: yellow"
+        onclick="checkHTMLCode()"
+      >
+        rule
+      </span>
+      <span
+        class="material-symbols-rounded"
+        style="color: orange"
+        onclick="gid('thselmd').showModal()"
+      >
+        format_paint
+      </span>
+      <span
+        class="material-symbols-rounded"
+        style="color: orange"
+        onclick="gid('keybn').showModal()"
+      >
+        piano
+      </span>
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.3.0/purify.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.31.1/src-min-noconflict/ace.min.js"></script>
+    </div>
+    <div id="mainstuff">
+      <div id="hiddenCode" style="display: none;">
+        
+      </div>
+      <codside>
+        <div
+    id="code"
+    onkeyup="autorun()">
+             </div>
+        <script>
+    var editor = ace.edit("code");
+    editor.setTheme("ace/theme/monokai");
+    editor.session.setMode("ace/mode/html");
+</script>
+  <div class="atcs"><ul id="autocomplete-list"></ul></div>
+  
+      </codside>
+      <div id="rhs">
+        <div class="rhsmnav">
+          <button style="background-color: #27425c; color: #c2c2c2;">
+            WebView
+          </button>
+          <button onclick="gid('settings').showModal()">
+            Settings
+          </button>
+        </div>
+        <div class="nomnes">
+          
+        <div class="output">
+          <div id="ounav">
+            <button jj title="open in new tab" onclick="oint()">
+              <span class="material-symbols-rounded"> open_in_new </span>
+            </button>
+            <button jj title="share" onclick="shareCodeContent();">
+              <span class="material-symbols-rounded"> share </span>
+            </button>
+            <button
+              jj
+              title="download Code as HTML"
+              onclick="downloadCodeAsHTML()"
+            >
+              <span class="material-symbols-rounded"> download </span>
+            </button>
+            <button jj title="Console" onclick="consh()">
+              <span class="material-symbols-rounded"> code</span>
+            </button>
+          </div>
+          <iframe id="output"> </iframe>
+          
+        </div>
+        <div id="errmd">console</div>
+          
+        </div>
+      </div>
+      
+    </div>
+    <dialog id="thselmd">
+      <cls onclick="gid('thselmd').close()">
+        <span class="material-symbols-rounded"> cancel </span></cls
+      >
+      <h3>Theme Settings</h3>
+      <p>
+        Personalise your canvas with a theme.
+      </p>
+      <themes>
+        <div class="atheme" onclick="appendtheme('dark')">
+          Dark Theme
+          <p></p>
+          <p></p>
+          <p></p>
+        </div>
+        <div
+          class="atheme"
+          style="background-color: white; color: black"
+          onclick="appendtheme('bright')"
+        >
+          Bright Theme
+          <p></p>
+          <p></p>
+          <p></p>
+        </div>
+        <div
+          class="atheme"
+          style="background-color: black; color: lightgreen"
+          onclick="appendtheme('terminal')"
+        >
+          Terminal Green
+          <p></p>
+          <p></p>
+          <p></p>
+        </div>
+        <div
+          class="atheme"
+          style="background-color: black; color: red"
+          onclick="appendtheme('tered')"
+        >
+          Terminal Red
+          <p></p>
+          <p></p>
+          <p></p>
+        </div>
+      </themes>
+    </dialog>
+    <dialog id="clrp">
+      <button id="clrpclbtn">Ok</button>
+    </dialog>
+
+    <dialog id="dialog" class="dialog">
+      <div class="dialog-content">
+        <span id="dialog-close" class="close-button" onclick="gid('dialog').close()"
+          >&times;</span
+        >
+        <div id="dialog-message"></div>
+      </div>
+    </dialog>
+    <dialog id="scs">
+      <b>HTML Snippets</b>
+      <cls onclick="gid('scs').close()">
+        <span class="material-symbols-rounded"> cancel </span></cls
+      >
+      <div class="snippet">
+        <h2>Basic Text</h2>
+        <p>This snippet contains a basic text paragraph.</p>
+        <div class="snipout">
+          <p>This is a paragraph of basic text.</p>
+        </div>
+        <textarea class="codt">
+&lt;p&gt;This is a paragraph of basic text.&lt;/p&gt;</textarea
+        >
+      </div>
+
+      <div class="snippet">
+        <h2>Links</h2>
+        <p>This snippet demonstrates how to create a link to a website.</p>
+        <div class="snipout">
+          <p>
+            Visit our <a href="https://www.example.com">website</a> for more
+            information.
+          </p>
+        </div>
+        <textarea class="codt">
+&lt;p&gt;Visit our &lt;a href="https://www.example.com"&gt;website&lt;/a&gt; for more information.&lt;/p&gt;</textarea
+        >
+      </div>
+
+      <div class="snippet">
+        <h2>Images</h2>
+        <p>
+          This snippet displays an example image with an alternative text
+          description.
+        </p>
+        <div class="snipout">
+          <img src="image.jpg" alt="An example image" />
+        </div>
+        <textarea class="codt">
+&lt;img src="image.jpg" alt="An example image"&gt;</textarea
+        >
+      </div>
+
+      <div class="snippet">
+        <h2>Lists</h2>
+        <p>This snippet shows an unordered list with three items.</p>
+        <div class="snipout">
+          <ul>
+            <li>Item 1</li>
+            <li>Item 2</li>
+            <li>Item 3</li>
+          </ul>
+        </div>
+        <textarea class="codt">
+        &lt;ul&gt;
+            &lt;li&gt;Item 1&lt;/li&gt;
+            &lt;li&gt;Item 2&lt;/li&gt;
+            &lt;li&gt;Item 3&lt;/li&gt;
+        &lt;/ul&gt;
+    </textarea
+        >
+      </div>
+
+      <div class="snippet">
+        <h2>Forms</h2>
+        <p>
+          This snippet presents a basic form with a username input field and a
+          submit button.
+        </p>
+        <div class="snipout">
+          <form action="/submit" method="post">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" />
+            <input type="submit" value="Submit" />
+          </form>
+        </div>
+        <textarea class="codt">
+        &lt;form action="/submit" method="post"&gt;
+            &lt;label for="username"&gt;Username:&lt;/label&gt;
+            &lt;input type="text" id="username" name="username"&gt;
+            &lt;input type="submit" value="Submit"&gt;
+        &lt;/form&gt;
+    </textarea
+        >
+      </div>
+    </dialog>
+    <dialog id="fupmd">
+      <b>Asset Uploads</b>
+      <cls onclick="gid('fupmd').close()">
+        <span class="material-symbols-rounded"> cancel </span></cls
+      >
+      <br /><br />
+      <div class="file-upload-container">
+        <input
+          type="file"
+          id="file-input"
+          class="file-upload-input"
+          accept=".jpg, .jpeg, .png"
+        />
+        <label for="file-input" class="file-upload-label"
+          >Drag and &amp; Drop your files here<br /><sup
+            style="opacity: 0.5; font-weight: normal"
+          >
+            or click to select a file.</sup
+          ></label
+        >
+      </div>
+      <h2>Your Assets</h2>
+      <p>
+        Upload files here and use the code given with the file here as your
+        source. We will replace the code with your respected image in the
+        output. Sadly, assets don't get saved for reload in the IDE for now.
+      </p>
+      <div id="assets">
+        <div id="uploaded-image">
+          <center style="opacity: 0.5; font-weight: normal">
+            No assets uploaded yet.
+          </center>
+        </div>
+      </div>
+    </dialog>
+    <dialog id="sh">
+      <cls onclick="gid('sh').close()"
+        ><span class="material-symbols-rounded"> cancel </span></cls
+      >
+      <p>Here's your link with the encoded code, you can share it.</p>
+
+      <input
+        id="tsci"
+        placeholder="you arn't supposed to see this."
+        readonly
+        onclick="this.select()"
+      />
+      <sup
+        style="
+          font-size: 10px;
+          opacity: 0.6;
+          display: inline-block;
+          transform: translate(5px, 4px);
+        "
+        ><kbd>CTRL + C</kbd> in Windows or <kbd>CMD + C</kbd> in Mac To
+        copy</sup
+      >
+    </dialog>
+    <dialog id="settings">
+      <cls onclick="gid('settings').close()">
+        <span class="material-symbols-rounded"> cancel </span></cls
+      >
+      <h2>
+        Canvas Preferences
+      </h2>
+    </dialog>
+    
+  </body>
+</html>
