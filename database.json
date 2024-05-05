@@ -23,7 +23,7 @@
       {"qt":"Play offline"},
       {"desc":"The game Of TicTacToe."},
       {"cat":"game"},
-      {"ldesc":"[broken] Play the game of Tic Tac Toe with your friends with same screen multiplayer!"}
+      {"ldesc":"Play the game of Tic Tac Toe with your friends with same screen multiplayer!"}
     ]},
     {"JS definer":[
       {"src":"/Nova-Store/jsdef.html"},
