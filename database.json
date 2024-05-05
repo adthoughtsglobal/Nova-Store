@@ -77,6 +77,15 @@
       {"cat":"tools"},
       {"ldesc":"An HTML code editor with hotkeys, syntax highlighting, same screen previews, help and much more!"}
     ]
+    },
+    {"Lizabot":[
+      {"src":"/Nova-Store/lizabot3.html"},
+      {"by":"adthoughtsglobal"},
+      {"qt":"A personal Chatbot"},
+      {"desc":"A personal Chatbot that don't hallucinate"},
+      {"cat":"tools"},
+      {"ldesc":"A modern UI for Lizabot3, a personal chatbot that browses the internet and leverage it to make results without the use of AI."}
+    ]
     }
   ]
 }
