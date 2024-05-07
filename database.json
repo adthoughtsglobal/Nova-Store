@@ -7,7 +7,8 @@
       {"qt":"Explore more inside"},
       {"desc":"System CLI for Nova OS"},
       {"cat":"tools"},
-      {"ldesc":"Access Nova System directly with Nova CLI, read and write files, execute functions and return data."}
+      {"ldesc":"Access Nova System directly with Nova CLI, read and write files, execute functions and return data."},
+      {"th":"#1f1f1f"}
     ]},
     {"To Do App":[
       {"src":"/Nova-Store/felixtodo.html"},
@@ -15,7 +16,8 @@
       {"qt":"List your tasks"},
       {"desc":"A standard To Do list which remembers your tasks!"},
       {"cat":"tools"},
-      {"ldesc":"Create a To Do list of stuff you need to do - so that you won't forget."}
+      {"ldesc":"Create a To Do list of stuff you need to do - so that you won't forget."},
+      {"th":"#5889A8"}
     ]},
     {"Tic Tac Toe":[
       {"src":"/Nova-Store/TicTacToe.html"},
@@ -23,7 +25,8 @@
       {"qt":"Play offline"},
       {"desc":"The game Of TicTacToe."},
       {"cat":"game"},
-      {"ldesc":"Play the game of Tic Tac Toe with your friends with same screen multiplayer!"}
+      {"ldesc":"Play the game of Tic Tac Toe with your friends with same screen multiplayer!"},
+      {"th":""}
     ]},
     {"JS definer":[
       {"src":"/Nova-Store/jsdef.html"},
@@ -31,7 +34,8 @@
       {"by":"adthoughtsglobal"},
       {"desc":"Paste any JS code to identify what is happening under the hood in a more simpler language."},
       {"cat":"tools"},
-      {"ldesc":"Define any JS code in a more simpler language."}
+      {"ldesc":"Define any JS code in a more simpler language."},
+      {"th":"#3718CE"}
     ]},
     {"Paint":[
       {"src":"/Nova-Store/paintviz.html"},
@@ -39,7 +43,8 @@
       {"qt":"Get creative"},
       {"desc":"A Simple Paint App with modern UI."},
       {"cat":"tools"},
-      {"ldesc":"Create your artwork and download them with a click of a button!"}
+      {"ldesc":"Create your artwork and download them with a click of a button!"},
+      {"th":"#458D2B"}
     ]
     },
     {"Ducks Quack":[
@@ -48,7 +53,8 @@
       {"qt":"Ensure Ducks Quack"},
       {"desc":"Pictures of ducks for all. To ensure global peace."},
       {"cat":"tools"},
-      {"ldesc":"An app that shows pictures of ducks with a panning animation."}
+      {"ldesc":"An app that shows pictures of ducks with a panning animation."},
+      {"th":"#FEE81F"}
     ]
     },
     {"Stable Diffusion":[
@@ -57,7 +63,8 @@
       {"qt":"Generate Art"},
       {"desc":"Text to Image Generator based on Stable Diffusion."},
       {"cat":"tools"},
-      {"ldesc":"'Stable Diffusion' is an innovative Text to Image Generator application that utilizes advanced stable diffusion techniques to seamlessly translate textual descriptions into visually compelling images."}
+      {"ldesc":"'Stable Diffusion' is an innovative Text to Image Generator application that utilizes advanced stable diffusion techniques to seamlessly translate textual descriptions into visually compelling images."},
+      {"th":"#B50FA1"}
     ]
     },
     {"Sce.io":[
@@ -66,7 +73,8 @@
       {"qt":"Become a giant"},
       {"desc":"A Scenexe based single player io game."},
       {"cat":"game"},
-      {"ldesc":"Sce.io is a Scenexe-based game, but you go on a single-player journey on killing shapes and becoming giant!"}
+      {"ldesc":"Sce.io is a Scenexe-based game, but you go on a single-player journey on killing shapes and becoming giant!"},
+      {"th":"#303B58"}
     ]
     },
     {"WCanvas":[
@@ -75,7 +83,8 @@
       {"qt":"Code like a pro"},
       {"desc":"An HTML code editor. [v1.2]"},
       {"cat":"tools"},
-      {"ldesc":"An HTML code editor with hotkeys, syntax highlighting, same screen previews, help and much more!"}
+      {"ldesc":"An HTML code editor with hotkeys, syntax highlighting, same screen previews, help and much more!"},
+      {"th":"#3C9A47"}
     ]
     },
     {"Lizabot3":[
@@ -84,7 +93,8 @@
       {"qt":"A personal Chatbot"},
       {"desc":"A personal Chatbot that don't hallucinate"},
       {"cat":"tools"},
-      {"ldesc":"A modern UI for Lizabot3, a personal chatbot that browses the internet and leverage it to make results without the use of AI."}
+      {"ldesc":"A modern UI for Lizabot3, a personal chatbot that browses the internet and leverage it to make results without the use of AI."},
+      {"th":"#25869E"}
     ]
     }
   ]
