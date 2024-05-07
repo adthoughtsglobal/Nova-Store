@@ -8,7 +8,7 @@
       {"desc":"System CLI for Nova OS"},
       {"cat":"tools"},
       {"ldesc":"Access Nova System directly with Nova CLI, read and write files, execute functions and return data."},
-      {"th":"#1f1f1f"}
+      {"th":"#5FFCA6"}
     ]},
     {"To Do App":[
       {"src":"/Nova-Store/felixtodo.html"},
