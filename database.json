@@ -96,6 +96,16 @@
       {"ldesc":"A modern UI for Lizabot3, a personal chatbot that browses the internet and leverage it to make results without the use of AI."},
       {"th":"#25869E"}
     ]
+    },
+    {"OriginOS":[
+      {"src":"https://origin.mistium.com/Versions/originv4.9.9"},
+      {"by":"Mistium"},
+      {"qt":"Run Origin OS"},
+      {"desc":"The best GUI for OSL and OASM."},
+      {"cat":"tools"},
+      {"ldesc":"Origin is the Web Desktop GUI for running OSL and OASM. It is the best Turbowarp OS. Version 4.9.9, hosted and made by Mistium."},
+      {"th":"#57cdac"}
+    ]
     }
   ]
 }
