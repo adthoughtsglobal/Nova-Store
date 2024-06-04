@@ -1,5 +1,10 @@
 {
   "config":1,
+  "vdevs":[
+    "adthoughtsglobal",
+    "Nebula Studios",
+    "mistium"
+  ],
   "data":[
     {"Nova CLI":[
       {"src":"/Nova-Store/cli.html"},
@@ -12,7 +17,7 @@
     ]},
     {"To Do App":[
       {"src":"/Nova-Store/felixtodo.html"},
-      {"by":"Felix543"},
+      {"by":"Nebula Studios"},
       {"qt":"List your tasks"},
       {"desc":"A standard To Do list which remembers your tasks!"},
       {"cat":"tools"},
@@ -59,7 +64,7 @@
     },
     {"Stable Diffusion":[
       {"src":"/Nova-Store/texttoimage.html"},
-      {"by":"Felix543"},
+      {"by":"Nebula Studios"},
       {"qt":"Generate Art"},
       {"desc":"Text to Image Generator based on Stable Diffusion."},
       {"cat":"tools"},
