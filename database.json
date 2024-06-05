@@ -111,6 +111,16 @@
       {"ldesc":"Origin is the Web Desktop GUI for running OSL and OASM. It is the best Turbowarp OS. Version 4.9.9, hosted and made by Mistium."},
       {"th":"#57cdac"}
     ]
+    },
+    {"Image Editor":[
+      {"src":"/Nova-Store/imgedcodnpl.html"},
+      {"by":"CodingNepal"},
+      {"qt":"Image editor"},
+      {"desc":"Image Editor made in HTML CSS & JavaScript"},
+      {"cat":"tools"},
+      {"ldesc":"In this photo editor, users can apply different filters to their image like grayscale, inversion, saturation, and adjust the image brightness. https://www.codingnepalweb.com/build-image-editor-html-javascript/"},
+      {"th":"#57cdac"}
+    ]
     }
   ]
 }
