@@ -121,6 +121,16 @@
       {"ldesc":"In this photo editor, users can apply different filters to their image like grayscale, inversion, saturation, and adjust the image brightness. https://www.codingnepalweb.com/build-image-editor-html-javascript/"},
       {"th":"#57cdac"}
     ]
+    },
+    {"NovaAI":[
+      {"src":"/Nova-Store/NovaAI.html"},
+      {"by":"FunSparkTV"},
+      {"qt":"Wiki Chat"},
+      {"desc":"ChatBot interface for searching data."},
+      {"cat":"tools"},
+      {"ldesc":"Nova AI, your intelligent virtual assistant, offers instant access to accurate information through its sleek interface and intuitive design. With advanced algorithms and integration with Wikipedia, Nova AI ensures reliable answers to a wide range of inquiries, making it your go-to companion for all your needs."},
+      {"th":"#57cdac"}
+    ]
     }
   ]
 }
