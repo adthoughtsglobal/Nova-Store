@@ -131,6 +131,16 @@
       {"ldesc":"Nova AI, your intelligent virtual assistant, offers instant access to accurate information through its sleek interface and intuitive design. With advanced algorithms and integration with Wikipedia, Nova AI ensures reliable answers to a wide range of inquiries, making it your go-to companion for all your needs."},
       {"th":"#57cdac"}
     ]
+    },
+    {"PySphere":[
+      {"src":"/Nova-Store/PySphere.html"},
+      {"by":"FunSparkTV"},
+      {"qt":"Run Python"},
+      {"desc":"An Online Python Interpreter"},
+      {"cat":"tools"},
+      {"ldesc":"A python runner based on skulpt that lets you write and run Python code directly in your browser. It features syntax highlighting, code completion, and a user-friendly interface."},
+      {"th":"#57cdac"}
+    ]
     }
   ]
 }
