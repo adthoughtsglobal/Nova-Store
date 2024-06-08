@@ -113,7 +113,7 @@
     ]
     },
     {"Image Editor":[
-      {"src":"/Nova-Store/imgedcodnpl.html"},
+      {"src":"https://namish2013.github.io/PySphere/"},
       {"by":"CodingNepal"},
       {"qt":"Image editor"},
       {"desc":"Image Editor made in HTML CSS & JavaScript"},
@@ -133,7 +133,7 @@
     ]
     },
     {"PySphere":[
-      {"src":"/Nova-Store/PySphere.html"},
+      {"src":"https://namish2013.github.io/PySphere/"},
       {"by":"FunSparkTV"},
       {"qt":"Run Python"},
       {"desc":"An Online Python Interpreter"},
