@@ -141,6 +141,16 @@
       {"ldesc":"A python runner based on skulpt that lets you write and run Python code directly in your browser. It features syntax highlighting, code completion, and a user-friendly interface."},
       {"th":"#57cdac"}
     ]
+    },
+    {"Anime Images":[
+      {"src":"/Nova-Store/animeimgs.html"},
+      {"by":"adthoughtsglobal"},
+      {"qt":"See anime images"},
+      {"desc":"Browse Anime images."},
+      {"cat":"tools"},
+      {"ldesc":"Using waifu API, browse through tons of free anime gifs and images with catogeries in both sfw and nsfw."},
+      {"th":"#57cdac"}
+    ]
     }
   ]
 }
