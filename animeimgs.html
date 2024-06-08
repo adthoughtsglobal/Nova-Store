@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Anime Images</title>
+	<style>
+		html {
+		  height: 100%;
+		  width: 100%;
+		}
+
+		body {
+			background-color: #101010;
+			color: white;
+			font-family: Arial, Helvetica, sans-serif;
+		}
+
+		#bot-info {
+			display: flex;
+			overflow: hidden;
+			border-radius: 0.5rem;
+			border: 1px solid #4f4f4f;
+		}
+
+		#bot-info * {
+			flex: 1;
+			padding: 0.5rem;
+			background-color: #1f1f1f;
+			color: white;
+			border: 1px solid #4f4f4f;
+			width: 0;
+		}
+
+		#bot-info button {
+			background-color: #2f2f2f;
+		}
+
+		#items {
+			display: flex;
+			margin-top: 1rem;
+			width: 100%;
+			align-items: stretch;
+			justify-items: stretch;
+			flex-wrap: wrap;
+			justify-content: space-around;
+		}
+
+		img {
+			width: 20vw;
+			min-width: 200px;
+			object-fit: cover;
+			margin-bottom: 0.5rem;
+		}
+	</style>
+</head>
+
+<body>
+	<h2>Get Anime Images</h2>
+	<div id="bot-info">
+		<select id="cat">
+			<option selected value="sfw">SFW</option>
+			<option value="nsfw">NSFW</option>
+		</select>
+		<select id="val">
+			<optgroup label="Common">
+				<option value="waifu">waifu</option>
+				<option selected value="neko">neko</option>
+			</optgroup>
+			<optgroup label="SFW">
+				<option value="hug">hug</option>
+				<option value="kiss">kiss</option>
+				<option value="cuddle">cuddle</option>
+			</optgroup>
+			<optgroup label="NSFW">
+				<option value="trap">trap</option>
+				<option value="blowjob">Blow Work</option>
+			</optgroup>
+		</select>
+		<input id="itemnum" placeholder="how many" min="1" max="30" value="5" type="number">
+		<button onclick="makeimgs()">Get</button>
+	</div>
+	<div id="items">
+		images appear here, click on the get button.
+	</div>
+  <script>
+	  async function fetchit() {
+		  var base = "https://api.waifu.pics";
+		  var type = document.getElementById('cat').value;
+		  var cat = document.getElementById('val').value;
+		  try {
+			  var response = await fetch(base + "/" + type + "/" + cat);
+
+			  // Check if the response is ok
+			  if (!response.ok) {
+				  throw new Error('Network response was not ok ' + response.statusText);
+			  }
+
+			  // Parse the response as JSON
+			  var data = await response.json();
+
+			  // Log the data
+			  console.log(data);
+
+			  // Create an img element
+			  const ele = document.createElement("img");
+
+			  // Set the src attribute to the URL from the response
+			  ele.src = data.url;
+
+			  // Append the img element to the document body
+			  document.getElementById('items').appendChild(ele);
+		  } catch (error) {
+			  console.error('Fetch operation failed:', error);
+		  }
+	  }
+
+	  function makeimgs() {
+		  if (document.getElementById('cat').value == "nsfw") {
+			  if (!confirm("You are about to view images containing not safe for work material. This is unmoderated. By clicking OK, you confirm us that you are older than 18.")) {
+				  return
+			  }
+		  }
+
+		  document.getElementById('items').innerHTML = ``
+		  var x = 0 
+
+		  while ( x < document.getElementById("itemnum").value) {
+			  x++
+			  fetchit();
+		  }
+	  }
+  </script>
+</body>
+
+</html>
