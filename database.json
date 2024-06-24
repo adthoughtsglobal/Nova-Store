@@ -151,6 +151,16 @@
       {"ldesc":"Using waifu API, browse through tons of free anime gifs and images with catogeries - only sfw."},
       {"th":"#880808"}
     ]
+    },
+    {"Nova Chess":[
+      {"src":"https://funsparktv-ai.github.io/nova-chess/"},
+      {"by":"FunSparkTV"},
+      {"qt":"Play chess"},
+      {"desc":"Play chess"},
+      {"cat":"games"},
+      {"ldesc":"Play chess lol."},
+      {"th":"#880808"}
+    ]
     }
   ]
 }
