@@ -74,12 +74,12 @@
     },
     {"OSL Editor":[
       {"src":"/Nova-Store/osleditor.html"},
-      {"by":"Nebula Studio"},
+      {"by":"Nebula Studios"},
       {"qt":"Code OSL"},
       {"desc":"Make apps with OriginOS's Origin Scripting language."},
-      {"cat":"game"},
+      {"cat":"tools"},
       {"ldesc":"Create with OriginOS's Origin Scripting language with file saving, open as window, open inline etc."},
-      {"th":"#303B58"}
+      {"th":"#202225"}
     ]
     },
     {"WCanvas":[
