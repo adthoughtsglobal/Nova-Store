@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>To-Do List App</title>
+<title>To-Do List App with LocalStorage</title>
 <style>
   body {
     font-family: Arial, sans-serif;
@@ -101,9 +101,6 @@
   }
 
   .save-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
     padding: 10px 20px;
     background-color: #28a745;
     color: #fff;
@@ -111,6 +108,10 @@
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    margin-bottom: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
   }
   .save-button:hover {
     background-color: #218838;
@@ -142,12 +143,13 @@
 
 <div class="container">
   <h1>To-Do List</h1>
-  <button onclick="saveTasks()" class="save-button">Save</button>
+  <button onclick="loadTasks()" class="save-button">Load Tasks</button>
   <div class="add-task">
     <input type="text" id="taskInput" class="task-input" placeholder="Add a new task...">
     <button onclick="addTask()" class="add-button">Add</button>
   </div>
   <ul id="taskList" class="task-list"></ul>
+  <button onclick="saveTasks()" class="save-button">Save Tasks</button>
 </div>
 
 <!-- Dialog Box -->
@@ -157,56 +159,24 @@
 </div>
 
 <script>
-  function greenflag() {
-  // Open or create IndexedDB database
-  var request = indexedDB.open("todo_db", 1);
-  var db;
-
-  request.onerror = function(event) {
-    console.log("IndexedDB error:", event.target.errorCode);
-  };
-
-  request.onsuccess = function(event) {
-    db = event.target.result;
-    loadTasks();
-  };
-
-  request.onupgradeneeded = function(event) {
-    var db = event.target.result;
-    var objectStore = db.createObjectStore("tasks", { keyPath: "id", autoIncrement:true });
-    objectStore.createIndex("taskText", "taskText", { unique: false });
-  };
-  }
-  function addTaskToDB(taskText) {
-    var transaction = db.transaction(["tasks"], "readwrite");
-    var objectStore = transaction.objectStore("tasks");
-    var request = objectStore.add({ taskText: taskText });
-
-    request.onsuccess = function(event) {
-      console.log("Task added to IndexedDB.");
-    };
-
-    request.onerror = function(event) {
-      console.log("Error adding task to IndexedDB:", event.target.error);
-    };
+  function addTaskToLocalStorage(taskText) {
+    var tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    tasks.push({ id: Date.now(), text: taskText });
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+    return tasks;
   }
 
   function loadTasks() {
-    var transaction = window.parent.db.transaction(["tasks"], "readonly");
-    var objectStore = transaction.objectStore("tasks");
-    var request = objectStore.openCursor();
+    var tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    var taskList = document.getElementById('taskList');
+    taskList.innerHTML = ''; // Clear existing tasks
 
-    request.onsuccess = function(event) {
-      var cursor = event.target.result;
-      if (cursor) {
-        addTaskToList(cursor.value.taskText, cursor.key);
-        cursor.continue();
-      }
-    };
+    tasks.forEach(function(task) {
+      addTaskToList(task.text, task.id);
+    });
 
-    request.onerror = function(event) {
-      console.log("Error loading tasks from IndexedDB:", event.target.error);
-    };
+    // Show dialog box
+    showSuccessDialog();
   }
 
   function addTaskToList(taskText, taskId) {
@@ -215,7 +185,7 @@
     listItem.className = "task-item";
     listItem.innerHTML = `
       <span class="task-item-text">${taskText}</span>
-      <button onclick="deleteTask(this, ${taskId})" class="delete-button">Delete</button>
+      <button onclick="deleteTask(${taskId})" class="delete-button">Delete</button>
     `;
     taskList.appendChild(listItem);
   }
@@ -225,31 +195,30 @@
     var taskText = taskInput.value.trim();
     if (taskText === "") return;
 
-    addTaskToList(taskText);
-    addTaskToDB(taskText);
-
+    addTaskToLocalStorage(taskText);
     taskInput.value = "";
+    loadTasks(); // Reload tasks after adding a new task
   }
 
-  function deleteTask(button, taskId) {
-    var listItem = button.parentElement;
-    var taskText = listItem.querySelector(".task-item-text").textContent;
-
-    var transaction = db.transaction(["tasks"], "readwrite");
-    var objectStore = transaction.objectStore("tasks");
-    var request = objectStore.delete(taskId);
-
-    request.onsuccess = function(event) {
-      listItem.remove();
-      console.log("Task deleted from IndexedDB.");
-    };
-
-    request.onerror = function(event) {
-      console.log("Error deleting task from IndexedDB:", event.target.error);
-    };
+  function deleteTask(taskId) {
+    var tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    tasks = tasks.filter(function(task) {
+      return task.id !== taskId;
+    });
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+    loadTasks(); // Reload tasks after deleting a task
   }
 
   function saveTasks() {
+    // Placeholder for saving tasks to localStorage (already handled automatically)
+    var dialogBox = document.getElementById("dialogBox");
+    dialogBox.style.display = "block";
+    setTimeout(function() {
+      dialogBox.style.display = "none";
+    }, 2000); // Hide after 2 seconds
+  }
+
+  function showSuccessDialog() {
     var dialogBox = document.getElementById("dialogBox");
     dialogBox.style.display = "block";
     setTimeout(function() {
@@ -264,4 +233,4 @@
 </script>
 
 </body>
-</html>
+  </html>
