@@ -73,12 +73,12 @@
     ]
     },
     {"Sce.io":[
-      {"src":"/Nova-Store/scegame.html"},
-      {"by":"trickyarrasgames3337"},
-      {"qt":"Become a giant"},
-      {"desc":"A Scenexe based single player io game."},
+      {"src":"/Nova-Store/osleditor.html"},
+      {"by":"Nebula Studio"},
+      {"qt":"Code OSL"},
+      {"desc":"Make apps with OriginOS's Origin Scripting language."},
       {"cat":"game"},
-      {"ldesc":"Sce.io is a Scenexe-based game, but you go on a single-player journey on killing shapes and becoming giant!"},
+      {"ldesc":"Create with OriginOS's Origin Scripting language with file saving, open as window, open inline etc."},
       {"th":"#303B58"}
     ]
     },
