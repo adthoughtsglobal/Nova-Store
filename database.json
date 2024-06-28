@@ -82,13 +82,13 @@
       {"th":"#202225"}
     ]
     },
-    {"WCanvas":[
+    {"WCanvas2":[
       {"src":"/Nova-Store/WCanvas.html"},
       {"by":"adthoughtsglobal"},
-      {"qt":"Code like a pro"},
-      {"desc":"An HTML code editor. [v1.2]"},
+      {"qt":"Create Anything."},
+      {"desc":"An full HTML, Python, OSL code editor."},
       {"cat":"tools"},
-      {"ldesc":"An HTML code editor with hotkeys, syntax highlighting, same screen previews, help and much more!"},
+      {"ldesc":"An HTML, OSL and python code editor with hotkeys, syntax highlighting, same screen previews, help and much more!"},
       {"th":"#3C9A47"}
     ]
     },
