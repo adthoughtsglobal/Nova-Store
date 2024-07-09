@@ -161,6 +161,16 @@
       {"ldesc":"Nova Chess redefines chess gaming with a web-based platform designed to cater to both casual players and chess enthusiasts alike. It features live game evaluation! Ensuring a visually appealing and intuitive interface. Players interact directly with the board, clicking on pieces to execute moves seamlessly. "},
       {"th":"#880808"}
     ]
+    },
+    {"Doom3D":[
+      {"src":"/Nova-Store/doom.html"},
+      {"by":"adthoughtsglobal"},
+      {"qt":"Play Doom"},
+      {"desc":"Play Doom on Nova"},
+      {"cat":"games"},
+      {"ldesc":"Doom in JavaScript is a web-based version of the classic FPS game, playable directly in browsers. It uses JS-DOS to emulate the original experience."},
+      {"th":"#880808"}
+    ]
     }
   ]
 }
