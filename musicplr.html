@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Music app</title>
+	<link rel="stylesheet"
+		href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+	<style>
+		:root {
+			--main-color: #00ff50;
+		}
+
+		html {
+			height: 100%;
+			width: 100%;
+		}
+
+		body {
+			height: calc(100% - 0px);
+			font-family: "Poppins", sans-serif;
+			margin: 0;
+			background: #101010;
+			color: white;
+		}
+
+		.material-symbols-rounded {
+			font-weight: 200;
+		}
+
+		.main-flex-container {
+			display: flex;
+			flex-direction: row;
+			height: 100%;
+		}
+
+		.player {
+			display: flex;
+			align-items: center;
+			flex-direction: column;
+			justify-content: center;
+			width: 0;
+			flex-grow: 1;
+			margin: 2rem;
+
+		}
+
+		.details {
+			display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 25px;
+    width: 100%;
+    overflow: visible;
+    flex-wrap: nowrap;
+		}
+
+		#baseimg {
+			flex: 1;
+    height: 0;
+    width: 50%;
+		}
+
+		.now-playing {
+			font-size: 12px;
+		}
+
+		.track-artist {
+			font-size: 1rem;
+			opacity: 0.5;
+		}
+
+		.buttons {
+			display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 60%;
+    justify-content: space-evenly;
+    background: #1f1f1f;
+    border-radius: 3rem;
+    padding: 0.5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+		}
+
+		.playpause-track {
+			transform: scale(1.5);
+		}
+
+		.playpause-track,
+		.prev-track,
+		.next-track {
+		    padding: 5px;
+    opacity: 0.8;
+    transition: .2s;
+    cursor: pointer;
+    padding-bottom: 0;
+    padding-top: 7px;
+		}
+
+		.playpause-track:hover,
+		.prev-track:hover,
+		.next-track:hover {
+			opacity: 1.0;
+		}
+
+		.slider_container {
+			width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+		}
+
+		/* Modify the appearance of the slider */
+		.seek_slider,
+		.volume_slider {
+			    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    height: 0.5rem;
+    border-radius: 1rem;
+    background: #272727;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+		}
+
+		/* Modify the appearance of the slider thumb */
+		.seek_slider::-webkit-slider-thumb,
+		.volume_slider::-webkit-slider-thumb {
+			-webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    background: #ffffff;
+    cursor: pointer;
+    border-radius: 10px;
+		}
+
+		.seek_slider:hover,
+		.volume_slider:hover {
+			opacity: 1.0;
+		}
+
+		.seek_slider {
+			width: 60%;
+		}
+
+		.volume_slider {
+			width: 60%;
+		}
+
+		.current-time,
+		.total-duration {
+			padding: 10px;
+			font-size: 0.8rem;
+			opacity: 0.5;
+		}
+
+		i.fa-volume-down,
+		i.fa-volume-up {
+			padding: 10px;
+		}
+
+		i.fa-play-circle,
+		i.fa-pause-circle,
+		i.fa-step-forward,
+		i.fa-step-backward {
+			cursor: pointer;
+		}
+
+		#queuewindow {
+			flex: 1;
+			width: 0;
+			background: inherit;
+			margin: 1rem;
+			border-radius: 1rem;
+			padding: 1rem;
+			backdrop-filter: brightness(1.5);
+		}
+
+		.queuewinnav {
+			display: flex;
+			width: 100%;
+			flex-direction: row;
+			align-items: center;
+			justify-content: space-between;
+			border-bottom: 1px solid #80808054;
+			padding-bottom: 0.5rem;
+		}
+
+		.queuewinnav .buttonside button {
+			background: inherit;
+			border: none;
+			color: white;
+			opacity: 0.8;
+			border-radius: 50%;
+			display: inline-grid;
+			justify-content: center;
+			justify-items: center;
+			align-items: center;
+			margin-left: 0.3rem;
+			aspect-ratio: 1/1;
+		}
+
+		.queuewinnav .buttonside button span {
+			font-size: 1.4rem;
+			font-weight: 200;
+		}
+
+		.queuewinnav .buttonside button:hover {
+			background: #1f1f1f;
+		}
+
+		.queuenavtit {
+			font-size: 1.5rem;
+		}
+
+		.trackwid {
+			display: flex;
+			flex-direction: row;
+			flex-wrap: nowrap;
+			justify-content: space-between;
+			align-items: center;
+			padding: 0.3rem 0.4rem;
+			background: #1f1f1f;
+			margin: 0.3rem 0;
+			border-radius: 0.5rem;
+		}
+
+		.detailswid {
+
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+
+		.buttonside {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: flex-end;
+		}
+
+		.detailswid * {
+			display: block;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+
+		.trackwid .icon {
+			padding: 0.5rem;
+			background: #181818;
+			margin-right: 0.5rem;
+			border-radius: 0.3rem;
+			aspect-ratio: 1 / 1;
+			display: grid;
+			align-items: center;
+			justify-items: center;
+			text-shadow: 0 0 1rem black;
+		}
+
+		.ArtistName {
+			opacity: 0.5;
+			font-size: 0.8rem;
+		}
+
+		.rmtrfrqu {
+			display: none;
+			cursor: pointer;
+		}
+
+		.trackwid:hover .rmtrfrqu {
+			display: block;
+		}
+
+		.createtrackbtn {
+			position: absolute;
+			bottom: 1rem;
+			border-radius: 50%;
+			border: 0;
+			aspect-ratio: 1 / 1;
+			padding: 0.5rem;
+			line-height: 0;
+			right: 1rem;
+			background: #1f1f1f;
+			color: white;
+			cursor: pointer;
+
+		}
+
+		.iconanddatdiv {
+			display: flex;
+			flex-direction: row;
+			overflow: hidden;
+		}
+
+		.track-name {
+			font-size: 2rem;
+    text-align: center;
+    display: block;
+    white-space: nowrap;
+    margin: 0.5rem;
+    overflow: hidden;
+    width: 100%;
+    text-overflow: ellipsis;
+		}
+
+		#primaryalert {
+			border: 0;
+    height: 100%;
+	width: 100%;
+    margin: 0;
+    display: grid;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    align-content: center;
+    background: #101010;
+    color: white;
+		}
+
+		#primaryalert p {
+			max-width: 216px;
+    text-align: center;
+    opacity: 0.5;
+    font-size: 0.8rem;
+		}
+
+		#primaryalert button {
+			display: grid;
+    padding: 1rem;
+    background: #141414;
+    border-radius: 50%;
+    border: 0;
+    cursor: pointer;
+    color: white;
+    margin-top: 1rem;
+	animation: skibidibtn 10s infinite;
+		}
+
+		@keyframes skibidibtn {
+			0% {
+				box-shadow: 5px 5px 1rem red inset, -5px -5px 1rem #ffe000 inset;
+			}
+			25% {
+				box-shadow: 5px 0px 1rem #ffde4d inset, -5px 0px 1rem #ff41e6 inset;
+			}
+			75% {
+				box-shadow: 0px 5px 1rem #68c1ff inset, -0px -5px 1rem #3cff6f inset;
+			}
+			100% {
+				box-shadow: 5px 5px 1rem red inset, -5px -5px 1rem #ffe000 inset;
+			}
+		}
+
+		#primaryalert button span {
+			color: #b3b3b3;
+    font-size: 3rem;
+    font-weight: lighter;
+		}
+
+		#primaryalert a {
+			margin-top: 2rem;
+    font-size: 0.7rem;
+    background: #181818;
+    padding: 0.3rem 0.7rem;
+    border-radius: 2rem;
+    color: #afafaf;
+    cursor: pointer;
+		}
+	</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
+
+</head>
+
+<body>
+	<dialog id="primaryalert">
+		<p>You don't have any songs in your queue! Click here to open some:</p>
+		<button onclick="openfromfiles()"><span class="material-symbols-rounded">
+			add
+		</span></button>
+		<a onclick="theskibidiscan()">Scan everything for music</a>
+	</dialog>
+	<div class="main-flex-container">
+		<div class="player">
+			<div class="details">
+				<img id="baseimg" src="https://media.discordapp.net/attachments/1147362736032985221/1262355247922417715/jail.png?ex=66964b70&is=6694f9f0&hm=50d1bb38db0f09a2042d45ae33f8c136203e5b581e847e90567e6e69657dd171&=&format=webp&quality=lossless&width=424&height=424">
+				<div class="track-name">Track Name</div>
+				<div class="track-artist">Track Artist</div>
+			</div>
+			<div class="buttons">
+				<div class="prev-track" onclick="prevTrack()"><span class="material-symbols-rounded">
+						skip_previous
+					</span></div>
+				<div class="playpause-track" onclick="playpauseTrack()"><span class="material-symbols-rounded">
+						play_circle
+					</span></div>
+				<div class="next-track" onclick="nextTrack()"><span class="material-symbols-rounded">
+						skip_next
+					</span></div>
+			</div>
+			<div class="slider_container">
+				<div class="current-time">00:00</div>
+				<input type="range" min="1" max="100" value="0" class="seek_slider" onchange="seekTo()">
+				<div class="total-duration">00:00</div>
+			</div>
+			<div class="slider_container">
+				<span class="material-symbols-rounded">
+					no_sound
+				</span>
+				<input type="range" min="1" max="100" value="99" class="volume_slider" onchange="setVolume()">
+				<span class="material-symbols-rounded">
+					volume_up
+				</span>
+			</div>
+		</div>
+		<div id="queuewindow">
+			<div class="queuewinnav">
+				<span class="queuenavtit">Queue
+					<div class="now-playing">Playing 1 / 1</div>
+				</span>
+				<div class="buttonside">
+					<button onclick="shuffle()">
+						<span class="material-symbols-rounded">
+							shuffle
+						</span>
+					</button>
+					<button>
+						<span class="material-symbols-rounded">
+							close
+						</span>
+					</button>
+				</div>
+			</div>
+			<div id="tracklist">
+				<div class="trackwid">
+					<div class="icon">
+						<span class="material-symbols-rounded">
+							music_note
+						</span>
+					</div>
+					<div class="detailswid">
+						<b class="TrackName">Track Name</b>
+						<span class="ArtistName">Artist Name</span>
+					</div>
+					<span class="material-symbols-rounded rmtrfrqu">
+						close
+					</span>
+				</div>
+			</div>
+			<button class="createtrackbtn" onclick="openfromfiles()">
+				<span class="material-symbols-rounded">
+					add
+				</span>
+			</button>
+		</div>
+
+	</div>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jsmediatags/3.9.5/jsmediatags.min.js"></script>
+
+	<script>
+		let now_playing = document.querySelector(".now-playing");
+		let primaryalert= document.querySelector("#primaryalert");
+		
+		let track_name = document.querySelector(".track-name");
+		let track_artist = document.querySelector(".track-artist");
+		let baseimg = document.querySelector("#baseimg");
+
+		let playpause_btn = document.querySelector(".playpause-track");
+		let next_btn = document.querySelector(".next-track");
+		let prev_btn = document.querySelector(".prev-track");
+
+		let seek_slider = document.querySelector(".seek_slider");
+		let volume_slider = document.querySelector(".volume_slider");
+		let curr_time = document.querySelector(".current-time");
+		let total_duration = document.querySelector(".total-duration");
+
+		let track_index = 0;
+		let isPlaying = false;
+		let updateTimer;
+
+		// Create new audio element
+		let curr_track = document.createElement('audio');
+
+		let track_list = {};
+
+		primaryalert.showModal();
+
+		// Define the tracks that have to be played
+		function renderQueue() {
+			// Clear existing track widgets if needed
+			document.querySelectorAll('.trackwid').forEach(e => e.remove());
+
+			for (let trackName in track_list) {
+				if (track_list.hasOwnProperty(trackName)) {
+					const track = track_list[trackName];
+
+					const trackWid = document.createElement('div');
+					trackWid.className = 'trackwid';
+					trackWid.onclick = function () {
+						loadTrack(trackName)
+					}
+
+					const iconanddatdiv = document.createElement('div');
+					iconanddatdiv.classList += "iconanddatdiv"
+
+					const iconDiv = document.createElement('div');
+					iconDiv.className = 'icon';
+
+					const musicNoteSpan = document.createElement('span');
+					musicNoteSpan.className = 'material-symbols-rounded';
+					musicNoteSpan.textContent = 'music_note';
+					iconDiv.appendChild(musicNoteSpan);
+
+					const detailsWid = document.createElement('div');
+					detailsWid.className = 'detailswid';
+
+					const trackNameElement = document.createElement('b');
+					trackNameElement.className = 'TrackName';
+					trackNameElement.textContent = trackName; // Set track name
+
+					const artistName = document.createElement('span');
+					artistName.className = 'ArtistName';
+					artistName.textContent = track.artist; // Set artist name
+
+					detailsWid.appendChild(trackNameElement);
+					detailsWid.appendChild(artistName);
+
+					const closeSpan = document.createElement('span');
+					closeSpan.className = 'material-symbols-rounded rmtrfrqu';
+					closeSpan.textContent = 'close';
+					closeSpan.addEventListener('click', function () {
+						delete track_list[trackName];
+						trackWid.remove();
+					});
+
+					iconanddatdiv.appendChild(iconDiv);
+					iconanddatdiv.appendChild(detailsWid);
+					trackWid.appendChild(iconanddatdiv);
+					trackWid.appendChild(closeSpan);
+
+					document.getElementById("tracklist").appendChild(trackWid);
+				}
+			}
+		}
+
+		renderQueue()
+
+		function loadTrack(trackName) {
+    console.log("Loading track: " + trackName);
+
+    // Check if the track exists in the track_list
+    if (!track_list.hasOwnProperty(trackName)) {
+        console.error("Track not found in the track list");
+        return;
+    }
+
+    const track = track_list[trackName];
+
+    // Stop any currently playing track and reset values
+    clearInterval(updateTimer);
+    resetValues();
+
+    // Extract base64 data from the path
+    const base64String = track.path.split(',')[1];
+
+    // Convert base64 string to binary data (Uint8Array)
+    const binaryString = window.atob(base64String);
+    const bytes = new Uint8Array(binaryString.length);
+    for (let i = 0; i < binaryString.length; i++) {
+        bytes[i] = binaryString.charCodeAt(i);
+    }
+
+    // Create an ArrayBuffer from the Uint8Array
+    const arrayBuffer = bytes.buffer;
+
+    // Create a Blob from the ArrayBuffer with the appropriate MIME type
+    const blob = new Blob([arrayBuffer], { type: 'audio/mpeg' }); // Adjust type based on actual audio format
+
+    // Read metadata using jsmediatags
+    jsmediatags.read(blob, {
+        onSuccess: function(tag) {
+            const metadata = tag.tags;
+            console.log('Metadata:', metadata);
+
+            // Update UI with track information
+            track_name.textContent = trackName;
+            track_artist.textContent = metadata.artist || 'Unknown Artist';
+            now_playing.textContent = "Playing " + (Object.keys(track_list).indexOf(trackName) + 1) + " of " + Object.keys(track_list).length;
+
+            // Update baseimg with album art if available
+            if (metadata.picture && metadata.picture.data) {
+                const base64String = arrayBufferToBase64(metadata.picture.data);
+                baseimg.src = `data:${metadata.picture.format};base64,${base64String}`;
+				getDominantColor(baseimg.src, function(color) {
+					baseimg.style.boxShadow = "0 3px 1rem " + color;
+				});
+            } else {
+                baseimg.src = ''; // Clear previous image if no picture available
+				baseimg.style.boxShadow = "";
+            }
+
+            // Load and play the track
+            curr_track.src = URL.createObjectURL(blob); // Set audio element source
+            playTrack(); // Start playback
+            updateTimer = setInterval(seekUpdate, 1000); // Update seek slider
+            curr_track.addEventListener("ended", nextTrack); // Listen for track end
+        },
+        onError: function(error) {
+            console.error("Error reading metadata: ", error);
+            baseimg.src = ''; // Clear previous image on error
+			baseimg.style.boxShadow = "";
+        }
+    });
+}
+
+// Helper function to convert ArrayBuffer to Base64 string
+function arrayBufferToBase64(buffer) {
+    let binary = '';
+    const bytes = new Uint8Array(buffer);
+    const len = bytes.byteLength;
+    for (let i = 0; i < len; i++) {
+        binary += String.fromCharCode(bytes[i]);
+    }
+    return window.btoa(binary);
+}
+
+
+function sliderbgupt() {
+	let slider = seek_slider;
+    const value = (slider.value - slider.min) / (slider.max - slider.min) * 100;
+    slider.style.background = `linear-gradient(to right, #ffffff ${value}%, #272727 ${value}%)`;
+}
+
+		function resetValues() {
+			curr_time.textContent = "00:00";
+			total_duration.textContent = "00:00";
+			seek_slider.value = 0;
+			sliderbgupt()
+		}
+
+		function playFirstTrack() {
+			const firstTrackName = Object.keys(track_list)[0];
+			if (firstTrackName) {
+				loadTrack(firstTrackName);
+			} else {
+				console.error("No tracks available in the track list");
+			}
+		}
+
+		function openfromfiles() {
+			window.parent.openlaunchprotocol("files", { "type": "open" })
+			primaryalert.close();
+			primaryalert.style.display = "none"
+		}
+
+		window.addEventListener('storage', async (event) => {
+			if (event.key === 'todo') {
+
+				if (JSON.parse(localStorage.getItem("todo")).type == "opentotext") {
+
+
+					const file = await window.parent.getFileById(JSON.parse(localStorage.getItem("todo")).lclfile);
+
+					readthefile(window.parent.unshrinkbsf(file.content), file.fileName)
+				}
+			}
+		});
+		function readthefile(base64Url, fileName = 'Unknown Title') {
+			const base64String = base64Url.split(',')[1];
+			const binaryString = atob(base64String);
+			const bytes = new Uint8Array(binaryString.length);
+
+			for (let i = 0; i < binaryString.length; i++) {
+				bytes[i] = binaryString.charCodeAt(i);
+			}
+
+			// Convert ArrayBuffer to Blob
+			const blob = new Blob([bytes.buffer], { type: 'application/octet-binary' });
+
+			// Parse metadata using jsmediatags
+			jsmediatags.read(blob, {
+				onSuccess: function (tag) {
+					const metadata = tag.tags;
+					const trackName = metadata.title || fileName;
+					const artistName = metadata.artist || 'Unknown Artist';
+					const albumName = metadata.album || 'Unknown Album';
+
+					// Add the track to the track_list map
+					track_list[trackName] = {
+						artist: artistName,
+						path: base64Url // Use the base64 URL directly
+					};
+
+					// Log the updated track list
+					console.log('Updated track list:', track_list);
+
+					// Optionally, call a function to render the updated track list
+					renderQueue();
+					if (Object.keys(track_list) == 1) {
+						playFirstTrack();
+					}
+				},
+				onError: function (error) {
+					console.error("Error reading metadata: ", error);
+				}
+			});
+		}
+
+		function playpauseTrack() {
+			if (!isPlaying) playTrack();
+			else pauseTrack();
+		}
+
+		function playTrack() {
+    if (curr_track) {
+        curr_track.addEventListener('canplaythrough', function() {
+            curr_track.play()
+                .then(() => {
+                    isPlaying = true;
+                    playpause_btn.innerHTML = `<span class="material-symbols-rounded">
+                        pause_circle
+                    </span>`;
+                    console.log('Playback started successfully.');
+                })
+                .catch(error => {
+                    console.error('Error playing track:', error);
+                });
+        }, false);
+    } else {
+        console.error('curr_track is not defined or is invalid.');
+    }
+}
+
+		function pauseTrack() {
+			curr_track.pause();
+			isPlaying = false;
+			playpause_btn.innerHTML = `<span class="material-symbols-rounded">
+	  play_circle
+	  </span>`;
+		}
+
+		function nextTrack() {
+			if (track_index < (Object.keys(track_list).length - 1))
+				track_index += 1;
+			else track_index = 0;
+			loadTrack(loadTrack(Object.keys(track_list)[track_index]));
+			playTrack();
+		}
+
+		function prevTrack() {
+			if (track_index > 0)
+				track_index -= 1;
+			else track_index = (Object.keys(track_list).length - 1);
+			
+			loadTrack(loadTrack(Object.keys(track_list)[track_index]));
+			playTrack();
+		}
+
+		function seekTo() {
+			let seekto = curr_track.duration * (seek_slider.value / 100);
+			curr_track.currentTime = seekto;
+			sliderbgupt()
+		}
+
+		function setVolume() {
+			curr_track.volume = volume_slider.value / 100;
+		}
+
+		function seekUpdate() {
+			let seekPosition = 0;
+
+			if (!isNaN(curr_track.duration)) {
+				seekPosition = curr_track.currentTime * (100 / curr_track.duration);
+
+				seek_slider.value = seekPosition;
+				sliderbgupt()
+
+				let currentMinutes = Math.floor(curr_track.currentTime / 60);
+				let currentSeconds = Math.floor(curr_track.currentTime - currentMinutes * 60);
+				let durationMinutes = Math.floor(curr_track.duration / 60);
+				let durationSeconds = Math.floor(curr_track.duration - durationMinutes * 60);
+
+				if (currentSeconds < 10) { currentSeconds = "0" + currentSeconds; }
+				if (durationSeconds < 10) { durationSeconds = "0" + durationSeconds; }
+				if (currentMinutes < 10) { currentMinutes = "0" + currentMinutes; }
+				if (durationMinutes < 10) { durationMinutes = "0" + durationMinutes; }
+
+				curr_time.textContent = currentMinutes + ":" + currentSeconds;
+				total_duration.textContent = durationMinutes + ":" + durationSeconds;
+			}
+		}
+
+		function shuffle() {
+			const trackNames = Object.keys(track_list);
+			for (let i = trackNames.length - 1; i > 0; i--) {
+				const j = Math.floor(Math.random() * (i + 1));
+				[trackNames[i], trackNames[j]] = [trackNames[j], trackNames[i]];
+			}
+
+			const shuffledTrackList = {};
+			trackNames.forEach((trackName, index) => {
+				shuffledTrackList[trackName] = track_list[trackName];
+			});
+
+			track_list = shuffledTrackList;
+			renderQueue()
+		}
+
+		
+
+		function theskibidiscan() {
+			const musicExtensions = ['mp3', 'wav', 'flac', 'mpeg'];
+
+const scanFolders = (folder, basePath = '') => {
+    const isMusicFile = (fileName) => {
+        const extension = fileName.split('.').pop().toLowerCase();
+        return musicExtensions.includes(extension);
+    };
+
+    const getBase64Url = (content) => {
+        return `data:audio/*;base64,${btoa(content)}`;
+    };
+
+    const base64ToArrayBuffer = (base64) => {
+        base64 = base64.replace(/[^A-Za-z0-9+/=]/g, ""); // Ensure valid characters
+        const binaryString = atob(base64);
+        const len = binaryString.length;
+        const bytes = new Uint8Array(len);
+        for (let i = 0; i < len; i++) {
+            bytes[i] = binaryString.charCodeAt(i);
+        }
+        return bytes.buffer;
+    };
+
+    for (const key in folder) {
+        if (key.endsWith('/')) {
+            scanFolders(folder[key], `${basePath}${key}`);
+        } else if (isMusicFile(key)) {
+			readthefile(window.parent.unshrinkbsf(folder[key].content), folder[key]);
+        }
+    }
+};
+
+scanFolders(window.parent.memory);
+
+primaryalert.close();
+			primaryalert.style.display = "none"
+		}
+
+		function getDominantColor(imageUrl, callback) {
+  const image = new Image();
+  image.crossOrigin = 'Anonymous';
+  image.src = imageUrl;
+  image.onload = function() {
+    const colorThief = new ColorThief();
+    const dominantColor = colorThief.getColor(image);
+    const hexColor = rgbToHex(dominantColor[0], dominantColor[1], dominantColor[2]);
+    callback(hexColor);
+  };
+}
+	function rgbToHex(r, g, b) {
+    return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+}
+	</script>
+</body>
+
+</html>
