@@ -163,12 +163,12 @@
     ]
     },
     {"Doom3D":[
-      {"src":"/Nova-Store/doom.html"},
+      {"src":"/Nova-Store/musicplr.html"},
       {"by":"adthoughtsglobal"},
-      {"qt":"Play Doom"},
-      {"desc":"Play Doom on Nova"},
-      {"cat":"games"},
-      {"ldesc":"Doom in JavaScript is a web-based version of the classic FPS game, playable directly in browsers. It uses JS-DOS to emulate the original experience."},
+      {"qt":"How the cool kids listen"},
+      {"desc":"Play local music."},
+      {"cat":"tools"},
+      {"ldesc":"The worlds best local music player on the web. With Shuffle, Queue, auto-search tracks, metadata, volume and seek controls with stunning UI."},
       {"th":"#880808"}
     ]
     }
