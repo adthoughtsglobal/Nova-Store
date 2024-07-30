@@ -3,7 +3,8 @@
   "vdevs":[
     "adthoughtsglobal",
     "Nebula Studios",
-    "mistium"
+    "mistium",
+    "milodev123"
   ],
   "data":[
     {"Nova CLI":[
@@ -13,6 +14,15 @@
       {"desc":"System CLI for Nova OS"},
       {"cat":"tools"},
       {"ldesc":"Access Nova System directly with Nova CLI, read and write files, execute functions and return data."},
+      {"th":"#5FFCA6"}
+    ]},
+    {"Nova Copilot":[
+      {"src":"/Nova-Store/NovaCopilot.html"},
+      {"by":"milodev123"},
+      {"qt":"AI text chat on Nova"},
+      {"desc":"AI text chat on Nova"},
+      {"cat":"tools"},
+      {"ldesc":"Chat with an ai, regular ai chatbot for novaos."},
       {"th":"#5FFCA6"}
     ]},
     {"To Do App":[
