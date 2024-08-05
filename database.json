@@ -113,7 +113,7 @@
     ]
     },
     {"OriginOS":[
-      {"src":"https://origin.mistium.com/Versions/originv4.9.9"},
+      {"src":"https://origin.mistium.com/Versions/originv5.1.5"},
       {"by":"Mistium"},
       {"qt":"Run Origin OS"},
       {"desc":"The best GUI for OSL and OASM."},
