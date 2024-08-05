@@ -16,13 +16,13 @@
       {"ldesc":"Access Nova System directly with Nova CLI, read and write files, execute functions and return data."},
       {"th":"#5FFCA6"}
     ]},
-    {"Nova Copilot":[
+    {"VerAI":[
       {"src":"/Nova-Store/NovaCopilot.html"},
       {"by":"milodev123"},
-      {"qt":"AI text chat on Nova"},
-      {"desc":"AI text chat on Nova"},
+      {"qt":"AI text chat"},
+      {"desc":"AI text chat"},
       {"cat":"tools"},
-      {"ldesc":"Chat with an ai, regular ai chatbot for novaos."},
+      {"ldesc":"Chat with an ai, a regular ai chatbot application."},
       {"th":"#5FFCA6"}
     ]},
     {"To Do App":[
