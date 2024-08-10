@@ -149,6 +149,20 @@ div#interactive button {
 	background-color: transparent;
 	backdrop-filter: brightness(230%);
 }
+
+		@media only screen and (max-width:500px;) {
+.editorpart {
+    width: 100% !important;
+    flex: 1;
+    overflow: hidden;
+    resize: vertical;
+}
+
+			.editorsection {
+    display: flex;
+    flex-direction: column;
+			}
+		}
 	</style>
 
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -284,7 +298,7 @@ function gid(x) {
 }
 
 var editor = ace.edit("editor");
-editor.setTheme("ace/theme/github_light_default-css.js");
+editor.setTheme("ace/theme/monokai.js");
 
 function showFindBox() {
 	// Execute the 'find' command
