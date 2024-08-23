@@ -215,7 +215,7 @@ function getdb(databaseName, key) {
 // Event listener for keypress on the element with id "edit"
 document.getElementById('edit').addEventListener('keydown', (event) => {
 	const content = event.target.innerHTML;
-	setdb('yourDatabaseName', 'yourKey', content)
+	setdb('Textame App DB', 'textame', content)
 		.then(() => {
 			console.log('Content saved to IndexedDB');
 		})
@@ -226,7 +226,7 @@ document.getElementById('edit').addEventListener('keydown', (event) => {
 
 // Retrieve the saved content from IndexedDB and set it as the innerHTML of the element with id "edit"
 document.addEventListener('DOMContentLoaded', () => {
-	getdb('yourDatabaseName', 'yourKey')
+	getdb('Textame App DB', 'textame')
 		.then((savedContent) => {
 			if (savedContent !== null) {
 				document.getElementById('edit').innerHTML = savedContent;
