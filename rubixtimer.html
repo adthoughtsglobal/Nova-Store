@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rubik's Cube Timer</title>
+    <style>
+
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+:root {
+    --colors-BG-normal: #101010;
+    --colors-BG-sub: #262626;
+    --colors-BG-section: #171717;
+    --colors-BG-highlighted: #44403C;
+	--colors-BG-accent: #44403C;
+    --colors-text-normal: white;
+	--colors-special-good: #49ac49;
+	--colors-special-bad: #ac4949;
+
+    --sizing-border-radius: 0.5rem;
+	--sizing-border-radius-normal: 0.75rem;
+	--sizing-border-radius-full: 1rem;
+
+	--sizing-huge: 1rem;
+    --sizing-normal: 0.5rem;
+	--sizing-nano: 0.3rem;
+}
+
+::-webkit-scrollbar {
+	width: var(--sizing-normal);
+}
+
+::-webkit-scrollbar-track {
+    background: var(--colors-BG-normal);
+    border-radius: var(--sizing-border-radius);
+}
+
+::-webkit-scrollbar-thumb {
+	background: var(--colors-BG-highlighted);
+	border-radius: var(--sizing-border-radius);
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: var(--colors-BG-sub);
+	cursor: grab;
+}
+
+::-webkit-scrollbar-thumb:active {
+	cursor: grabbing;
+}
+      
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+	font-family: 'Poppins', sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+        }
+
+        .container {
+            display: flex;
+            height: 100%;
+            flex-direction: column;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+opacity:0.5;
+            background-color: #1e1e1e;
+        }
+
+        .scramble {
+    font-size: 1.2em;
+    user-select: none;
+    word-spacing: 24px;
+    font-family: monospace;
+        }
+
+.regenerate-btn {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            font-size: 13px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .regenerate-btn:hover {
+            background-color: #555;
+        }
+
+        .main-content {
+            display: flex;
+            flex: 1;
+        }
+
+        .timer {
+            flex: 3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 3em;
+        }
+
+        .tools {
+                flex: 1;
+    background-color: #1e1e1e;
+    padding: 20px;
+    overflow-y: auto;
+    opacity: 0.5;
+    margin: 0.5rem;
+    padding-top: 9px;
+    height: calc(100vh - 123px);
+    border-radius: 0.5rem;
+    font-size: 0.8rem;
+        }
+
+        .tools h3 {
+            margin-top: 0;
+        }
+
+        .timer-value {
+            font-size: 4em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="topbar">
+            <div class="scramble" id="scramble"></div>
+<button class="regenerate-btn" onclick="generateScramble()">Regenerate Scramble</button>
+        </div>
+        <div class="main-content">
+            <div class="timer" id="timerDisplay">0.000s</div>
+            <div class="tools">
+                <p><strong>Help:</strong> This app generates a random scramble of moves and allows you to time your performance using the space key. The moves are represented as U (Up), D (Down), L (Left), R (Right), F (Front), and B (Back), with optional modifiers.</p>
+
+<p><strong>How to Use:</strong></p>
+<ul>
+    <li><strong>Generate Scramble:</strong> When the page loads, a random scramble will be displayed automatically.</li>
+    <li><strong>Start Timer:</strong> Press and hold the <span class="key">Space</span> key. If held for at least 0.55 seconds, the timer will start 0.1 seconds after you release the key.</li>
+    <li><strong>Stop Timer:</strong> Quickly press the <span class="key">Space</span> key again to stop the timer immediately.</li>
+    <li><strong>Reset Timer:</strong> Press the <span class="key">Space</span> key a third time to reset the timer and generate a new scramble.</li>
+</ul>
+
+<p><strong>Notes:</strong></p>
+<ul>
+    <li>The timer updates every millisecond while running.</li>
+    <li>All actions (stop and reset) occur instantly upon pressing the space key.</li>
+</ul>
+              <p>NovaOS</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let scrambleElement = document.getElementById("scramble");
+let timerDisplay = document.getElementById("timerDisplay");
+let timerInterval;
+let startTime = 0;
+let spaceDown = false;
+let pressCount = 0;
+let spaceHoldTime = 0;
+
+function logEvent(message) {
+    // console.log(`[${new Date().toLocaleTimeString()}] ${message}`);
+}
+
+function generateScramble() {
+    const moves = ["U", "D", "L", "R", "F", "B"];
+    const modifiers = ["1", "'", "2"];
+    let scramble = [];
+    for (let i = 0; i < 20; i++) {
+        let move = moves[Math.floor(Math.random() * moves.length)];
+        let modifier = modifiers[Math.floor(Math.random() * modifiers.length)];
+        scramble.push(move + modifier);
+    }
+    scrambleElement.textContent = scramble.join(" ");
+}
+
+function startTimer() {
+    startTime = performance.now();
+    timerInterval = setInterval(updateTimer, 1);
+}
+
+function stopTimer() {
+    clearInterval(timerInterval);
+}
+
+function resetTimer() {
+    stopTimer();
+    timerDisplay.textContent = "0.000s";
+    pressCount = 0;
+    generateScramble();
+}
+
+function updateTimer() {
+    let currentTime = performance.now();
+    let elapsed = ((currentTime - startTime) / 1000).toFixed(3);
+    timerDisplay.textContent = `${elapsed}s`;
+}
+
+window.addEventListener("keydown", function(event) {
+    if (event.code === "Space") {
+        if (!spaceDown) {
+            spaceDown = true;
+            pressCount++;
+            logEvent(`Press count incremented: ${pressCount}`);
+
+            if (pressCount === 2) {
+                logEvent("Stopping timer");
+                stopTimer();
+            } else if (pressCount === 3) {
+                logEvent("Resetting timer and generating scramble");
+                resetTimer();
+            }
+        }
+    }
+});
+
+window.addEventListener("keyup", function(event) {
+    if (event.code === "Space") {
+        spaceDown = false;
+        logEvent("Space key up");
+
+        if (spaceHoldTime >= 550) {
+            setTimeout(() => {
+                logEvent("Starting timer after hold");
+                startTimer();
+            }, 100);
+        }
+
+        spaceHoldTime = 0;
+    }
+});
+
+setInterval(() => {
+    if (spaceDown) spaceHoldTime += 100; 
+}, 100);
+      
+generateScramble();
+    </script>
+</body>
+</html>
