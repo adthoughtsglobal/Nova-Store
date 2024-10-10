@@ -21,6 +21,15 @@
       {"ldesc":"Access Nova System directly with Nova CLI, read and write files, execute functions and return data."},
       {"th":"#5FFCA6"}
     ]},
+    {"Rubix Timer":[
+      {"src":"/Nova-Store/rubixtimer.html"},
+      {"by":"adthoughtsglobal"},
+      {"qt":"Measure your scores"},
+      {"desc":"Full rubix cube timer with scramble."},
+      {"cat":"tools"},
+      {"ldesc":"Rubix cube timer with smart interface and help. Also includes codes for scramble and presise timer to three magnitudes."},
+      {"th":"#5FFCA6"}
+    ]},
     {"Textame":[
       {"src":"/Nova-Store/textame.html"},
       {"by":"adthoughtsglobal"},
