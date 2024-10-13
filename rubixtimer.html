@@ -171,16 +171,23 @@ let spaceHoldTime = 0;
 function logEvent(message) {
     // console.log(`[${new Date().toLocaleTimeString()}] ${message}`);
 }
-
 function generateScramble() {
     const moves = ["U", "D", "L", "R", "F", "B"];
     const modifiers = ["1", "'", "2"];
     let scramble = [];
+    let previousMove = "";
+
     for (let i = 0; i < 20; i++) {
-        let move = moves[Math.floor(Math.random() * moves.length)];
-        let modifier = modifiers[Math.floor(Math.random() * modifiers.length)];
+        let move, modifier;
+        do {
+            move = moves[Math.floor(Math.random() * moves.length)];
+        } while (move === previousMove); // Ensure no repeated moves
+
+        modifier = modifiers[Math.floor(Math.random() * modifiers.length)];
         scramble.push(move + modifier);
+        previousMove = move; // Update the previous move
     }
+    
     scrambleElement.textContent = scramble.join(" ");
 }
 
