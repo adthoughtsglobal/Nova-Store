@@ -55,6 +55,7 @@
 			height: 100%;
 			font-family: "Gabarito", sans-serif;
 			background-color: #121212;
+			background-image: radial-gradient(ellipse at 0% 100%, #212121 0%, #000000 100%);
 			color: #ffffff;
 		}
 
@@ -268,6 +269,7 @@
 
 		function stopTimer() {
 			clearInterval(timerInterval);
+			generateScramble();
 			timeHistory[Date.now().toString()] = elapsed;
 			handleTimeHistory('save')
 
@@ -308,7 +310,6 @@
 		function resetTimer() {
 			timerDisplay.textContent = "0.000s";
 			pressCount = 0;
-			generateScramble();
 		}
 
 		function updateTimer() {
