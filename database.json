@@ -3,15 +3,13 @@
   "vdevs":[
     "adthoughtsglobal",
     "Nebula Studios",
-    "mistium",
-    "milodev123"
+    "mistium"
   ],
   "Featured":[
     "Nova CLI",
     "WCanvas2"
   ],
   "data":[
-    
     {"Nova CLI":[
       {"src":"/Nova-Store/cli.html"},
       {"by":"adthoughtsglobal"},
@@ -25,9 +23,9 @@
       {"src":"/Nova-Store/rubixtimer.html"},
       {"by":"adthoughtsglobal"},
       {"qt":"Measure your scores"},
-      {"desc":"Full rubix cube timer with scramble."},
+      {"desc":"Full Rubiks cube timer with scramble."},
       {"cat":"tools"},
-      {"ldesc":"Rubix cube timer with smart interface and help. Also includes codes for scramble and presise timer to three magnitudes."},
+      {"ldesc":"Rubiks cube timer with smart interface and help. Also includes codes for scramble and presise timer to three magnitudes."},
       {"th":"#5FFCA6"}
     ]},
     {"Textame":[
@@ -38,15 +36,6 @@
       {"cat":"tools"},
       {"ldesc":"Create formatted HTML files without code. Text editor for rich text editing in NovaOS."},
       {"th":"#ffffff"}
-    ]},
-    {"VerAI":[
-      {"src":"/Nova-Store/NovaCopilot.html"},
-      {"by":"milodev123"},
-      {"qt":"AI text chat"},
-      {"desc":"AI text chat"},
-      {"cat":"tools"},
-      {"ldesc":"Chat with an ai, a regular ai chatbot application."},
-      {"th":"#5FFCA6"}
     ]},
     {"To Do App":[
       {"src":"/Nova-Store/felixtodo.html"},
@@ -142,16 +131,6 @@
       {"desc":"The best GUI for OSL and OASM."},
       {"cat":"tools"},
       {"ldesc":"Origin is the Web Desktop GUI for running OSL and OASM. It is the best Turbowarp OS. Version 4.9.9, hosted and made by Mistium."},
-      {"th":"#57cdac"}
-    ]
-    },
-    {"Image Editor":[
-      {"src":"https://namish2013.github.io/PySphere/"},
-      {"by":"CodingNepal"},
-      {"qt":"Image editor"},
-      {"desc":"Image Editor made in HTML CSS & JavaScript"},
-      {"cat":"tools"},
-      {"ldesc":"In this photo editor, users can apply different filters to their image like grayscale, inversion, saturation, and adjust the image brightness. https://www.codingnepalweb.com/build-image-editor-html-javascript/"},
       {"th":"#57cdac"}
     ]
     },
