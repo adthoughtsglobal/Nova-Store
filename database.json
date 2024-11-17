@@ -124,8 +124,8 @@
       {"th":"#25869E"}
     ]
     },
-    {"OriginOS":[
-      {"src":"https://origin.mistium.com/Versions/originv5.1.5"},
+    {"OriginOS Access":[
+      {"src":"/Nova-Store/originAccess.html"},
       {"by":"Mistium"},
       {"qt":"Run Origin OS"},
       {"desc":"The best GUI for OSL and OASM."},
