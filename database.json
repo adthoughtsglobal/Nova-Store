@@ -94,6 +94,16 @@
       {"th":"#B50FA1"}
     ]
     },
+    {"Calier":[
+      {"src":"https://raw.githack.com/koo1140/calier/refs/heads/main/0.2.2/calier.html"},
+      {"by":"costikoooo"},
+      {"qt":"Code editor"},
+      {"desc":"HTML code editor with preview"},
+      {"cat":"tools"},
+      {"ldesc":"HTML code editor with same screen preview and dynamic UI. Uses Ace editor."},
+      {"th":"#FFA500"}
+    ]
+    },
     {"OSL Editor":[
       {"src":"/Nova-Store/osleditor.html"},
       {"by":"Nebula Studios"},
