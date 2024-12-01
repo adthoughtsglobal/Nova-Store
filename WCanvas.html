@@ -248,9 +248,12 @@ href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
 <div class="navitem" id="runbtn" onclick="run()">
 	Run
 </div>
+<div class="navitem" id="runbtn" onclick="runnewwin()">
+	Window
+</div>
 	</nav>
 	<div class="editorsection">
-<div class="codepart editorpart" style="width: 40vw;">
+<div class="codepart editorpart" style="width: 70vw;">
 	<div id="editor"></div>
 </div>
 <div id="resultspart" class="editorpart">
@@ -314,7 +317,10 @@ if (searchbox && searchbox.Search) {
 }
 	}, 200); // Adjust the delay as needed
 }
-setUpForPython()
+
+editor.session.setUseWrapMode(true);
+wordwrap = true;
+wordwrapdisp.innerHTML = "On"
 
 
 function togglewordwrap() {
@@ -417,6 +423,11 @@ throw "File not found: '" + x + "'";
 	return Sk.builtinFiles["files"][x];
 }
 
+function runnewwin() {
+var prog = editor.getValue();
+window.top.openwindow('App Preview',prog)
+}
+
 function run() {
 	if (currentmode == 'py') {
 var prog = editor.getValue();
@@ -441,11 +452,7 @@ let htmlContent = editor.getValue();
 
 iframeDocument.open();
 iframeDocument.write('');
-iframeDocument.close();
-
-// Create a new document inside the iframe
-iframeDocument.open();
-iframeDocument.write(htmlContent);
+iframe.setAttribute("srcdoc",htmlContent);
 iframeDocument.close();
 	} else if (currentmode == 'osl') {
 const encodedContent = encodeURIComponent(editor.getValue()).replace(/'/g, "%27").replace(/"/g, "%22");
@@ -454,6 +461,7 @@ gid("outputframe").src = cont;
 	}
 }
 
+setUpForHTML()
 run()
 
 function setUpForHTML() {
