@@ -95,7 +95,7 @@
     ]
     },
     {"Calier":[
-      {"src":"https://raw.githack.com/koo1140/calier/refs/heads/main/0.2.2/calier.html"},
+      {"src":"https://raw.githack.com/koo1140/calier/main/0.3.2/calier.html"},
       {"by":"costikoooo"},
       {"qt":"Code editor"},
       {"desc":"HTML code editor with preview"},
