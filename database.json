@@ -183,16 +183,6 @@
       {"ldesc":"Theres blocks with text that you can drag and drop to make source codes for webpages (HTML, CSS and JS). Now with more functions and advanced live previews."},
       {"th":"#880808"}
     ]
-    },
-    {"Music Player":[
-      {"src":"/Nova-Store/musicplr.html"},
-      {"by":"adthoughtsglobal"},
-      {"qt":"How the cool kids listen"},
-      {"desc":"Play local music."},
-      {"cat":"tools"},
-      {"ldesc":"The worlds best local music player on the web. With Shuffle, Queue, auto-search tracks, metadata, volume and seek controls with stunning UI."},
-      {"th":"#880808"}
-    ]
     }
   ]
 }
