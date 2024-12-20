@@ -183,6 +183,16 @@
       {"ldesc":"Theres blocks with text that you can drag and drop to make source codes for webpages (HTML, CSS and JS). Now with more functions and advanced live previews."},
       {"th":"#880808"}
     ]
+    },
+    {"Dot Engine":[
+      {"src":"https://funsparktv-ai.github.io/BlockHTML/"},
+      {"by":"adthoughtsglobal"},
+      {"qt":"Mini beat maker"},
+      {"desc":"Minimal beat editor tool with waveform editing."},
+      {"cat":"tools"},
+      {"ldesc":"Digital oscillator editor tool with minimal beat maker UI."},
+      {"th":"#ff9742"}
+    ]
     }
   ]
 }
