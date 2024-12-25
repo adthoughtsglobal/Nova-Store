@@ -19,6 +19,15 @@
       {"ldesc":"Access Nova System directly with Nova CLI, read and write files, execute functions and return data."},
       {"th":"#5FFCA6"}
     ]},
+    {"NovaOS Claw":[
+      {"src":"/Nova-Store/claw.html"},
+      {"by":"adthoughtsglobal"},
+      {"qt":"Online social client"},
+      {"desc":"Claw social NovaOS Client"},
+      {"cat":"tools"},
+      {"ldesc":"Read the Claw feed or become a part in the conversation. Now with attatchments."},
+      {"th":"#ffffff"}
+    ]},
     {"Rubix Timer":[
       {"src":"/Nova-Store/rubixtimer.html"},
       {"by":"adthoughtsglobal"},
