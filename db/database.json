@@ -7,7 +7,7 @@
   "data": [
     {
       "name": "Nova CLI",
-      "src": "/Nova-Store/cli.html",
+      "src": "/Nova-Store/apps/cli.html",
       "by": "adthoughtsglobal",
       "qt": "Explore more inside",
       "desc": "System CLI for Nova OS",
@@ -18,7 +18,7 @@
     },
     {
       "name": "NovaOS Claw",
-      "src": "/Nova-Store/claw.html",
+      "src": "/Nova-Store/apps/claw.html",
       "by": "adthoughtsglobal",
       "qt": "Online social client",
       "desc": "Claw social NovaOS Client",
@@ -29,7 +29,7 @@
     },
     {
       "name": "Rubix Timer",
-      "src": "/Nova-Store/rubixtimer.html",
+      "src": "/Nova-Store/apps/rubixtimer.html",
       "by": "adthoughtsglobal",
       "qt": "Measure your scores",
       "desc": "Full Rubiks cube timer with scramble.",
@@ -40,7 +40,7 @@
     },
     {
       "name": "Textame",
-      "src": "/Nova-Store/textame.html",
+      "src": "/Nova-Store/apps/textame.html",
       "by": "adthoughtsglobal",
       "qt": "Explore more inside",
       "desc": "Create Text and html files",
@@ -51,7 +51,7 @@
     },
     {
       "name": "To Do App",
-      "src": "/Nova-Store/felixtodo.html",
+      "src": "/Nova-Store/apps/felixtodo.html",
       "by": "Nebula Studios",
       "qt": "List your tasks",
       "desc": "A standard To Do list which remembers your tasks!",
@@ -62,7 +62,7 @@
     },
     {
       "name": "Tic Tac Toe",
-      "src": "/Nova-Store/TicTacToe.html",
+      "src": "/Nova-Store/apps/TicTacToe.html",
       "by": "G-Progress",
       "qt": "Play offline",
       "desc": "The game Of TicTacToe.",
@@ -72,7 +72,7 @@
     },
     {
       "name": "JS definer",
-      "src": "/Nova-Store/jsdef.html",
+      "src": "/Nova-Store/apps/jsdef.html",
       "qt": "what that code does",
       "by": "adthoughtsglobal",
       "desc": "Paste any JS code to identify what is happening under the hood in a more simpler language.",
@@ -83,7 +83,7 @@
     },
     {
       "name": "Artion",
-      "src": "/Nova-Store/paintviz.html",
+      "src": "/Nova-Store/apps/paintviz.html",
       "by": "Vizronix",
       "qt": "Get creative",
       "desc": "A sophisticated web application for drawing",
@@ -94,7 +94,7 @@
     },
     {
       "name": "Ducks Quack",
-      "src": "/Nova-Store/ducksquack.html",
+      "src": "/Nova-Store/apps/ducksquack.html",
       "by": "adthoughtsglobal",
       "qt": "Ensure Ducks Quack",
       "desc": "Pictures of ducks for all. To ensure global peace.",
@@ -105,7 +105,7 @@
     },
     {
       "name": "Stable Diffusion",
-      "src": "/Nova-Store/texttoimage.html",
+      "src": "/Nova-Store/apps/texttoimage.html",
       "by": "Nebula Studios",
       "qt": "Generate Art",
       "desc": "Text to Image Generator based on Stable Diffusion.",
@@ -127,7 +127,7 @@
     },
     {
       "name": "OSL Editor",
-      "src": "/Nova-Store/osleditor.html",
+      "src": "/Nova-Store/apps/osleditor.html",
       "by": "Nebula Studios",
       "qt": "Code OSL",
       "desc": "Make apps with OriginOS's Origin Scripting language.",
@@ -138,7 +138,7 @@
     },
     {
       "name": "WCanvas2",
-      "src": "/Nova-Store/WCanvas.html",
+      "src": "/Nova-Store/apps/WCanvas.html",
       "by": "adthoughtsglobal",
       "qt": "Create Anything.",
       "desc": "An full HTML, Python, OSL code editor.",
@@ -149,7 +149,7 @@
     },
     {
       "name": "Lizabot3",
-      "src": "/Nova-Store/lizabot3.html",
+      "src": "/Nova-Store/apps/lizabot3.html",
       "by": "adthoughtsglobal",
       "qt": "A personal Chatbot",
       "desc": "A personal Chatbot that don't hallucinate",
@@ -160,7 +160,7 @@
     },
     {
       "name": "OriginOS Access",
-      "src": "/Nova-Store/originAccess.html",
+      "src": "/Nova-Store/apps/originAccess.html",
       "by": "Mistium",
       "qt": "Run Origin OS",
       "desc": "The best GUI for OSL and OASM.",
@@ -171,7 +171,7 @@
     },
     {
       "name": "NovaAI",
-      "src": "/Nova-Store/NovaAI.html",
+      "src": "/Nova-Store/apps/NovaAI.html",
       "by": "FunSparkTV",
       "qt": "Wiki Chat",
       "desc": "ChatBot interface for searching data.",
@@ -214,7 +214,7 @@
     },
     {
       "name": "Dot Engine",
-      "src": "/Nova-Store/dotengine.html",
+      "src": "/Nova-Store/apps/dotengine.html",
       "by": "adthoughtsglobal",
       "qt": "Mini beat maker",
       "desc": "Minimal beat editor tool with waveform editing.",
