@@ -132,6 +132,7 @@
         }
     },
     "Twilight Nomad": {
+        "type":"bright",
         "colors": {
             "--colors-BG-normal": "#CB9862",
             "--colors-BG-section": "#D7AE66",
