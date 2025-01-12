@@ -130,5 +130,18 @@
             "--colors-special-good": "#49AC49",
             "--colors-special-bad": "#AC4949"
         }
+    },
+    "Twilight Nomad": {
+        "colors": {
+            "--colors-BG-normal": "#CB9862",
+            "--colors-BG-section": "#D7AE66",
+            "--colors-BG-sub": "#46361B",
+            "--colors-BG-highlighted": "#A6723B",
+            "--colors-text-high": "#181919",
+            "--colors-text-normal": "#09211E",
+            "--colors-special-good": "#49AC49",
+            "--colors-special-bad": "#AC4949"
+        },
+        "wallpaper": "https://cdn.pixabay.com/photo/2022/12/01/04/40/backpacker-7628303_1280.jpg"
     }
 }
