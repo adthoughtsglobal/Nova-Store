@@ -132,13 +132,13 @@
         }
     },
     "Twilight Nomad": {
-        "type":"bright",
+        "type": "bright",
         "colors": {
             "--colors-BG-normal": "#CB9862",
             "--colors-BG-section": "#D7AE66",
-            "--colors-BG-sub": "#46361B",
-            "--colors-BG-highlighted": "#A6723B",
-            "--colors-text-high": "#181919",
+            "--colors-BG-sub": "#F8BF60",
+            "--colors-BG-highlighted": "#6B4A26",
+            "--colors-text-high": "#F5FFFF",
             "--colors-text-normal": "#09211E",
             "--colors-special-good": "#49AC49",
             "--colors-special-bad": "#AC4949"
