@@ -13,19 +13,20 @@
         },
         "wallpaper": "https://images.unsplash.com/photo-1533135404995-a618910b7b6f?q=80&w=1769&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
-    "Obsidian": {
+    "Obsidian+": {
+        "by": "un4ya.1024",
         "type": "dark",
         "colors": {
             "--colors-BG-normal": "#000000",
-            "--colors-BG-sub": "#080808",
-            "--colors-BG-section": "#090909",
-            "--colors-BG-highlighted": "#512DA8",
-            "--colors-text-high": "#ffffff",
-            "--colors-text-normal": "#FFFFFF",
-            "--colors-special-good": "#49AC49",
-            "--colors-special-bad": "#AC4949"
+            "--colors-BG-section": "#0B0915",
+            "--colors-BG-sub": "#100A1C",
+            "--colors-BG-highlighted": "#513E92",
+            "--colors-text-high": "#FFFFFF",
+            "--colors-text-normal": "#CACAFF",
+            "--colors-special-good": "#50358C",
+            "--colors-special-bad": "#AC2487"
         },
-        "wallpaper": "https://images.unsplash.com/photo-1688614598602-0a71fbfed6c5?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        "wallpaper": "https://file.garden/ZYaO49YewxMFnAd1/NovaOS%20TTA%20Wallpapers/Rock/Obsidian1"
     },
     "Crimson Midnight": {
         "type": "dark",
@@ -144,5 +145,20 @@
             "--colors-special-bad": "#AC4949"
         },
         "wallpaper": "https://cdn.pixabay.com/photo/2022/12/01/04/40/backpacker-7628303_1280.jpg"
+    },
+    "Diorite": {
+        "type": "bright",
+        "by": "un4ya.1024",
+        "colors": {
+            "--colors-BG-normal": "#DFDFDF",
+            "--colors-BG-section": "#F4F9F0",
+            "--colors-BG-sub": "#D8D8D8",
+            "--colors-BG-highlighted": "#FFFFFF",
+            "--colors-text-high": "#607460",
+            "--colors-text-normal": "#424D43",
+            "--colors-special-good": "#49AC49",
+            "--colors-special-bad": "#AC4949"
+        },
+        "wallpaper": "https://file.garden/ZYaO49YewxMFnAd1/NovaOS%20TTA%20Wallpapers/Rock/Diorite1"
     }
 }
