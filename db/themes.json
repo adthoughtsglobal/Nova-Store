@@ -130,7 +130,8 @@
             "--colors-text-normal": "#FFFFFF",
             "--colors-special-good": "#49AC49",
             "--colors-special-bad": "#AC4949"
-        }
+        },
+        "wallpaper": "https://images.unsplash.com/photo-1698728877137-963bca5b5310?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     "Twilight Nomad": {
         "type": "bright",
@@ -160,5 +161,19 @@
             "--colors-special-bad": "#AC4949"
         },
         "wallpaper": "https://file.garden/ZYaO49YewxMFnAd1/NovaOS%20TTA%20Wallpapers/Rock/Diorite1"
+    },
+    "Yeehawrange": {
+        "type": "bright",
+        "colors": {
+            "--colors-BG-normal": "#FFE8C1",
+            "--colors-BG-section": "#FFC67F",
+            "--colors-BG-sub": "#FFB22E",
+            "--colors-BG-highlighted": "#FF9A1E",
+            "--colors-text-high": "#FFFFFF",
+            "--colors-text-normal": "#874500",
+            "--colors-special-good": "#49AC49",
+            "--colors-special-bad": "#AC4949"
+        },
+        "wallpaper": "https://images.unsplash.com/photo-1503494201477-5e04f651cfe5?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     }
 }
