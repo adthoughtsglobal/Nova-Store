@@ -119,7 +119,7 @@
             "--colors-special-bad": "#FF0000"
         }
     },
-    "Aquamarine": {
+    "Aqua marine": {
         "type": "dark",
         "colors": {
             "--colors-BG-normal": "#263A39",
@@ -162,7 +162,7 @@
         },
         "wallpaper": "https://file.garden/ZYaO49YewxMFnAd1/NovaOS%20TTA%20Wallpapers/Rock/Diorite1"
     },
-    "DoritoDust": {
+    "Dorito Dust": {
         "type": "bright",
         "colors": {
             "--colors-BG-normal": "#FFE8C1",
