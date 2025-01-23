@@ -39,20 +39,22 @@
             "--colors-text-normal": "#FFFFFF",
             "--colors-special-good": "#49AC49",
             "--colors-special-bad": "#AC4949"
-        }
+        },
+        "wallpaper": "https://images.unsplash.com/photo-1477346611705-65d1883cee1e?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     "Material Dark": {
         "type": "dark",
         "colors": {
             "--colors-BG-normal": "#212121",
-            "--colors-BG-sub": "#424242",
-            "--colors-BG-section": "#212121",
+            "--colors-BG-section": "#161616",
+            "--colors-BG-sub": "#2F2F2F",
             "--colors-BG-highlighted": "#455A64",
-            "--colors-text-high": "#ffffff",
+            "--colors-text-high": "#FFFFFF",
             "--colors-text-normal": "#FFFFFF",
             "--colors-special-good": "#49AC49",
             "--colors-special-bad": "#AC4949"
-        }
+        },
+        "wallpaper":"https://images.unsplash.com/photo-1728493411049-f0a8b0d68885?q=80&w=1779&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     "Scarlet Gold": {
         "type": "dark",
@@ -65,7 +67,8 @@
             "--colors-text-normal": "#FFDB53",
             "--colors-special-good": "#FF9700",
             "--colors-special-bad": "#FF0000"
-        }
+        },
+        "wallpaper":"https://images.unsplash.com/photo-1575041051612-323e644ca1b8?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     "Material Bright": {
         "type": "bright",
