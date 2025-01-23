@@ -175,5 +175,19 @@
             "--colors-special-bad": "#AC4949"
         },
         "wallpaper": "https://images.unsplash.com/photo-1503494201477-5e04f651cfe5?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    "October Glow": {
+        "type": "dark",
+        "colors": {
+            "--colors-BG-normal": "#190900",
+            "--colors-BG-section": "#5A1904",
+            "--colors-BG-sub": "#E76531",
+            "--colors-BG-highlighted": "#E98006",
+            "--colors-text-high": "#FFFFFF",
+            "--colors-text-normal": "#FFFFFF",
+            "--colors-special-good": "#FF0000",
+            "--colors-special-bad": "#FF0093"
+        },
+        "wallpaper": "https://images.unsplash.com/photo-1445586831130-7f00f5eac0f2?q=80&w=1769&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     }
 }
