@@ -81,7 +81,8 @@
             "--colors-text-normal": "#161616",
             "--colors-special-good": "#49AC49",
             "--colors-special-bad": "#AC4949"
-        }
+        },
+        "wallpaper":"https://images.unsplash.com/photo-1572775396187-ab78b80b32b2?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     "Win Classic Dark": {
         "type": "dark",
@@ -94,7 +95,8 @@
             "--colors-text-normal": "#FFFFFF",
             "--colors-special-good": "#49AC49",
             "--colors-special-bad": "#AC4949"
-        }
+        },
+        "wallpaper":"https://images.unsplash.com/photo-1687918233668-af9967e8052e?q=80&w=1955&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     "Monkai Yellow": {
         "type": "dark",
@@ -107,7 +109,8 @@
             "--colors-text-normal": "#FFF8CF",
             "--colors-special-good": "#49AC49",
             "--colors-special-bad": "#AC4949"
-        }
+        },
+        "wallpaper":"https://images.unsplash.com/photo-1504458003692-463a8064ee4a?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     "Raw jungle": {
         "type": "dark",
