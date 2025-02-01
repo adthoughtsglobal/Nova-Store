@@ -226,6 +226,17 @@
       "ver": "1",
       "ldesc": "Digital oscillator editor tool with minimal beat maker UI.",
       "th": "#ff9742"
+    },
+    {
+      "name": "Bad Things",
+      "src": "/Nova-Store/apps/badthings.html",
+      "by": "adthoughtsglobal",
+      "qt": "Things get bad.",
+      "desc": "Interactive endless game where losing is fatal.",
+      "cat": "tools",
+      "ver": "1",
+      "ldesc": "A very hard game where forgetting 3 words causes your system to reset - but you can always quit.",
+      "th": "#ff9742"
     }
   ]
 }
