@@ -1115,16 +1115,19 @@
         async function newpost() {
             if (!checkifaccs()) { return }
             let content = document.getElementById("postinput").value;
-            await fetch("https://claw.rotur.dev/post?content=" + content + "&os=novaOS&auth=" +
-                window.parent.roturExtension.userToken) + "&attachment=" + attachments;
-                if (attachments != '') {
-                    document.getElementById("attachbtn").innerHTML = `
-                        <span>Attach</span>
-                        <ion-icon name="link-outline"></ion-icon>`;
-                }
+
+            await fetch(`https://claw.rotur.dev/post?content=${content}&os=novaOS&auth=${window.parent.roturExtension.userToken}&attachment=${attachments }`);
+
+            if (attachments) {
+                document.getElementById("attachbtn").innerHTML = `
+        <span>Attach</span>
+        <ion-icon name="link-outline"></ion-icon>`;
+            }
+
             attachments = '';
-            loadFeed()
+            loadFeed();
         }
+
 
         async function followuser() {
             if (!checkifaccs()) { return }
