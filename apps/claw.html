@@ -294,13 +294,13 @@
             display: flex;
             padding: 0.5rem;
             flex-direction: column;
-            align-items: flex-end;
+            align-items: center;
             gap: 0.5rem;
             border-radius: 0.5rem;
         }
 
         button.postbtn {
-            background: #4e5fa7;
+            background: #4e5fa7 !important;
             display: flex;
             flex-direction: row;
             align-items: center;
@@ -610,6 +610,24 @@
             font-size: 1rem;
             font-weight: normal;
         }
+
+        .postsubfoot {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .postsubfoot button {
+            display: flex;
+            flex-direction: row;
+            background: #ffffff12;
+            align-items: center;
+            gap: 0.3rem;
+            border: 0;
+            border-radius: 11px;
+        }
     </style>
 </head>
 
@@ -673,15 +691,27 @@
             </div>
             <div class="postmsgsection">
                 <textarea id="postinput" placeholder="What is going on!?"></textarea>
-                <button onclick="newpost()" class="postbtn buttonlike">
-                    <span>Post</span>
-                    <ion-icon name="chevron-forward-outline"></ion-icon>
-                </button>
+                <div class="postsubfoot">
+                    <button onclick="attachthings(this)" id="attachbtn">
+                        <span>Attach</span>
+                        <ion-icon name="link-outline"></ion-icon>
+                    </button>
+                    <button onclick="newpost()" class="postbtn buttonlike">
+                        <span>Post</span>
+                        <ion-icon name="chevron-forward-outline"></ion-icon>
+                    </button>
+                </div>
             </div>
         </div>
     </main>
 
     <script>
+        async function attachthings(obj) {
+            attachments = await window.parent.ask('Enter a URL to your file:' || '')
+            obj.innerHTML = `
+                        <span>Re-attach</span>
+                        <ion-icon name="reload-outline"></ion-icon>`;
+        }
         function matchSizeAndPosition() {
             let feed = document.getElementById("feed");
             let loadingClaw = document.getElementById("loadingclaw");
@@ -720,7 +750,7 @@
         };
 
 
-        var selecteduser = "darkdot", postlimit = 10, lastrendereditem = null, currentOffset = 0, scrollPosition = 0, offsetParam, postReplies = {}, pfplib = {}, curTargetPost = null, curTargetPostliterally = null;
+        var selecteduser = "darkdot", postlimit = 10, lastrendereditem = null, currentOffset = 0, scrollPosition = 0, offsetParam, postReplies = {}, pfplib = {}, curTargetPost = null, curTargetPostliterally = null, attachments = '';
 
         function arrayToString(arr) {
             if (arr.length === 0) return "";
@@ -1086,7 +1116,13 @@
             if (!checkifaccs()) { return }
             let content = document.getElementById("postinput").value;
             await fetch("https://claw.rotur.dev/post?content=" + content + "&os=novaOS&auth=" +
-                window.parent.roturExtension.userToken);
+                window.parent.roturExtension.userToken) + "&attachment=" + attachments;
+                if (attachments != '') {
+                    document.getElementById("attachbtn").innerHTML = `
+                        <span>Attach</span>
+                        <ion-icon name="link-outline"></ion-icon>`;
+                }
+            attachments = '';
             loadFeed()
         }
 
