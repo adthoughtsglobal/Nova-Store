@@ -237,6 +237,16 @@
       "ver": "1",
       "ldesc": "A very hard game where forgetting 3 words causes your system to reset - but you can always quit.",
       "th": "#ff9742"
+    },
+    {
+      "name": "JSON Editor",
+      "src": "/Nova-Store/apps/json.html",
+      "by": "adthoughtsglobal",
+      "qt": "Dive deeper in data",
+      "desc": "Interactive and responsive editor for JSON files. Stable.",
+      "cat": "tools",
+      "ver": "1",
+      "th": "#ff9742"
     }
   ]
 }
