@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>PDF Viewer</title>
+    <meta name="capabilities" content=".pdf">
+    <meta name="nova-icon" content="<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='41.78949' height='54.82062' viewBox='0,0,41.78949,54.82062'><g transform='translate(-212.58969,-152.58969)'><g stroke-miterlimit='10'><path d='M212.58969,207.41031c0,0 0.38274,-20.21592 0.38274,-29.70198c0,-8.72351 -0.38274,-25.11864 -0.38274,-25.11864h27.38161l14.40788,14.78458v40.03604z' fill='#ff4040' stroke='none' stroke-width='NaN' stroke-linecap='butt'/><path d='M240.16267,167.56564v-14.97595l14.21651,14.97595z' fill='#8f1717' stroke='none' stroke-width='0' stroke-linecap='butt'/><g fill='none' stroke='#ffffff' stroke-width='1.5'><path d='M225.42046,183.77719v6.68357' stroke-linecap='round'/><path d='M225.44352,183.74637c0,0 0.92387,0.00072 1.55964,0.00072c1.50667,0 2.60311,0.70224 2.60311,1.79132c0,1.08908 -1.01315,1.79132 -2.51981,1.79132c-0.59055,0 -1.6671,-0.00489 -1.6671,-0.00489z' stroke-linecap='butt'/><path d='M231.53224,183.71698c0,0 1.0218,0.00133 1.72496,0.00133c1.66637,0 2.87904,1.30979 2.87904,3.34112c0,2.03132 -1.12054,3.34112 -2.78691,3.34112c-0.65315,0 -1.84381,-0.00912 -1.84381,-0.00912z' stroke-linecap='butt'/><path d='M238.25389,183.71698v6.68357' stroke-linecap='round'/><path d='M241.54952,183.71622h-3.16538' stroke-linecap='round'/><path d='M241.11788,187.00162h-2.73374' stroke-linecap='round'/></g></g></g></svg>">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        html,
+        body,
+        #main {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            overflow: hidden;
+            color: black;
+            background-color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="nomedia">Please open a PDF file.</div>
+    <iframe id="main" type="application/pdf"></iframe>
+
+    <script>
+        async function greenflag() {
+            try {
+                if (myWindow.params.appid == myWindow.appID) {
+                    openfile(myWindow.params.data);
+                }
+            } catch (error) {
+                document.getElementById("nomedia").style.display = "block";
+            }
+        }
+
+        async function openfile(fileID) {
+            document.getElementById("nomedia").style.display = 'none';
+            var file = await window.parent.getFileById(fileID);
+
+            if (file && file.content) {
+                const base64Content = file.content;
+                const mimeType = "application/pdf";  // Explicit MIME type for PDFs
+
+                let blob = dataURItoBlob(base64Content, mimeType);
+                let fileURL = URL.createObjectURL(blob);
+
+                document.getElementById("main").src = fileURL;
+            }
+        }
+
+        function dataURItoBlob(dataURI, mimeType) {
+            let byteCharacters = atob(dataURI.split(',')[1]);  // Decode the base64 content
+            let byteArrays = [];
+
+            for (let i = 0; i < byteCharacters.length; i += 512) {
+                let slice = byteCharacters.slice(i, i + 512);
+                let byteNumbers = new Array(slice.length);
+                for (let j = 0; j < slice.length; j++) {
+                    byteNumbers[j] = slice.charCodeAt(j);
+                }
+                byteArrays.push(new Uint8Array(byteNumbers));
+            }
+
+            return new Blob(byteArrays, { type: mimeType });
+        }
+    </script>
+</body>
+
+</html>

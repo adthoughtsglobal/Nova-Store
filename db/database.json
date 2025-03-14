@@ -247,6 +247,17 @@
       "cat": "tools",
       "ver": "1",
       "th": "#ff9742"
+    },
+    {
+      "name": "PDF Viewer",
+      "src": "/Nova-Store/apps/pdfviewer.html",
+      "by": "adthoughtsglobal",
+      "qt": "Facts never die, PDFs too.",
+      "desc": "View PDFs with ease.",
+      "ldesc": "An app that let's you open PDFs in NovaOS using your browser's PDF environment.",
+      "cat": "tools",
+      "ver": "1",
+      "th": "#ff4040"
     }
   ]
 }
