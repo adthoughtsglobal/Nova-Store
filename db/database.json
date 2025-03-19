@@ -4,10 +4,10 @@
     "Nebula Studios",
     "mistium"
   ],
-  "featured": [
-    "PDF Viewer",
-    "NovaOS Claw"
-  ],
+  "featured": {
+    "appName":"NovaOS Claw",
+    "img":"https://i.ibb.co/j9Ycj5Y5/image.png"
+  },
   "data": [
     {
       "name": "Nova CLI",
