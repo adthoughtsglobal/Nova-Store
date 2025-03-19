@@ -681,6 +681,9 @@
                         <button id="followingfeedbtn" onclick="loadFeed('following',this)">
                             Following
                         </button>
+                        <button id="topfeedbtn" onclick="loadFeed('top',this)">
+                            Top
+                        </button>
                         <button id="otherfeed" style="display: none;" class="buttonlike">
                             Other
                         </button>
@@ -723,7 +726,7 @@
     <script>
         var feed = document.getElementById("feed");
         async function attachthings(obj) {
-            attachments = await window.parent.ask('Enter a URL to your file:' || '')
+            attachments = "&attachment=" + await window.parent.ask('Enter a URL to your file:' || '')
             obj.innerHTML = `
                         <span>Re-attach</span>
                         <ion-icon name="reload-outline"></ion-icon>`;
@@ -799,6 +802,12 @@
                 if (!checkifaccs()) return;
                 document.getElementById("followingfeedbtn").classList.add('active');
                 response = await fetch("https://claw.rotur.dev/following_feed?auth=" + window.parent.roturExtension.userToken + "&limit=" + postlimit + offsetParam);
+                posts = await response.json();
+                if (!useOffset) feedContainer.innerHTML = "";
+            } else if (type == 'top') {
+                if (!checkifaccs()) return;
+                document.getElementById("topfeedbtn").classList.add('active');
+                response = await fetch("https://social.rotur.dev/top_posts?time_period=168");
                 posts = await response.json();
                 if (!useOffset) feedContainer.innerHTML = "";
             } else {
@@ -1042,7 +1051,7 @@
             if (!checkifaccs()) { return }
             let content = document.getElementById("postinput").value;
 
-            await fetch(`https://claw.rotur.dev/post?content=${content}&os=novaOS&auth=${window.parent.roturExtension.userToken}&attachment=${attachments}`);
+            await fetch(`https://claw.rotur.dev/post?content=${content}&os=novaOS&auth=${window.parent.roturExtension.userToken}${attachments}`);
 
             if (attachments) {
                 document.getElementById("attachbtn").innerHTML = `
@@ -1162,6 +1171,8 @@
                     type = 'claw';
                 } else if (activeElement.id === 'followingfeedbtn') {
                     type = 'following';
+                } else if (activeElement.id === 'topfeedbtn') {
+                    type = 'top';
                 } else if (activeElement.id === 'profilefeedbtn') {
                     type = 'profile';
                 }
