@@ -223,11 +223,9 @@
             "--colors-BG-highlighted": "#F9CC6C",
             "--colors-text-normal": "#F2F1F3",
             "--colors-text-high": "#342613",
-            "--colors-special-good": "#49AC49",
-            "--colors-special-bad": "#AC4949",
             "--sizing-border-radius": ".7rem",
-            "--spacing-normal": "0.3rem",
-            "wallpaper": "https://images.unsplash.com/photo-1744274800188-4f3159c408cf?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        }
+            "--spacing-normal": "0.3rem"
+        }, 
+        "wallpaper": "https://images.unsplash.com/photo-1744274800188-4f3159c408cf?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     }
 }
