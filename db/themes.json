@@ -222,7 +222,7 @@
             "--colors-BG-sub": "#211C1C",
             "--colors-BG-highlighted": "#F9CC6C",
             "--colors-text-normal": "#F2F1F3",
-            "--colors-text-high": "#342613",
+            "--colors-text-high": "#141414",
             "--sizing-border-radius": ".7rem",
             "--spacing-normal": "0.3rem"
         }, 
