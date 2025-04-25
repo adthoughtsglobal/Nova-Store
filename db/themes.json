@@ -215,7 +215,7 @@
         }
     },
     "Ristretto": {
-        "type":"dark",
+        "type": "dark",
         "colors": {
             "--colors-BG-normal": "#191515",
             "--colors-BG-section": "#2C2525",
@@ -225,7 +225,140 @@
             "--colors-text-high": "#141414",
             "--sizing-border-radius": ".7rem",
             "--spacing-normal": "0.3rem"
-        }, 
+        },
         "wallpaper": "https://images.unsplash.com/photo-1744274800188-4f3159c408cf?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    "Aquamarine+": {
+        "type": "dark",
+        "by": "un4ya.1024",
+        "colors": {
+            "--colors-BG-normal": "#101819",
+            "--colors-BG-section": "#182227",
+            "--colors-BG-sub": "#253D3E",
+            "--colors-BG-highlighted": "#A9F9EF",
+            "--colors-text-normal": "#C5F3EE",
+            "--colors-text-high": "#203638",
+            "--colors-special-good": "#85FF85",
+            "--colors-special-bad": "#AC4949",
+            "--sizing-border-radius": ".5rem",
+            "--spacing-normal": "0.2rem",
+            "--spacing-gap": "5px",
+            "--sizing-normal": "0.41rem"
+        },
+        "wallpaper": "https://images.unsplash.com/photo-1668964640519-fcbce3f0449d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    "Iceberg": {
+        "type": "light",
+        "by": "un4ya.1024",
+        "colors": {
+            "--colors-BG-normal": "#E6EFFF",
+            "--colors-BG-section": "#D6E3FF",
+            "--colors-BG-sub": "#FFFFFF",
+            "--colors-BG-highlighted": "#94A9D7",
+            "--colors-text-normal": "#748BA5",
+            "--colors-text-high": "#FFFFFF",
+            "--colors-special-good": "#FFFFFF",
+            "--colors-special-bad": "#A2AADF",
+            "--sizing-border-radius": "0.0875rem",
+            "--spacing-normal": "0.1rem",
+            "--spacing-gap": "5px",
+            "--sizing-normal": "0.24rem"
+        },
+        "wallpaper": "https://images.unsplash.com/photo-1514912167371-414eb14af094?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    "Forest": {
+        "type": "dark",
+        "by": "un4ya.1024",
+        "colors": {
+            "--colors-BG-normal": "#2C3D2C",
+            "--colors-BG-section": "#345037",
+            "--colors-BG-sub": "#3F5F36",
+            "--colors-BG-highlighted": "#77B87C",
+            "--colors-text-normal": "#93BD9A",
+            "--colors-text-high": "#273B2B",
+            "--colors-special-good": "#C7FFC7",
+            "--colors-special-bad": "#90BA8D",
+            "--sizing-border-radius": ".2rem",
+            "--spacing-normal": "0.1rem",
+            "--spacing-gap": "5px",
+            "--sizing-normal": "0.42rem"
+        },
+        "wallpaper": "https://images.unsplash.com/photo-1727067113385-40c036c0f779?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    "Evening": {
+        "type": "dark",
+        "by": "un4ya.1024",
+        "colors": {
+            "--colors-BG-normal": "#0E162A",
+            "--colors-BG-section": "#1F2541",
+            "--colors-BG-sub": "#313353",
+            "--colors-BG-highlighted": "#F9F7C9",
+            "--colors-text-normal": "#F3F3B3",
+            "--colors-text-high": "#1D2138",
+            "--colors-special-good": "#85FF85",
+            "--colors-special-bad": "#AC4949",
+            "--sizing-border-radius": ".3rem",
+            "--spacing-normal": "0.2rem",
+            "--spacing-gap": "5px",
+            "--sizing-normal": "0.41rem"
+        },
+        "wallpaper": "https://images.unsplash.com/photo-1610798018989-001c5150766a?q=80&w=2008&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    "Ultramarine": {
+        "type": "dark",
+        "by": "un4ya.1024",
+        "colors": {
+            "--colors-BG-normal": "#080A19",
+            "--colors-BG-section": "#0C0F27",
+            "--colors-BG-sub": "#15183E",
+            "--colors-BG-highlighted": "#70BCF9",
+            "--colors-text-normal": "#A7C2F3",
+            "--colors-text-high": "#0F1538",
+            "--colors-special-good": "#85FF85",
+            "--colors-special-bad": "#AC4949",
+            "--sizing-border-radius": ".7rem",
+            "--spacing-normal": "0.4rem",
+            "--spacing-gap": "8px",
+            "--sizing-normal": "0.48rem"
+        },
+        "wallpaper": "https://images.unsplash.com/photo-1563891907885-f01bba599417?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    "Twilight": {
+        "type": "dark",
+        "by": "un4ya.1024",
+        "colors": {
+            "--colors-BG-normal": "#493866",
+            "--colors-BG-section": "#5E4B86",
+            "--colors-BG-sub": "#6E598F",
+            "--colors-BG-highlighted": "#D7B6F9",
+            "--colors-text-normal": "#E7C5F3",
+            "--colors-text-high": "#82518E",
+            "--colors-special-good": "#85FF85",
+            "--colors-special-bad": "#AC4949",
+            "--sizing-border-radius": ".7rem",
+            "--spacing-normal": "0rem",
+            "--spacing-gap": "8px",
+            "--sizing-normal": "0.57rem"
+        },
+        "wallpaper": "https://images.unsplash.com/photo-1618814941106-07c927b7078d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    "Vehemence": {
+        "type": "dark",
+        "by": "un4ya.1024",
+        "colors": {
+            "--colors-BG-normal": "#2A0505",
+            "--colors-BG-section": "#1E0C0C",
+            "--colors-BG-sub": "#000000",
+            "--colors-BG-highlighted": "#D13A3A",
+            "--colors-text-normal": "#F3A4A4",
+            "--colors-text-high": "#3A1212",
+            "--colors-special-good": "#85FF85",
+            "--colors-special-bad": "#AC4949",
+            "--sizing-border-radius": "0rem",
+            "--spacing-normal": "0.42rem",
+            "--spacing-gap": "8.8px",
+            "--sizing-normal": "0.34rem"
+        },
+            "wallpaper": "https://images.unsplash.com/photo-1626548752000-afb81286797e?q=80&w=1931&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     }
 }
