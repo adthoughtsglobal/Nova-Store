@@ -346,18 +346,18 @@
         "type": "dark",
         "by": "un4ya.1024",
         "colors": {
-            "--colors-BG-normal": "#16131B",
-            "--colors-BG-section": "#21192A",
-            "--colors-BG-sub": "#534167",
-            "--colors-BG-highlighted": "#BCA7F9",
-            "--colors-text-normal": "#F3F3F3",
-            "--colors-text-high": "#2F1E56",
+            "--colors-BG-normal": "#2A0505",
+            "--colors-BG-section": "#1E0C0C",
+            "--colors-BG-sub": "#000000",
+            "--colors-BG-highlighted": "#D13A3A",
+            "--colors-text-normal": "#F3A4A4",
+            "--colors-text-high": "#3A1212",
             "--colors-special-good": "#85FF85",
             "--colors-special-bad": "#AC4949",
-            "--sizing-border-radius": ".5rem",
-            "--spacing-normal": "0.2rem",
-            "--spacing-gap": "5px",
-            "--sizing-normal": "0.41rem"
+            "--sizing-border-radius": "0rem",
+            "--spacing-normal": "0.42rem",
+            "--spacing-gap": "8.8px",
+            "--sizing-normal": "0.34rem"
         },
         "wallpaper": "https://images.unsplash.com/photo-1626548752000-afb81286797e?q=80&w=1931&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
