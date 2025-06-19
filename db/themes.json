@@ -361,6 +361,25 @@
         },
         "wallpaper": "https://images.unsplash.com/photo-1626548752000-afb81286797e?q=80&w=1931&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
+    "Midnight dawn": {
+        "type": "dark",
+        "by": "Sophie",
+        "colors": {
+            "--colors-BG-normal": "#000000",
+            "--colors-BG-section": "#111111",
+            "--colors-BG-sub": "#111111",
+            "--colors-BG-highlighted": "#FF8161",
+            "--colors-text-normal": "#FFFFFF",
+            "--colors-text-high": "#000000",
+            "--colors-special-good": "#85FF85",
+            "--colors-special-bad": "#AC4949",
+            "--sizing-border-radius": ".5rem",
+            "--spacing-normal": "7px",
+            "--spacing-gap": "10px",
+            "--sizing-normal": "7px"
+        },
+        "wallpaper": "https://raw.githubusercontent.com/Mistium/Origin-OS/main/Wallpapers/originOS%20Dawn.png"
+    },
     "Invisible universe": {
         "type": "dark",
         "colors": {
