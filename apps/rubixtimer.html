@@ -7,18 +7,18 @@
 	<title>Rubik's Cube Timer</title>
 	<style>
 		:root {
-			--colors-BG-normal: #101010;
-			--colors-BG-sub: #262626;
-			--colors-BG-section: #171717;
-			--colors-BG-highlighted: #44403C;
+			--col-bg1: #101010;
+			--col-bg3: #262626;
+			--col-bg2: #171717;
+			--col-bgh: #44403C;
 			--colors-BG-accent: #44403C;
-			--colors-text-normal: white;
-			--colors-special-good: #49ac49;
-			--colors-special-bad: #ac4949;
+			--col-txt1: white;
+			--col-good: #49ac49;
+			--col-bad: #ac4949;
 
-			--sizing-border-radius: 0.5rem;
-			--sizing-border-radius-normal: 0.75rem;
-			--sizing-border-radius-full: 1rem;
+			--siz-radius1: 0.5rem;
+			--siz-radius1-normal: 0.75rem;
+			--siz-radius1-full: 1rem;
 
 			--sizing-huge: 1rem;
 			--sizing-normal: 0.5rem;
@@ -30,17 +30,17 @@
 		}
 
 		::-webkit-scrollbar-track {
-			background: var(--colors-BG-normal);
-			border-radius: var(--sizing-border-radius);
+			background: var(--col-bg1);
+			border-radius: var(--siz-radius1);
 		}
 
 		::-webkit-scrollbar-thumb {
-			background: var(--colors-BG-highlighted);
-			border-radius: var(--sizing-border-radius);
+			background: var(--col-bgh);
+			border-radius: var(--siz-radius1);
 		}
 
 		::-webkit-scrollbar-thumb:hover {
-			background: var(--colors-BG-sub);
+			background: var(--col-bg3);
 			cursor: grab;
 		}
 
