@@ -32,6 +32,17 @@
       "th": "#4e5fa7"
     },
     {
+      "name": "Data manager",
+      "src": "/Nova-Store/apps/datamgr.html",
+      "by": "adthoughtsglobal",
+      "qt": "Dig and replace",
+      "desc": "Manage data in local storage",
+      "cat": "tools",
+      "ver": "1",
+      "ldesc": "Easily index and edit data in local storage.",
+      "th": "#a0a0a0"
+    },
+    {
       "name": "Credits center",
       "src": "/Nova-Store/apps/payments.html",
       "by": "adthoughtsglobal",
