@@ -28,14 +28,13 @@
         html,
         body,
         #main {
-            height: 100%;
-            width: 100%;
-            margin: 0;
-            overflow: hidden;
-			background: var(--col-bg1);
-            color: var(--col-txt1);
+            background: var(--col-bg1);
+    color: var(--col-txt1);
         }
 
+body {
+    margin: 1em;
+}
 
 		.datamangernav {
 			display: flex;
@@ -95,7 +94,6 @@
 </head>
 
 <body>
-    <h1>Data Manager</h1>
     <div class="datamangernav">
         <span>LocalStorage</span>
         <a onclick="lclstgsc()"><i class="material-symbols-rounded">restart_alt</i></a>
