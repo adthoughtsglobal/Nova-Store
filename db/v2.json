@@ -6,12 +6,12 @@
   ],
   "featured": [
     {
-      "text":"Read PDF files",
+      "text": "Read PDF files",
       "appName": "PDF Viewer",
       "img": "https://i.ibb.co/HL6SQxRr/image.png"
     },
     {
-      "text":"Social client for Rotur",
+      "text": "Social client for Rotur",
       "appName": "NovaOS Claw",
       "img": "https://i.ibb.co/r2CjJ4wK/image.png"
     }
@@ -26,6 +26,7 @@
       "cat": "tools",
       "ver": "1",
       "ldesc": "Access Nova System directly with Nova CLI, read and write files, execute functions and return data.",
+      "symbol": "terminal",
       "th": "#5FFCA6"
     },
     {
@@ -37,6 +38,7 @@
       "cat": "rotur",
       "ver": "1",
       "ldesc": "Read the Claw feed or become a part in the conversation. Now with attatchments.",
+      "symbol": "comic_bubble",
       "th": "#4e5fa7"
     },
     {
@@ -48,6 +50,7 @@
       "cat": "tools",
       "ver": "1",
       "ldesc": "Easily index and edit data in local storage.",
+      "symbol": "database",
       "th": "#a0a0a0"
     },
     {
@@ -59,6 +62,7 @@
       "cat": "rotur",
       "ver": "1",
       "ldesc": "Pay anyone with rotur credits. Personalized summary on wealth and easy transfers.",
+      "symbol": "send_money",
       "th": "#f4c95e"
     },
     {
@@ -70,6 +74,7 @@
       "cat": "tools",
       "ver": "1",
       "ldesc": "Rubiks cube timer with smart interface and help. Also includes codes for scramble and presise timer to three magnitudes.",
+      "symbol": "deployed_code",
       "th": "#5FFCA6"
     },
     {
@@ -81,6 +86,7 @@
       "cat": "text editor",
       "ver": "1",
       "ldesc": "Create formatted HTML files without code. Text editor for rich text editing in NovaOS.",
+      "symbol": "rtt",
       "th": "#ffffff"
     },
     {
@@ -92,6 +98,7 @@
       "cat": "tools",
       "ver": "1",
       "ldesc": "Create a To Do list of stuff you need to do - so that you won't forget. Updated by funsparktv.",
+      "symbol": "pending_actions",
       "th": "#5889A8"
     },
     {
@@ -103,6 +110,7 @@
       "cat": "tools",
       "ver": "1",
       "ldesc": "Create your artwork and download them with a click of a button!",
+      "symbol": "brush",
       "th": "#458D2B"
     },
     {
@@ -114,6 +122,7 @@
       "cat": "fun",
       "ver": "1",
       "ldesc": "An app that shows pictures of ducks with a panning animation.",
+      "symbol": "cognition_2",
       "th": "#FEE81F"
     },
     {
@@ -125,6 +134,7 @@
       "cat": "tools",
       "ver": "1",
       "ldesc": "'Stable Diffusion' is an innovative Text to Image Generator application that utilizes advanced stable diffusion techniques to seamlessly translate textual descriptions into visually compelling images.",
+      "symbol": "wand_stars",
       "th": "#B50FA1"
     },
     {
@@ -136,6 +146,7 @@
       "cat": "code editor",
       "ver": "1",
       "ldesc": "HTML code editor with same screen preview and dynamic UI. Uses Ace editor.",
+      "symbol": "construction",
       "th": "#FFA500"
     },
     {
@@ -147,6 +158,7 @@
       "cat": "code editor",
       "ver": "1",
       "ldesc": "Create with OriginOS's Origin Scripting language with file saving, open as window, open inline etc.",
+      "symbol": "folder_Code",
       "th": "#202225"
     },
     {
@@ -158,6 +170,7 @@
       "cat": "code editor",
       "ver": "1",
       "ldesc": "An HTML, OSL and python code editor with hotkeys, syntax highlighting, same screen previews, help and much more!",
+      "symbol": "code",
       "th": "#3C9A47"
     },
     {
@@ -169,6 +182,7 @@
       "cat": "tools",
       "ver": "1",
       "ldesc": "A modern UI for Lizabot3, a personal chatbot that browses the internet and leverage it to make results without the use of AI.",
+      "symbol": "robot_2",
       "th": "#25869E"
     },
     {
@@ -180,28 +194,7 @@
       "cat": "launcher",
       "ver": "1",
       "ldesc": "Origin is the Web Desktop GUI for running OSL and OASM. It is the best Turbowarp OS. Version 4.9.9, hosted and made by Mistium.",
-      "th": "#57cdac"
-    },
-    {
-      "name": "NovaAI",
-      "src": "/Nova-Store/apps/NovaAI.html",
-      "by": "FunSparkTV",
-      "qt": "Wiki Chat",
-      "desc": "ChatBot interface for searching data.",
-      "cat": "tools",
-      "ver": "1",
-      "ldesc": "Nova AI, your intelligent virtual assistant, offers instant access to accurate information through its sleek interface and intuitive design. With advanced algorithms and integration with Wikipedia, Nova AI ensures reliable answers to a wide range of inquiries, making it your go-to companion for all your needs.",
-      "th": "#57cdac"
-    },
-    {
-      "name": "PySphere",
-      "src": "https://funsparktv-ai.github.io/PySphere/",
-      "by": "FunSparkTV",
-      "qt": "Run Python",
-      "desc": "An Online Python Interpreter",
-      "cat": "tools",
-      "ver": "1",
-      "ldesc": "A python runner based on skulpt that lets you write and run Python code directly in your browser. It features syntax highlighting, code completion, and a user-friendly interface.",
+      "symbol": "interactive_space",
       "th": "#57cdac"
     },
     {
@@ -213,6 +206,7 @@
       "cat": "tools",
       "ver": "1",
       "ldesc": "Theres blocks with text that you can drag and drop to make source codes for webpages (HTML, CSS and JS). Now with more functions and advanced live previews.",
+      "symbol": "html",
       "th": "#880808"
     },
     {
@@ -224,6 +218,7 @@
       "cat": "tools",
       "ver": "1",
       "ldesc": "Digital oscillator editor tool with minimal beat maker UI.",
+      "symbol": "scatter_plot",
       "th": "#ff9742"
     },
     {
@@ -234,6 +229,7 @@
       "desc": "Interactive and responsive editor for JSON files. Stable.",
       "cat": "tools",
       "ver": "1",
+      "symbol": "data_object",
       "th": "#ff9742"
     },
     {
@@ -245,6 +241,7 @@
       "ldesc": "An app that let's you open PDFs in NovaOS using your browser's PDF environment.",
       "cat": "tools",
       "ver": "1",
+      "symbol": "picture_as_pdf",
       "th": "#ff4040"
     }
   ],
@@ -258,6 +255,7 @@
       "cat": "games",
       "ver": "1",
       "ldesc": "A very hard game where forgetting 3 words causes your system to reset - but you can always quit.",
+      "symbol": "picture_as_pdf",
       "th": "#ff9742"
     },
     {
@@ -268,6 +266,7 @@
       "desc": "Play chess",
       "cat": "games",
       "ldesc": "Nova Chess redefines chess gaming with a web-based platform designed to cater to both casual players and chess enthusiasts alike. It features live game evaluation! Ensuring a visually appealing and intuitive interface. Players interact directly with the board, clicking on pieces to execute moves seamlessly. ",
+      "symbol": "chess",
       "th": "#880808"
     },
     {
@@ -278,6 +277,7 @@
       "desc": "The game Of TicTacToe.",
       "cat": "game",
       "ldesc": "Play the game of Tic Tac Toe with your friends with same screen multiplayer!",
+      "symbol": "apps",
       "th": "#C6AA4F"
     }
   ]
