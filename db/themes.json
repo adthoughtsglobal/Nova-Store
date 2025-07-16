@@ -380,6 +380,24 @@
         },
         "wallpaper": "https://raw.githubusercontent.com/Mistium/Origin-OS/main/Wallpapers/originOS%20Dawn.png"
     },
+    "Minionese": {
+        "type": "dark",
+        "colors": {
+            "--col-bg1": "#0B3643",
+            "--col-bg2": "#015663",
+            "--col-bg3": "#8E771A",
+            "--col-bgh": "#E1AE20",
+            "--col-txt1": "#E9E8E7",
+            "--col-txth": "#12272B",
+            "--col-good": "#49AC49",
+            "--col-bad": "#AC4949",
+            "--siz-radius1": "1rem",
+            "--spacing-normal": "0.3rem",
+            "--spacing-gap": "6px",
+            "--sizing-normal": "0.5rem"
+        },
+        "wallpaper": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallpaperaccess.com%2Ffull%2F27847.jpg&f=1&nofb=1&ipt=0ed41065890108465c6c528df110fa56a32064e760537dddf93a3cfd792fcdc0"
+    },
     "Invisible universe": {
         "type": "dark",
         "colors": {
