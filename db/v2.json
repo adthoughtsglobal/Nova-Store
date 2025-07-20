@@ -141,9 +141,9 @@
       "name": "Calier",
       "src": "https://raw.githack.com/koo1140/calier/main/0.3.2/calier.html",
       "by": "costikoooo",
-      "qt": "Code editor",
+      "qt": "text editor",
       "desc": "HTML code editor with preview",
-      "cat": "code editor",
+      "cat": "text editor",
       "ver": "1",
       "ldesc": "HTML code editor with same screen preview and dynamic UI. Uses Ace editor.",
       "symbol": "construction",
@@ -155,7 +155,7 @@
       "by": "Nebula Studios",
       "qt": "Code OSL",
       "desc": "Make apps with OriginOS's Origin Scripting language.",
-      "cat": "code editor",
+      "cat": "text editor",
       "ver": "1",
       "ldesc": "Create with OriginOS's Origin Scripting language with file saving, open as window, open inline etc.",
       "symbol": "folder_Code",
@@ -167,7 +167,7 @@
       "by": "adthoughtsglobal",
       "qt": "Create Anything.",
       "desc": "An full HTML, Python, OSL code editor.",
-      "cat": "code editor",
+      "cat": "text editor",
       "ver": "1",
       "ldesc": "An HTML, OSL and python code editor with hotkeys, syntax highlighting, same screen previews, help and much more!",
       "symbol": "code",
@@ -215,7 +215,7 @@
       "by": "adthoughtsglobal",
       "qt": "Mini beat maker",
       "desc": "Minimal beat editor tool with waveform editing.",
-      "cat": "tools",
+      "cat": "fun",
       "ver": "1",
       "ldesc": "Digital oscillator editor tool with minimal beat maker UI.",
       "symbol": "scatter_plot",
@@ -243,9 +243,7 @@
       "ver": "1",
       "symbol": "picture_as_pdf",
       "th": "#ff4040"
-    }
-  ],
-  "games": [
+    },
     {
       "name": "Bad Things",
       "src": "/Nova-Store/apps/badthings.html",
@@ -275,7 +273,7 @@
       "by": "G-Progress",
       "qt": "Play offline",
       "desc": "The game Of TicTacToe.",
-      "cat": "game",
+      "cat": "games",
       "ldesc": "Play the game of Tic Tac Toe with your friends with same screen multiplayer!",
       "symbol": "apps",
       "th": "#C6AA4F"
