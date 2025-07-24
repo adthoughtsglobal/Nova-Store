@@ -380,6 +380,23 @@
         },
         "wallpaper": "https://raw.githubusercontent.com/Mistium/Origin-OS/main/Wallpapers/originOS%20Dawn.png"
     },
+    "Starry Maze": {
+        "colors": {
+            "--col-bg1": "#000000",
+            "--col-bg2": "#070707",
+            "--col-bg3": "#101010",
+            "--col-bgh": "#FFF0E5",
+            "--col-txt1": "#FFFFFF",
+            "--col-txth": "#171717",
+            "--col-good": "#49AC49",
+            "--col-bad": "#AC4949",
+            "--siz-radius1": ".3rem",
+            "--spacing-normal": "0.3rem",
+            "--spacing-gap": "6px",
+            "--sizing-normal": "0.5rem"
+        },
+        "wallpaper": "https://images.unsplash.com/photo-1514669362126-0d8bb38261a3?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
     "Minionese": {
         "type": "dark",
         "colors": {
