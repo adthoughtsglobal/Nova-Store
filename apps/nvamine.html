@@ -24,6 +24,10 @@
             border-radius: var(--siz-radius1);
             box-shadow: 0 0 5px #0000009c;
             text-align: center;
+
+            &::backdrop {
+                background-color: black;
+            }
         }
 
         div#gameslist {
@@ -169,7 +173,7 @@
             <div class="material-symbols-rounded" onclick="startupDia.showModal();">home</div>
             <div id="ver_name">classic</div>
         </nav>
-        <iframe src="https://adthoughtsglobal.github.io/" id="mainFrame"></iframe>
+        <iframe src="https://adthoughtsglobal.github.io/screens/loading.html" id="mainFrame"></iframe>
     </div>
     <script>
         var startupDia = document.getElementById("startupDia");
