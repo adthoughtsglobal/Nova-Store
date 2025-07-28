@@ -257,6 +257,17 @@
       "th": "#ff9742"
     },
     {
+      "name": "Minecraft Launcher",
+      "src": "/Nova-Store/apps/nvamine.html",
+      "by": "adthoughtsglobal",
+      "qt": "Sculpt or destroy.",
+      "desc": "Play minecraft clones",
+      "cat": "games",
+      "ldesc": "Minecraft launcher in NovaOS is a way to play different minecraft web clones.",
+      "symbol": "deployed_code",
+      "th": "#093b3a"
+    },
+    {
       "name": "Nova Chess",
       "src": "https://funsparktv-ai.github.io/nova-chess/",
       "by": "FunSparkTV",
