@@ -432,5 +432,23 @@
             "--sizing-normal": "0.41rem"
         },
         "wallpaper": "https://images.unsplash.com/photo-1688614598602-0a71fbfed6c5?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    "Gay pink": {
+        "type": "light",
+        "colors": {
+            "--col-bg1": "#FFEDF6",
+            "--col-bg2": "#FFD1DF",
+            "--col-bg3": "#FFF2FB",
+            "--col-bgh": "#D77496",
+            "--col-txt1": "#724F72",
+            "--col-txth": "#FFFFFF",
+            "--col-good": "#FFFFFF",
+            "--col-bad": "#A2AADF",
+            "--siz-radius1": "1rem",
+            "--spacing-normal": "0.3rem",
+            "--spacing-gap": ".5px",
+            "--sizing-normal": "0.5rem"
+        },
+        "wallpaper": "https://images.unsplash.com/photo-1555231955-348aa2312e19?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     }
 }
