@@ -78,6 +78,18 @@
       "th": "#5FFCA6"
     },
     {
+      "name": "Owi Five",
+      "src": "/Nova-Store/apps/owifive.html",
+      "by": "adthoughtsglobal",
+      "qt": "Investigate that image",
+      "desc": "A tool to dig in details and alter image contents.",
+      "cat": "tools",
+      "ver": "1",
+      "ldesc": "Owifive is a tool that helps you to analize local images with ease.",
+      "symbol": "image_search",
+      "th": "#a15ffd"
+    },
+    {
       "name": "Textame",
       "src": "/Nova-Store/apps/textame.html",
       "by": "adthoughtsglobal",
