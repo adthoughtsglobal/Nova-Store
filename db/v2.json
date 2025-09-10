@@ -90,6 +90,18 @@
       "th": "#a15ffd"
     },
     {
+      "name": "Rotur Dashboard",
+      "src": "/Nova-Store/apps/rotur.html",
+      "by": "adthoughtsglobal",
+      "qt": "Get sign out go brrr",
+      "desc": "Dashboard to configure RoturTW on NovaOS.",
+      "cat": "tools",
+      "ver": "1",
+      "ldesc": "Rotur is a cloudlink based standard for packet based communications, generally for Web OSs.",
+      "symbol": "hive",
+      "th": "#5f3d88"
+    },
+    {
       "name": "Textame",
       "src": "/Nova-Store/apps/textame.html",
       "by": "adthoughtsglobal",
