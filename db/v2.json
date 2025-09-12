@@ -264,7 +264,7 @@
       "desc": "View PDFs with ease.",
       "ldesc": "An app that let's you open PDFs in NovaOS using your browser's PDF environment.",
       "cat": "tools",
-      "ver": "1",
+      "ver": "1.1",
       "symbol": "picture_as_pdf",
       "th": "#ff4040"
     },
