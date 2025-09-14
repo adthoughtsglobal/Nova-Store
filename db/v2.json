@@ -95,8 +95,8 @@
       "by": "adthoughtsglobal",
       "qt": "Get sign out go brrr",
       "desc": "Dashboard to configure RoturTW on NovaOS.",
-      "cat": "tools",
-      "ver": "1",
+      "cat": "rotur",
+      "ver": "1.1",
       "ldesc": "Rotur is a cloudlink based standard for packet based communications, generally for Web OSs.",
       "symbol": "hive",
       "th": "#5f3d88"
