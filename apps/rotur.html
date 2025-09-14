@@ -152,7 +152,7 @@
         }
         let e = document.getElementById("authframe");
         async function greenflag() {
-            let STYLE_URL = "http://127.0.0.1:3000/libs/roturstyle.css";
+            let STYLE_URL = "https://adthoughtsglobal.github.io/nova-dev-repl-rl/libs/roturstyle.css";
             e.src = `https://rotur.dev/auth?styles=${encodeURIComponent(STYLE_URL)}&return_to=https://rotur.dev`;
             if (window.parent.roturExtension && window.parent.roturExtension.loggedIn()) {
                 e.style.display = "none";
