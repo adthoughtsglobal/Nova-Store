@@ -14,6 +14,11 @@
       "text": "Social client for Rotur",
       "appName": "NovaOS Claw",
       "img": "https://i.ibb.co/r2CjJ4wK/image.png"
+    },
+    {
+      "text":"Rotur Account dashboard",
+      "appName": "Rotur Dashboard",
+      "img":"https://i.ibb.co/xtC92x0C/image.png"
     }
   ],
   "apps": [
@@ -277,7 +282,7 @@
       "cat": "games",
       "ver": "1",
       "ldesc": "A very hard game where forgetting 3 words causes your system to reset - but you can always quit.",
-      "symbol": "picture_as_pdf",
+      "symbol": "visibility",
       "th": "#ff9742"
     },
     {
