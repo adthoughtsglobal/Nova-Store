@@ -155,18 +155,6 @@
       "th": "#FEE81F"
     },
     {
-      "name": "Stable Diffusion",
-      "src": "/Nova-Store/apps/texttoimage.html",
-      "by": "Nebula Studios",
-      "qt": "Generate Art",
-      "desc": "Text to Image Generator based on Stable Diffusion.",
-      "cat": "tools",
-      "ver": "1",
-      "ldesc": "'Stable Diffusion' is an innovative Text to Image Generator application that utilizes advanced stable diffusion techniques to seamlessly translate textual descriptions into visually compelling images.",
-      "symbol": "network_intelligence",
-      "th": "#B50FA1"
-    },
-    {
       "name": "Calier",
       "src": "https://raw.githack.com/koo1140/calier/main/0.3.2/calier.html",
       "by": "costikoooo",
