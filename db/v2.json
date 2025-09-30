@@ -100,7 +100,7 @@
       "by": "adthoughtsglobal",
       "qt": "Get sign out go brrr",
       "desc": "Dashboard to configure RoturTW on NovaOS.",
-      "cat": "rotur",
+      "cat": "auth",
       "ver": "1.1",
       "ldesc": "Rotur is a cloudlink based standard for packet based communications, generally for Web OSs.",
       "symbol": "hive",
@@ -283,6 +283,17 @@
       "ldesc": "Minecraft launcher in NovaOS is a way to play different minecraft web clones.",
       "symbol": "deployed_code",
       "th": "#093b3a"
+    },
+    {
+      "name": "Puter Auth",
+      "src": "/Nova-Store/apps/puter.html",
+      "by": "adthoughtsglobal",
+      "qt": "Sign in puter",
+      "desc": "Wizard to configure Puter account on NovaOS.",
+      "cat": "auth",
+      "ldesc": "Sign into a Puter.js account and access puter powered applications with ease.",
+      "symbol": "cloud",
+      "th": "#0009d6"
     },
     {
       "name": "Nova Chess",
