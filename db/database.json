@@ -43,6 +43,17 @@
       "th": "#a0a0a0"
     },
     {
+      "name": "OrionClient",
+      "src": "/Nova-Store/apps/orion.html",
+      "by": "adthoughtsglobal",
+      "qt": "Talk like u are there",
+      "desc": "BETA OriginChats client",
+      "cat": "rotur",
+      "ver": "1",
+      "ldesc": "A very clean NovaOS flavored client for rotur's originchats.",
+      "th": "#972c00"
+    },
+    {
       "name": "Credits center",
       "src": "/Nova-Store/apps/payments.html",
       "by": "adthoughtsglobal",
