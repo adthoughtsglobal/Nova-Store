@@ -307,6 +307,17 @@
       "th": "#972c00"
     },
     {
+      "name": "Obamafy",
+      "src": "/Nova-Store/apps/obamafy.html",
+      "by": "adthoughtsglobal",
+      "qt": "obama",
+      "desc": "If it exists, theres obama of it.",
+      "cat": "fun",
+      "ver": "1",
+      "ldesc": "Image to obama converter",
+      "th": "#972c00"
+    },
+    {
       "name": "Nova Chess",
       "src": "https://funsparktv-ai.github.io/nova-chess/",
       "by": "FunSparkTV",
