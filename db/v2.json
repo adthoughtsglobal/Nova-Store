@@ -291,8 +291,9 @@
       "qt": "Talk like u are there",
       "desc": "BETA OriginChats client",
       "cat": "rotur",
-      "ver": "1",
+      "ver": "1.1",
       "ldesc": "A very clean NovaOS flavored client for rotur's originchats.",
+      "symbol": "groups",
       "th": "#972c00"
     },
     {
