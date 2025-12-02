@@ -1,8 +1,6 @@
 {
   "vdevs": [
-    "adthoughtsglobal",
-    "mistium",
-    "Vizronix"
+    "adthoughtsglobal"
   ],
   "featured": [
     {
@@ -11,14 +9,9 @@
       "img": "https://i.ibb.co/HL6SQxRr/image.png"
     },
     {
-      "text": "Social client for Rotur",
-      "appName": "NovaOS Claw",
-      "img": "https://i.ibb.co/r2CjJ4wK/image.png"
-    },
-    {
-      "text":"Rotur Account dashboard",
-      "appName": "Rotur Dashboard",
-      "img":"https://i.ibb.co/xtC92x0C/image.png"
+      "text": "Mine and craft",
+      "appName": "Minecraft Launcher",
+      "img": "https://ichef.bbci.co.uk/news/480/cpsprodpb/15F8/production/_131442650_mediaitem131442649.jpg.webp"
     }
   ],
   "apps": [
@@ -59,18 +52,6 @@
       "th": "#a0a0a0"
     },
     {
-      "name": "Credits center",
-      "src": "/Nova-Store/apps/payments.html",
-      "by": "adthoughtsglobal",
-      "qt": "Track rotur payments",
-      "desc": "Rotur credits payment application",
-      "cat": "rotur",
-      "ver": "1",
-      "ldesc": "Pay anyone with rotur credits. Personalized summary on wealth and easy transfers.",
-      "symbol": "send_money",
-      "th": "#f4c95e"
-    },
-    {
       "name": "Rubix Timer",
       "src": "/Nova-Store/apps/rubixtimer.html",
       "by": "adthoughtsglobal",
@@ -95,18 +76,6 @@
       "th": "#a15ffd"
     },
     {
-      "name": "Rotur Dashboard",
-      "src": "/Nova-Store/apps/rotur.html",
-      "by": "adthoughtsglobal",
-      "qt": "Get sign out go brrr",
-      "desc": "Dashboard to configure RoturTW on NovaOS.",
-      "cat": "rotur",
-      "ver": "1.1",
-      "ldesc": "Rotur is a cloudlink based standard for packet based communications, generally for Web OSs.",
-      "symbol": "hive",
-      "th": "#5f3d88"
-    },
-    {
       "name": "Textame",
       "src": "/Nova-Store/apps/textame.html",
       "by": "adthoughtsglobal",
@@ -117,18 +86,6 @@
       "ldesc": "Create formatted HTML files without code. Text editor for rich text editing in NovaOS.",
       "symbol": "rtt",
       "th": "#ffffff"
-    },
-    {
-      "name": "To Do App",
-      "src": "/Nova-Store/apps/felixtodo.html",
-      "by": "Nebula Studios",
-      "qt": "List your tasks",
-      "desc": "A standard To Do list which remembers your tasks!",
-      "cat": "tools",
-      "ver": "1",
-      "ldesc": "Create a To Do list of stuff you need to do - so that you won't forget. Updated by funsparktv.",
-      "symbol": "pending_actions",
-      "th": "#5889A8"
     },
     {
       "name": "Artion",
@@ -153,30 +110,6 @@
       "ldesc": "An app that shows pictures of ducks with a panning animation.",
       "symbol": "cognition_2",
       "th": "#FEE81F"
-    },
-    {
-      "name": "Calier",
-      "src": "https://raw.githack.com/koo1140/calier/main/0.3.2/calier.html",
-      "by": "costikoooo",
-      "qt": "text editor",
-      "desc": "HTML code editor with preview",
-      "cat": "text editor",
-      "ver": "1",
-      "ldesc": "HTML code editor with same screen preview and dynamic UI. Uses Ace editor.",
-      "symbol": "construction",
-      "th": "#FFA500"
-    },
-    {
-      "name": "OSL Editor",
-      "src": "/Nova-Store/apps/osleditor.html",
-      "by": "Nebula Studios",
-      "qt": "Code OSL",
-      "desc": "Make apps with OriginOS's Origin Scripting language.",
-      "cat": "text editor",
-      "ver": "1",
-      "ldesc": "Create with OriginOS's Origin Scripting language with file saving, open as window, open inline etc.",
-      "symbol": "folder_Code",
-      "th": "#202225"
     },
     {
       "name": "WCanvas2",
@@ -285,18 +218,6 @@
       "th": "#093b3a"
     },
     {
-      "name": "OrionClient",
-      "src": "/Nova-Store/apps/orion.html",
-      "by": "adthoughtsglobal",
-      "qt": "Talk like u are there",
-      "desc": "BETA OriginChats client",
-      "cat": "rotur",
-      "ver": "1.1",
-      "ldesc": "A very clean NovaOS flavored client for rotur's originchats.",
-      "symbol": "groups",
-      "th": "#972c00"
-    },
-    {
       "name": "Obamafy",
       "src": "/Nova-Store/apps/obamafy.html",
       "by": "adthoughtsglobal",
@@ -306,17 +227,6 @@
       "ver": "1",
       "ldesc": "Image to obama converter",
       "th": "#972c00"
-    },
-    {
-      "name": "Nova Chess",
-      "src": "https://funsparktv-ai.github.io/nova-chess/",
-      "by": "FunSparkTV",
-      "qt": "Play chess",
-      "desc": "Play chess",
-      "cat": "games",
-      "ldesc": "Nova Chess redefines chess gaming with a web-based platform designed to cater to both casual players and chess enthusiasts alike. It features live game evaluation! Ensuring a visually appealing and intuitive interface. Players interact directly with the board, clicking on pieces to execute moves seamlessly. ",
-      "symbol": "chess",
-      "th": "#880808"
     },
     {
       "name": "Tic Tac Toe",
