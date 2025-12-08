@@ -212,7 +212,7 @@
       "by": "adthoughtsglobal",
       "qt": "Things get bad.",
       "desc": "Interactive endless game where losing is fatal.",
-      "cat": "games",
+      "cat": "fun",
       "ver": "1",
       "ldesc": "A very hard game where forgetting 3 words causes your system to reset - but you can always quit.",
       "symbol": "visibility",
@@ -246,7 +246,7 @@
       "by": "G-Progress",
       "qt": "Play offline",
       "desc": "The game Of TicTacToe.",
-      "cat": "games",
+      "cat": "fun",
       "ldesc": "Play the game of Tic Tac Toe with your friends with same screen multiplayer!",
       "symbol": "apps",
       "th": "#C6AA4F"
