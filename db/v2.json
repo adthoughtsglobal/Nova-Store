@@ -40,6 +40,18 @@
       "th": "#4e5fa7"
     },
     {
+      "name": "Chess",
+      "src": "/Nova-Store/apps/chess.html",
+      "by": "adthoughtsglobal",
+      "qt": "Yo clear chess? Me don't 😭🥀",
+      "desc": "Classic chess game with AI",
+      "cat": "fun",
+      "ver": "1",
+      "ldesc": "Play an old board game called chess either with a friend or with a very dumb AI.",
+      "symbol": "chess",
+      "th": "#ffd700"
+    },
+    {
       "name": "Data manager",
       "src": "/Nova-Store/apps/datamgr.html",
       "by": "adthoughtsglobal",

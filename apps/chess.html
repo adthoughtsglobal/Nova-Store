@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimalist Chess Engine</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- COLOR PALETTE & VARIABLES --- */
+        :root {
+            /* Theme */
+            --color-bg-primary: #1A1A1A; /* Deep Charcoal */
+            --color-bg-secondary: #2C2C2C; /* Card/Modal Background */
+            --color-text-primary: #EAEAEA;
+            --color-accent: #FFD700; /* Gold */
+            --color-win: #00C853; /* Vibrant Green */
+            --color-danger: #D32F2F; /* Red for Check */
+
+            /* Board Colors */
+            --color-dark-square: #585552; /* Deep Slate Gray */
+            --color-light-square: #B6B3AF; /* Light Stone Gray */
+            
+            /* Piece Colors */
+            --color-white-piece: #EAEAEA;
+            --color-black-piece: #333333;
+
+            /* Shadows */
+            --shadow-subtle: 0 4px 10px rgba(0, 0, 0, 0.4);
+            --shadow-deep: 0 10px 20px rgba(0, 0, 0, 0.7);
+        }
+
+        /* --- GLOBAL STYLES --- */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-bg-primary);
+            color: var(--color-text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            margin: 0;
+            overflow-y: auto; /* Allow scrolling if content overflows */
+        }
+        
+        /* --- LAYOUT --- */
+        .main-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            width: 100%;
+            max-width: 1000px;
+            align-items: center;
+        }
+
+        @media (min-width: 1024px) {
+            .main-wrapper {
+                flex-direction: row;
+                align-items: flex-start;
+                justify-content: center;
+            }
+        }
+
+        .board-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
+        .info-panel {
+            background-color: var(--color-bg-secondary);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-deep);
+            flex-shrink: 0;
+            width: 100%;
+            max-width: 350px;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--color-accent);
+        }
+
+        /* --- BOARD STYLES --- */
+        .board {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            grid-template-rows: repeat(8, 1fr);
+            width: 100%;
+            max-width: 550px;
+            aspect-ratio: 1 / 1;
+            box-shadow: var(--shadow-deep);
+            border-radius: 6px;
+            overflow: hidden;
+            border: 8px solid var(--color-dark-square); /* Frame */
+        }
+
+        .square {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(28px, 6vw, 60px);
+            cursor: pointer;
+            user-select: none;
+            transition: background-color 0.1s ease-in-out;
+            touch-action: manipulation;
+        }
+
+        .light { background-color: var(--color-light-square); }
+        .dark { background-color: var(--color-dark-square); }
+
+        /* Interaction */
+        .selected {
+            background-color: #B8860B !important; /* Dark Gold */
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        .in-check {
+            background-color: var(--color-danger) !important;
+            animation: pulse 0.8s infinite alternate;
+        }
+
+        .valid-move { position: relative; }
+        .valid-move:hover { background-color: #8D8B88 !important; } /* Soft hover on target */
+        
+        .valid-move::after {
+            content: '';
+            display: block;
+            width: 25%;
+            height: 25%;
+            background-color: rgba(0, 0, 0, 0.4);
+            border-radius: 50%;
+            position: absolute;
+            opacity: 0.9;
+            transition: all 0.1s;
+        }
+        
+        .valid-move.occupied::after {
+            width: 85%;
+            height: 85%;
+            background-color: transparent;
+            border: 4px solid rgba(0, 0, 0, 0.6);
+            border-radius: 0; 
+            box-sizing: border-box;
+        }
+
+        /* PIECE STYLING */
+        .piece {
+            line-height: 1; 
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .white-piece { color: var(--color-white-piece); }
+        .black-piece { 
+            color: var(--color-black-piece); 
+            filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.2));
+        }
+
+        /* --- STATUS AND MESSAGE --- */
+        .status-display {
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 700;
+            padding: 10px;
+            border-radius: 6px;
+            background-color: #383838;
+            color: var(--color-accent);
+            min-height: 44px; /* Ensure consistent size */
+        }
+        
+        .message-box {
+            min-height: 40px;
+            padding: 10px;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: var(--color-text-primary);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* --- MODAL STYLES --- */
+        .modal-overlay {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: var(--color-bg-secondary);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-deep);
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .modal-header {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--color-accent);
+        }
+
+        .modal-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .action-btn {
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;
+            box-shadow: var(--shadow-subtle);
+            color: var(--color-text-primary);
+            background-color: #444;
+        }
+
+        .action-btn:hover {
+            background-color: #555;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+        }
+        
+        #new-game-modal-btn {
+            background-color: var(--color-accent);
+            color: var(--color-bg-primary);
+            font-weight: 700;
+        }
+
+        #new-game-modal-btn:hover {
+            background-color: #e5c100;
+        }
+        
+        .mode-selector {
+            display: flex;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            overflow: hidden;
+            background-color: #383838;
+            padding: 3px;
+        }
+
+        .mode-btn {
+            flex-grow: 1;
+            padding: 8px 15px;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            background-color: transparent;
+            color: var(--color-text-primary);
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .mode-btn.active {
+            background-color: var(--color-bg-primary);
+            color: var(--color-accent);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .mode-btn:not(.active):hover {
+            background-color: #444;
+        }
+        
+        /* --- WIN MODAL SPECIFIC --- */
+        #win-modal .modal-content {
+            border: 2px solid var(--color-accent);
+            padding: 40px;
+        }
+        
+        #win-message {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-top: 10px;
+            color: var(--color-win);
+        }
+        
+        #win-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: var(--color-text-primary);
+        }
+
+        /* --- UTILITY & SVG --- */
+        .icon-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 50%;
+            transition: background-color 0.2s;
+        }
+
+        .icon-btn:hover {
+            background-color: #383838;
+        }
+
+        .icon-btn svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--color-text-primary);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 1024px) {
+            .info-panel {
+                order: -1; /* Move info panel above the board on mobile */
+            }
+            .board {
+                max-width: 95vw;
+            }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 10px 0 var(--color-danger); }
+            100% { box-shadow: 0 0 20px 5px var(--color-danger); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Main Content Container -->
+    <div class="main-wrapper">
+        
+        <!-- Game Info Panel (Slimmed down) -->
+        <div class="info-panel">
+            <div class="header">
+                <h1 class="title">CHESS</h1>
+                <button class="icon-btn" onclick="openSettingsModal()">
+                    <!-- Settings/Menu Icon -->
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
+                </button>
+            </div>
+
+            <div id="status-display" class="status-display">
+                White's Turn
+            </div>
+            
+            <div id="message-box" class="message-box">
+                Ready for the first move.
+            </div>
+            
+            <p style="font-size: 0.75rem; color: #888; text-align: center; margin-top: 20px;">
+                Complex engine: Checks and Checkmate fully implemented.
+            </p>
+        </div>
+        
+        <!-- Chess Board -->
+        <div class="board-container">
+            <div id="chess-board" class="board">
+                <!-- Squares will be generated by JavaScript here -->
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 1. SETTINGS MODAL -->
+    <div id="settings-modal" class="modal-overlay" onclick="closeSettingsModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">Game Settings</div>
+            
+            <div class="mode-selector">
+                <button id="mode-2p-modal" class="mode-btn" data-mode="2P" onclick="setGameMode('2P')">
+                    Two Player
+                </button>
+                <button id="mode-ai-modal" class="mode-btn active" data-mode="AI" onclick="setGameMode('AI')">
+                    Vs Simple AI
+                </button>
+            </div>
+            <p style="font-size: 0.8rem; color: #888; margin-top: -10px; margin-bottom: 20px;">Current Mode: <span id="current-mode-display">Vs Simple AI</span></p>
+
+            <div class="modal-controls">
+                <button id="new-game-modal-btn" class="action-btn" onclick="newGameAndClose()">
+                    Start New Match (Reset)
+                </button>
+                <button id="flip-board-modal-btn" class="action-btn" onclick="flipBoard();">
+                    Flip Board View (White)
+                </button>
+                <button class="action-btn" onclick="closeSettingsModal()">
+                    Close Menu
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. WIN/GAME OVER MODAL -->
+    <div id="win-modal" class="modal-overlay" onclick="closeWinModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header" style="color: var(--color-accent);">Match Concluded!</div>
+            <div id="win-message" style="color: var(--color-win);"></div>
+            <div id="win-subtitle"></div>
+            
+            <div class="modal-controls">
+                <button class="action-btn" style="background-color: var(--color-accent); color: var(--color-bg-primary); font-weight: 700;" onclick="newGameAndClose(); closeWinModal(); openSettingsModal();">
+                    New Game
+                </button>
+                <button class="action-btn" onclick="closeWinModal()">
+                    Review Final Position
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        // --- GLOBAL REFERENCES AND STATE ---
+        const boardElement = document.getElementById('chess-board');
+        const statusDisplay = document.getElementById('status-display');
+        const messageBox = document.getElementById('message-box');
+        const settingsModal = document.getElementById('settings-modal');
+        const winModal = document.getElementById('win-modal');
+        const winMessageEl = document.getElementById('win-message');
+        const winSubtitleEl = document.getElementById('win-subtitle');
+        const flipBoardModalBtn = document.getElementById('flip-board-modal-btn');
+        const currentModeDisplay = document.getElementById('current-mode-display');
+        const modeModalBtns = document.querySelectorAll('.mode-btn');
+
+        let board = []; 
+        let turn = 'w'; 
+        let selectedSquare = null; 
+        let legalMoves = []; 
+        let boardFlipped = false;
+        let gameMode = 'AI'; 
+        let isGameOver = false;
+
+        const Pieces = {
+            'wk': '\u2654', 'wq': '\u2655', 'wr': '\u2656', 'wb': '\u2657', 'wn': '\u2658', 'wp': '\u2659',
+            'bk': '\u265A', 'bq': '\u265B', 'br': '\u265C', 'bb': '\u265D', 'bn': '\u265E', 'bp': '\u265F',
+        };
+
+        const initialBoard = [
+            ['br', 'bn', 'bb', 'bq', 'bk', 'bb', 'bn', 'br'],
+            ['bp', 'bp', 'bp', 'bp', 'bp', 'bp', 'bp', 'bp'],
+            [null, null, null, null, null, null, null, null],
+            [null, null, null, null, null, null, null, null],
+            [null, null, null, null, null, null, null, null],
+            [null, null, null, null, null, null, null, null],
+            ['wp', 'wp', 'wp', 'wp', 'wp', 'wp', 'wp', 'wp'],
+            ['wr', 'wn', 'wb', 'wq', 'wk', 'wb', 'wn', 'wr']
+        ];
+
+        // --- UTILITY FUNCTIONS ---
+
+        function toAlgebraic(row, col) {
+            const file = String.fromCharCode('a'.charCodeAt(0) + col);
+            const rank = 8 - row;
+            return `${file}${rank}`;
+        }
+        
+        function isInBounds(row, col) {
+            return row >= 0 && row < 8 && col >= 0 && col < 8;
+        }
+
+        function getColor(piece) {
+            return piece ? piece[0] : null;
+        }
+        
+        function getOpponentColor(color) {
+            return color === 'w' ? 'b' : 'w';
+        }
+
+        function findKing(color) {
+            const kingPiece = color + 'k';
+            for (let r = 0; r < 8; r++) {
+                for (let c = 0; c < 8; c++) {
+                    if (board[r][c] === kingPiece) {
+                        return { row: r, col: c };
+                    }
+                }
+            }
+            return null;
+        }
+
+        // --- CORE CHESS LOGIC: CHECK & SAFETY ---
+
+        /**
+         * Checks if a square is attacked by pieces of the specified color.
+         * @param {number} r - Target row.
+         * @param {number} c - Target col.
+         * @param {string} attackerColor - 'w' or 'b'.
+         * @returns {boolean} True if the square is attacked.
+         */
+        function isSquareAttacked(r, c, attackerColor) {
+            const defenderColor = getOpponentColor(attackerColor);
+            
+            for (let fr = 0; fr < 8; fr++) {
+                for (let fc = 0; fc < 8; fc++) {
+                    const piece = board[fr][fc];
+                    if (piece && getColor(piece) === attackerColor) {
+                        // Generate POTENTIAL moves for the attacker
+                        const potentialMoves = generatePotentialMoves(fr, fc, true); 
+                        
+                        // Check if any of these potential moves lands on the target square (r, c)
+                        if (potentialMoves.some(move => move.row === r && move.col === c)) {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
+        function isInCheck(kingColor) {
+            const kingPos = findKing(kingColor);
+            if (!kingPos) return false; // Should not happen in a standard game
+            const attackerColor = getOpponentColor(kingColor);
+            return isSquareAttacked(kingPos.row, kingPos.col, attackerColor);
+        }
+
+        /**
+         * Checks if making a move from (from) to (to) leaves the current player's King in check.
+         * This function simulates the move on a temporary copy of the board.
+         * @param {{row: number, col: number}} from 
+         * @param {{row: number, col: number}} to 
+         * @returns {boolean} True if the move is safe (i.e., King is NOT in check after move).
+         */
+        function isMoveLegal(from, to) {
+            const pieceColor = getColor(board[from.row][from.col]);
+            if (!pieceColor) return false;
+
+            // 1. Save the current state (piece moved, captured piece)
+            const movedPiece = board[from.row][from.col];
+            const capturedPiece = board[to.row][to.col];
+            
+            // 2. Simulate the move
+            board[to.row][to.col] = movedPiece;
+            board[from.row][from.col] = null;
+            
+            // 3. Check if the King is in check after the move
+            const kingIsSafe = !isInCheck(pieceColor);
+            
+            // 4. Revert the move (Restore the board state)
+            board[from.row][from.col] = movedPiece;
+            board[to.row][to.col] = capturedPiece;
+
+            return kingIsSafe;
+        }
+
+
+        // --- MOVE GENERATION (GEOMETRIC/POTENTIAL MOVES) ---
+
+        /**
+         * Generates all geometrically possible moves for a piece, ignoring check rules.
+         * @param {number} r - Row of the piece.
+         * @param {number} c - Column of the piece.
+         * @param {boolean} [isAttackingCheck=false] - Special flag for pawn attacks when checking for 'check'.
+         * @returns {{row: number, col: number}[]} Array of potential moves.
+         */
+        function generatePotentialMoves(r, c, isAttackingCheck = false) {
+            const piece = board[r][c];
+            if (!piece) return [];
+            const pieceType = piece[1];
+            const pieceColor = piece[0];
+            const moves = [];
+
+            let tr; let tc;
+
+            const addSlidingMoves = (directions) => {
+                for (const [dr, dc] of directions) {
+                    for (let i = 1; i < 8; i++) {
+                        const tr = r + dr * i;
+                        const tc = c + dc * i;
+                        if (!isInBounds(tr, tc)) break;
+
+                        const targetPiece = board[tr][tc];
+
+                        if (targetPiece) {
+                            if (getColor(targetPiece) !== pieceColor) {
+                                moves.push({ row: tr, col: tc }); 
+                            }
+                            break; 
+                        } else {
+                            moves.push({ row: tr, col: tc }); 
+                        }
+                    }
+                }
+            };
+
+            switch (pieceType) {
+                case 'p': // PAWN
+                    const direction = pieceColor === 'w' ? -1 : 1;
+                    const startRow = pieceColor === 'w' ? 6 : 1;
+                    
+                    // Normal forward moves (only if not for attack checking)
+                    if (!isAttackingCheck) {
+                        // Single forward
+                        tr = r + direction;
+                        tc = c;
+                        if (isInBounds(tr, tc) && !board[tr][tc]) {
+                            moves.push({ row: tr, col: tc });
+                            
+                            // Double forward
+                            if (r === startRow) {
+                                tr = r + direction * 2;
+                                if (isInBounds(tr, tc) && !board[tr][tc]) {
+                                    moves.push({ row: tr, col: tc });
+                                }
+                            }
+                        }
+                    }
+
+                    // Captures (always checked, even when checking for attack on a square)
+                    for (const dc of [-1, 1]) {
+                        tr = r + direction;
+                        tc = c + dc;
+                        if (isInBounds(tr, tc)) {
+                            if (isAttackingCheck || (board[tr][tc] && getColor(board[tr][tc]) !== pieceColor)) {
+                                moves.push({ row: tr, col: tc });
+                            }
+                        }
+                    }
+                    break;
+
+                case 'r': // ROOK
+                    addSlidingMoves([[0, 1], [0, -1], [1, 0], [-1, 0]]);
+                    break;
+
+                case 'n': // KNIGHT
+                    const knightMoves = [
+                        [2, 1], [2, -1], [-2, 1], [-2, -1],
+                        [1, 2], [1, -2], [-1, 2], [-1, -2]
+                    ];
+                    for (const [dr, dc] of knightMoves) {
+                        tr = r + dr;
+                        tc = c + dc;
+                        const targetPiece = board[tr]?.[tc];
+                        if (isInBounds(tr, tc) && (!targetPiece || getColor(targetPiece) !== pieceColor)) {
+                            moves.push({ row: tr, col: tc });
+                        }
+                    }
+                    break;
+
+                case 'b': // BISHOP
+                    addSlidingMoves([[1, 1], [1, -1], [-1, 1], [-1, -1]]);
+                    break;
+
+                case 'q': // QUEEN
+                    addSlidingMoves([
+                        [0, 1], [0, -1], [1, 0], [-1, 0], 
+                        [1, 1], [1, -1], [-1, 1], [-1, -1]
+                    ]);
+                    break;
+
+                case 'k': // KING
+                    const kingMoves = [
+                        [0, 1], [0, -1], [1, 0], [-1, 0],
+                        [1, 1], [1, -1], [-1, 1], [-1, -1]
+                    ];
+                    for (const [dr, dc] of kingMoves) {
+                        tr = r + dr;
+                        tc = c + dc;
+                        const targetPiece = board[tr]?.[tc];
+                        if (isInBounds(tr, tc) && (!targetPiece || getColor(targetPiece) !== pieceColor)) {
+                            moves.push({ row: tr, col: tc });
+                        }
+                    }
+                    break;
+            }
+
+            return moves;
+        }
+        
+        // --- PUBLIC FACING FUNCTION ---
+        
+        /**
+         * Gets all moves for a piece that are geometrically possible AND do not leave the King in check.
+         */
+        function getLegalMoves(r, c) {
+            const potentialMoves = generatePotentialMoves(r, c, false);
+            return potentialMoves.filter(move => isMoveLegal({ row: r, col: c }, move));
+        }
+
+        /**
+         * Checks if the given color is in checkmate or stalemate.
+         */
+        function isGameOverCondition(color) {
+            // 1. Check for any legal moves across the whole board
+            let hasLegalMoves = false;
+            for (let r = 0; r < 8; r++) {
+                for (let c = 0; c < 8; c++) {
+                    const piece = board[r][c];
+                    if (piece && getColor(piece) === color) {
+                        if (getLegalMoves(r, c).length > 0) {
+                            hasLegalMoves = true;
+                            break;
+                        }
+                    }
+                }
+                if (hasLegalMoves) break;
+            }
+
+            if (hasLegalMoves) {
+                return null; // Not over
+            } else {
+                return isInCheck(color) ? 'Checkmate' : 'Stalemate';
+            }
+        }
+
+
+        // --- UI RENDERING ---
+
+        function generateBoardUI() {
+            boardElement.innerHTML = '';
+            for (let r = 0; r < 8; r++) {
+                for (let c = 0; c < 8; c++) {
+                    const row = boardFlipped ? 7 - r : r;
+                    const col = boardFlipped ? 7 - c : c;
+                    const square = document.createElement('div');
+                    square.id = `square-${row}-${col}`;
+                    square.classList.add('square', (row + col) % 2 === 0 ? 'dark' : 'light');
+                    square.dataset.row = row;
+                    square.dataset.col = col;
+                    square.addEventListener('click', handleSquareClick);
+                    boardElement.appendChild(square);
+                }
+            }
+            flipBoardModalBtn.textContent = boardFlipped ? 'Flip Board View (Black Side)' : 'Flip Board View (White Side)';
+        }
+
+        function renderBoard() {
+            const isWhiteInCheck = isInCheck('w');
+            const isBlackInCheck = isInCheck('b');
+            
+            for (let r = 0; r < 8; r++) {
+                for (let c = 0; c < 8; c++) {
+                    const piece = board[r][c];
+                    const squareElement = document.getElementById(`square-${r}-${c}`);
+                    
+                    if (squareElement) {
+                        // Reset classes
+                        squareElement.innerHTML = '';
+                        squareElement.classList.remove('selected', 'valid-move', 'occupied', 'in-check');
+
+                        // Re-apply background colors
+                        squareElement.classList.add((r + c) % 2 === 0 ? 'dark' : 'light');
+                        squareElement.classList.remove((r + c) % 2 === 0 ? 'light' : 'dark');
+
+                        // Add Piece
+                        if (piece) {
+                            const pieceEl = document.createElement('span');
+                            pieceEl.classList.add('piece', piece[0] === 'w' ? 'white-piece' : 'black-piece');
+                            pieceEl.textContent = Pieces[piece];
+                            squareElement.appendChild(pieceEl);
+                        }
+                    }
+                }
+            }
+            
+            // Highlight Check
+            const kingPos = findKing(turn);
+            if (kingPos && isInCheck(turn)) {
+                const kingSquare = document.getElementById(`square-${kingPos.row}-${kingPos.col}`);
+                if (kingSquare) kingSquare.classList.add('in-check');
+            }
+
+            // Highlight selected piece and legal moves
+            if (selectedSquare) {
+                const startSq = document.getElementById(`square-${selectedSquare.row}-${selectedSquare.col}`);
+                if (startSq) startSq.classList.add('selected');
+                
+                legalMoves.forEach(move => {
+                    const targetSq = document.getElementById(`square-${move.row}-${move.col}`);
+                    if (targetSq) {
+                        targetSq.classList.add('valid-move');
+                        if (board[move.row][move.col]) targetSq.classList.add('occupied');
+                    }
+                });
+            }
+
+            // Update status text
+            if (isGameOver) {
+                statusDisplay.textContent = 'GAME OVER';
+                statusDisplay.style.color = 'var(--color-win)';
+            } else if (isInCheck(turn)) {
+                statusDisplay.textContent = `${turn === 'w' ? 'White' : 'Black'} is IN CHECK!`;
+                statusDisplay.style.color = 'var(--color-danger)';
+            } else {
+                statusDisplay.textContent = `${turn === 'w' ? 'White' : 'Black'}'s Turn`;
+                statusDisplay.style.color = 'var(--color-accent)';
+            }
+
+            // Check if it's AI turn (only if not game over)
+            if (gameMode === 'AI' && turn === 'b' && !isGameOver) {
+                setTimeout(makeAIMove, 500); 
+            }
+        }
+
+        // --- GAME FLOW ---
+
+        function newGame() {
+            board = initialBoard.map(row => [...row]);
+            turn = 'w';
+            selectedSquare = null;
+            legalMoves = [];
+            isGameOver = false;
+            messageBox.textContent = 'Ready for the first move.';
+            statusDisplay.style.color = 'var(--color-accent)';
+            
+            updateModeButtons(gameMode);
+            generateBoardUI();
+            renderBoard();
+        }
+
+        function executeMove(from, to) {
+            const piece = board[from.row][from.col];
+            const pieceColor = getColor(piece);
+            const target = board[to.row][to.col];
+            const pieceName = piece[1].toUpperCase();
+            
+            let logMsg = `${pieceColor === 'w' ? 'White' : 'Black'} moves ${pieceName} ${toAlgebraic(from.row, from.col)} to ${toAlgebraic(to.row, to.col)}`;
+            
+            if (target) {
+                 logMsg = `${pieceColor === 'w' ? 'White' : 'Black'} captures ${target[1].toUpperCase()} at ${toAlgebraic(to.row, to.col)}!`;
+            }
+
+            // Execute the move
+            board[to.row][to.col] = piece;
+            board[from.row][from.col] = null;
+
+            // Pawn Promotion (simplified to Queen)
+            if (pieceName === 'P' && (to.row === 0 || to.row === 7)) {
+                const newPiece = piece[0] + 'q';
+                board[to.row][to.col] = newPiece;
+                logMsg = `${pieceColor === 'w' ? 'White' : 'Black'} promotes Pawn to QUEEN!`;
+            }
+
+            // Switch turn
+            const nextTurn = getOpponentColor(pieceColor);
+            turn = nextTurn;
+            
+            // Check for game end condition for the NEXT player
+            const result = isGameOverCondition(nextTurn);
+            
+            if (result) {
+                isGameOver = true;
+                turn = null; // Freeze turn
+                if (result === 'Checkmate') {
+                    showWinModal(pieceColor === 'w' ? 'White' : 'Black', 'Checkmate');
+                    logMsg += ` ${nextTurn === 'w' ? 'White' : 'Black'} is Checkmated!`;
+                } else if (result === 'Stalemate') {
+                    showWinModal('Draw', 'Stalemate');
+                    logMsg += ` Stalemate! Match concluded.`;
+                }
+            } else if (isInCheck(nextTurn)) {
+                 logMsg += ` - ${nextTurn === 'w' ? 'White' : 'Black'} is now IN CHECK!`;
+            }
+            
+            messageBox.textContent = logMsg;
+        }
+
+
+        // --- UI HANDLERS ---
+
+        function handleSquareClick(event) {
+            if (isGameOver || !turn) return;
+            if (gameMode === 'AI' && turn === 'b') return; // Prevent clicking during AI turn
+
+            const sqElement = event.currentTarget;
+            const row = parseInt(sqElement.dataset.row);
+            const col = parseInt(sqElement.dataset.col);
+            const piece = board[row][col];
+            const pieceColor = getColor(piece);
+
+            if (!selectedSquare) {
+                if (piece && pieceColor === turn) {
+                    selectedSquare = { row, col };
+                    // Use the new legal move filter
+                    legalMoves = getLegalMoves(row, col); 
+                    
+                    if (legalMoves.length > 0) {
+                        messageBox.textContent = `Selected ${piece[1].toUpperCase()} at ${toAlgebraic(row, col)}.`;
+                        renderBoard();
+                    } else {
+                        selectedSquare = null;
+                        messageBox.textContent = 'Piece has no legal moves (or moves are blocked by Check).';
+                    }
+                }
+            } else {
+                if (selectedSquare.row === row && selectedSquare.col === col) {
+                    // Deselect
+                    selectedSquare = null;
+                    legalMoves = [];
+                    messageBox.textContent = '';
+                    renderBoard();
+                    return;
+                }
+
+                const isLegalTarget = legalMoves.some(move => move.row === row && move.col === col);
+                
+                if (isLegalTarget) {
+                    executeMove(selectedSquare, { row, col });
+                    
+                    selectedSquare = null;
+                    legalMoves = [];
+                    renderBoard();
+                } else if (piece && pieceColor === turn) {
+                    // Change selection
+                    selectedSquare = { row, col };
+                    legalMoves = getLegalMoves(row, col);
+                    messageBox.textContent = `Changed selection to ${piece[1].toUpperCase()} at ${toAlgebraic(row, col)}.`;
+                    renderBoard();
+                } else {
+                    messageBox.textContent = 'Illegal move (does not resolve Check, or target is outside legal moves).';
+                }
+            }
+        }
+
+        function flipBoard() {
+            boardFlipped = !boardFlipped;
+            generateBoardUI();
+            renderBoard();
+        }
+
+        // --- AI LOGIC (Still simple, but now respects check rules) ---
+
+        function makeAIMove() {
+            if (isGameOver || !turn) return;
+
+            const aiColor = 'b';
+            const allLegalMoves = [];
+
+            for (let r = 0; r < 8; r++) {
+                for (let c = 0; c < 8; c++) {
+                    const piece = board[r][c];
+                    if (piece && getColor(piece) === aiColor) {
+                        const moves = getLegalMoves(r, c); // Uses the new filter
+                        moves.forEach(move => {
+                            allLegalMoves.push({
+                                from: { row: r, col: c },
+                                to: move
+                            });
+                        });
+                    }
+                }
+            }
+
+            if (allLegalMoves.length === 0) {
+                // This state should already be caught by isGameOverCondition, but as a fallback:
+                messageBox.textContent = "AI is Stalemate. Match concluded.";
+                turn = null; 
+                isGameOver = true;
+                renderBoard();
+                return;
+            }
+
+            // Simple AI: just pick a random legal move
+            const randomMove = allLegalMoves[Math.floor(Math.random() * allLegalMoves.length)];
+
+            executeMove(randomMove.from, randomMove.to);
+
+            renderBoard();
+        }
+
+        // --- MODAL & SETTINGS FUNCTIONS ---
+
+        function openSettingsModal() {
+            settingsModal.style.display = 'flex';
+        }
+
+        function closeSettingsModal(event) {
+             if (!event || event.currentTarget.id === 'settings-modal' || event.currentTarget.classList.contains('action-btn')) {
+                settingsModal.style.display = 'none';
+            }
+        }
+        
+        function closeWinModal(event) {
+            if (!event || event.currentTarget.id === 'win-modal' || event.currentTarget.classList.contains('action-btn')) {
+                winModal.style.display = 'none';
+            }
+        }
+
+        function showWinModal(winner, condition) {
+            if (condition === 'Checkmate') {
+                winMessageEl.textContent = `${winner} WINS!`;
+                winSubtitleEl.textContent = `The game ended in Checkmate.`;
+                winMessageEl.style.color = 'var(--color-win)';
+            } else if (condition === 'Stalemate') {
+                winMessageEl.textContent = `DRAW!`;
+                winSubtitleEl.textContent = `The game ended in Stalemate (no legal moves).`;
+                winMessageEl.style.color = 'var(--color-accent)';
+            }
+            winModal.style.display = 'flex';
+        }
+
+        function setGameMode(mode) {
+            gameMode = mode;
+            updateModeButtons(mode);
+            currentModeDisplay.textContent = mode === 'AI' ? 'Vs Simple AI' : 'Two Player';
+        }
+        
+        function updateModeButtons(activeMode) {
+             modeModalBtns.forEach(btn => {
+                if (btn.dataset.mode === activeMode) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+        }
+        
+        function newGameAndClose() {
+            newGame();
+            closeSettingsModal();
+        }
+
+        // Initial setup
+        window.onload = newGame;
+
+    </script>
+</body>
+</html>
