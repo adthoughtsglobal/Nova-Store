@@ -9,9 +9,9 @@
       "img": "https://i.ibb.co/HL6SQxRr/image.png"
     },
     {
-      "text": "Mine and craft",
-      "appName": "Minecraft Launcher",
-      "img": "https://ichef.bbci.co.uk/news/480/cpsprodpb/15F8/production/_131442650_mediaitem131442649.jpg.webp"
+      "text": "Woah, its suddenly obama",
+      "appName": "Obamafy",
+      "img": "https://pbs.twimg.com/media/FIAzMkKVgAMnFXC.jpg"
     }
   ],
   "apps": [
@@ -21,23 +21,11 @@
       "by": "adthoughtsglobal",
       "qt": "Explore more inside",
       "desc": "System CLI for Nova OS",
-      "cat": "tools",
+      "cat": "system",
       "ver": "1",
       "ldesc": "Access Nova System directly with Nova CLI, read and write files, execute functions and return data.",
       "symbol": "terminal",
       "th": "#5FFCA6"
-    },
-    {
-      "name": "NovaOS Claw",
-      "src": "/Nova-Store/apps/claw.html",
-      "by": "adthoughtsglobal",
-      "qt": "Online social client",
-      "desc": "Rotur Claw NovaOS Client",
-      "cat": "rotur",
-      "ver": "1",
-      "ldesc": "Read the Claw feed or become a part in the conversation. Now with attatchments.",
-      "symbol": "comic_bubble",
-      "th": "#4e5fa7"
     },
     {
       "name": "Chess",
@@ -57,7 +45,7 @@
       "by": "adthoughtsglobal",
       "qt": "Dig and replace",
       "desc": "Manage data in local storage",
-      "cat": "tools",
+      "cat": "system",
       "ver": "1",
       "ldesc": "Easily index and edit data in local storage.",
       "symbol": "database",
@@ -93,7 +81,7 @@
       "by": "adthoughtsglobal",
       "qt": "Explore more inside",
       "desc": "Create Text and html files",
-      "cat": "text editor",
+      "cat": "tools",
       "ver": "1",
       "ldesc": "Create formatted HTML files without code. Text editor for rich text editing in NovaOS.",
       "symbol": "rtt",
@@ -105,7 +93,7 @@
       "by": "Vizronix",
       "qt": "Get creative",
       "desc": "A sophisticated web application for drawing",
-      "cat": "tools",
+      "cat": "art",
       "ver": "1",
       "ldesc": "Create your artwork and download them with a click of a button!",
       "symbol": "brush",
@@ -129,7 +117,7 @@
       "by": "adthoughtsglobal",
       "qt": "Create Anything.",
       "desc": "An full HTML, Python, OSL code editor.",
-      "cat": "text editor",
+      "cat": "tools",
       "ver": "1",
       "ldesc": "An HTML, OSL and python code editor with hotkeys, syntax highlighting, same screen previews, help and much more!",
       "symbol": "code",
@@ -153,7 +141,7 @@
       "by": "Mistium",
       "qt": "Run Origin OS",
       "desc": "The best GUI for OSL and OASM.",
-      "cat": "launcher",
+      "cat": "tools",
       "ver": "1",
       "ldesc": "Origin is the Web Desktop GUI for running OSL and OASM. It is the best Turbowarp OS. Version 4.9.9, hosted and made by Mistium.",
       "symbol": "interactive_space",
@@ -177,7 +165,7 @@
       "by": "adthoughtsglobal",
       "qt": "Mini beat maker",
       "desc": "Minimal beat editor tool with waveform editing.",
-      "cat": "fun",
+      "cat": "art",
       "ver": "1",
       "ldesc": "Digital oscillator editor tool with minimal beat maker UI.",
       "symbol": "scatter_plot",
@@ -189,7 +177,7 @@
       "by": "adthoughtsglobal",
       "qt": "Dive deeper in data",
       "desc": "Interactive and responsive editor for JSON files. Stable.",
-      "cat": "tools",
+      "cat": "system",
       "ver": "1",
       "symbol": "data_object",
       "th": "#ff9742"
@@ -224,7 +212,7 @@
       "by": "adthoughtsglobal",
       "qt": "Sculpt or destroy.",
       "desc": "Play minecraft clones",
-      "cat": "launcher",
+      "cat": "fun",
       "ldesc": "Minecraft launcher in NovaOS is a way to play different minecraft web clones.",
       "symbol": "deployed_code",
       "th": "#093b3a"
