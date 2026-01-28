@@ -468,5 +468,23 @@
             "--sizing-normal": "5px 10px"
         },
         "wallpaper": "https://wallpapers.com/images/high/operating-system-linux-mint-20-default-v8tc8pbevmmyxtib.webp"
+    },
+    "Github dark": {
+        "type": "dark",
+        "colors": {
+            "--col-bg1": "#070C12",
+            "--col-bg2": "#15181D",
+            "--col-bg3": "#262C34",
+            "--col-bgh": "#278539",
+            "--col-txt1": "#FFFFFF",
+            "--col-txth": "#FFFFFF",
+            "--col-good": "#8BB158",
+            "--col-bad": "#E03022",
+            "--siz-radius1": ".5rem",
+            "--spacing-normal": ".3em",
+            "--spacing-gap": "5px",
+            "--sizing-normal": "1em"
+        },
+        "wallpaper": "https://exosquare.s3.amazonaws.com/feed/d902ae15-2516-47e0-af48-f71d36955d23/github-expands-ai-suite-copilot-goes-multi-model-spark-debuts-for-webdev.jpg"
     }
 }
